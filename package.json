@@ -1,0 +1,25 @@
+{
+  "name": "notcalpi40-backoffice",
+  "version": "1.0.0",
+  "description": "Backoffice area to Notcalpi v4 platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"src/**/*.{js, jsx}\" --quiet",
+    "format": "prettier \"src/**/*.{js, html}\" --write",
+    "dev": "parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.5"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
