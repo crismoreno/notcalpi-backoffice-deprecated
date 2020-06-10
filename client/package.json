@@ -1,42 +1,44 @@
 {
-    "name": "minimal-react",
-    "version": "1.0.0",
-    "description": "Minimal React.js starter kit for experiments.",
-    "main": "./src/index.js",
-    "scripts": {
-        "start": "webpack-dev-server"
-    },
-    "repository": "https://github.com/BatenkovT/Minimal-React.git",
-    "keywords": [
-        "react",
-        "webpack",
-        "starter-kit"
-    ],
-    "author": "BatenkovT",
-    "license": "ISC",
-    "dependencies": {
-        "react": "16.13.1",
-        "react-dom": "16.13.1",
-        "react-redux": "7.2.0",
-        "redux": "4.0.5"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.10.2",
-        "@babel/preset-env": "^7.10.2",
-        "@babel/preset-react": "^7.10.1",
-        "babel-core": "^6.25.0",
-        "babel-loader": "8.1.0",
-        "babel-plugin-transform-es2015-spread": "^6.22.0",
-        "babel-plugin-transform-object-rest-spread": "^6.26.0",
-        "babel-preset-env": "^1.6.0",
-        "babel-preset-react": "^6.24.1",
-        "css-loader": "^3.5.3",
-        "eslint": "^7.2.0",
-        "eslint-config-prettier": "^6.11.0",
-        "prettier": "^2.0.5",
-        "style-loader": "1.2.1",
-        "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.11",
-        "webpack-dev-server": "^3.11.0"
-    }
+  "name": "minimal-react",
+  "version": "1.0.0",
+  "description": "Minimal React.js starter kit for experiments.",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": "https://github.com/BatenkovT/Minimal-React.git",
+  "keywords": [
+    "react",
+    "webpack",
+    "starter-kit"
+  ],
+  "author": "BatenkovT",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.10.1",
+    "axios": "^0.19.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-redux": "7.2.0",
+    "redux": "4.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "8.1.0",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^3.5.3",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "^2.0.5",
+    "style-loader": "1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
 }
