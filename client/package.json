@@ -4,7 +4,8 @@
   "description": "Minimal React.js starter kit for experiments.",
   "main": "./src/index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "postinstall": "webpack -p"
   },
   "repository": "https://github.com/BatenkovT/Minimal-React.git",
   "keywords": [
