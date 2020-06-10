@@ -2,7 +2,11 @@
   "name": "notcalpi40-backoffice",
   "version": "1.0.0",
   "description": "This is the backoffice platform for Notcalpi v.4.0",
-  "main": "index.js",
+	"main": "index.js",
+	"engines": {
+    "node": "10.16.3",
+    "npm": "6.13.7"
+  },
   "scripts": {
     "postinstall": "cd client/ && npm install",
     "start": "node server/index.js",
