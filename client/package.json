@@ -1,7 +1,7 @@
 {
-  "name": "minimal-react",
+  "name": "notcalpi40-backoffice",
   "version": "1.0.0",
-  "description": "Minimal React.js starter kit for experiments.",
+  "description": "This is the backoffice platform for Notcalpi v.4.0",
   "main": "./src/index.js",
   "scripts": {
     "dev": "webpack-dev-server",
