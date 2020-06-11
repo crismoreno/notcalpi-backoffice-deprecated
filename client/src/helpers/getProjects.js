@@ -19,20 +19,18 @@ import {
 function fetchProjects() {
   return (dispatch) => {
     dispatch(fetchProjectsBegin());
-    return (
-      fetch('http://localhost:5000/api')
-        .then(handleErrors)
-        .then((res) => {
-          res.json();
-          dispatch(fetchProjectsSuccess(res));
-          return res;
-        })
-        // .then((json) => {
-        //   dispatch(fetchProjectsSuccess(json));
-        //   return json;
-        // })
-        .catch((error) => dispatch(fetchProjectsFailure(error)))
-    );
+    return fetch('http://localhost:5000/api')
+      .then(handleErrors)
+      .then((res) => {
+        res.json();
+        // dispatch(fetchProjectsSuccess(res));
+        // return res;
+      })
+      .then((json) => {
+        dispatch(fetchProjectsSuccess(json));
+        return json;
+      })
+      .catch((error) => dispatch(fetchProjectsFailure(error)));
   };
 }
 
@@ -41,7 +39,7 @@ function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
-  console.log(response, 'response');
+  console.log('ERROR -->', response, 'response');
   return response;
 }
 

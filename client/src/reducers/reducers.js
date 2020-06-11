@@ -21,14 +21,14 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        items: action.payload.projects,
+        projects: action.payload.projects,
       };
     case FETCH_PROJECTS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        items: [],
+        projects: [],
       };
     default:
       // ALWAYS have a default case in a reducer
