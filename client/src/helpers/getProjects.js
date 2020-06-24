@@ -1,48 +1,21 @@
 import axios from 'axios';
 import {
-  fetchProjectsBegin,
+  // fetchProjectsBegin,
   fetchProjectsSuccess,
-  fetchProjectsFailure,
+  // fetchProjectsFailure,
 } from '../actions';
 
 const url = '/api';
 
-// function fetchProjects() {
-//   return async (dispatch) => {
-//     dispatch(fetchProjectsBegin());
-//     let response = await axios('http://localhost:5000/api');
-//     response = response.data;
-//     handleErrors(response);
-//     console.log(response);
-//     dispatch(fetchProjectsSuccess(response));
-//   };
-// }
-
 function fetchProjects() {
   return (dispatch) => {
-    dispatch(fetchProjectsBegin());
-    return fetch(url)
-      .then(handleErrors)
-      .then((res) => {
-        res.json();
-        // dispatch(fetchProjectsSuccess(res));
-        // return res;
-      })
-      .then((json) => {
-        dispatch(fetchProjectsSuccess(json));
-        return json;
-      })
-      .catch((error) => dispatch(fetchProjectsFailure(error)));
+    return fetch(url).then((response) => {
+      response.json().then((data) => {
+        dispatch(fetchProjectsSuccess(data));
+        return data;
+      });
+    });
   };
-}
-
-// Handle HTTP errors since fetch won't.
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  console.log('ERROR -->', response, 'response');
-  return response;
 }
 
 export default fetchProjects;
