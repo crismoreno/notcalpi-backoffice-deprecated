@@ -10,7 +10,7 @@ const initialState = {
   error: null,
 };
 
-const reducers = (state = initialState, action) => {
+const projects = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROJECTS_BEGIN:
       return {
@@ -36,4 +36,4 @@ const reducers = (state = initialState, action) => {
   }
 };
 
-export default reducers;
+export default projects;

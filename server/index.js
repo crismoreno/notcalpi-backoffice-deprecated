@@ -9,12 +9,13 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const contents = require("./routes/contents");
+const api = require("./routes/api");
 
-app.use("/api", contents);
+app.use("/api", api);
 
-const db = require("./models");
+const db = require("./sequelize-models");
 
+// db.sequelize.sync({ alter: true });
 db.sequelize.sync();
 
 // db.sequelize.sync({ force: true }).then(() => {

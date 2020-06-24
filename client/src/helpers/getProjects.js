@@ -5,6 +5,8 @@ import {
   fetchProjectsFailure,
 } from '../actions';
 
+const url = '/api';
+
 // function fetchProjects() {
 //   return async (dispatch) => {
 //     dispatch(fetchProjectsBegin());
@@ -19,7 +21,7 @@ import {
 function fetchProjects() {
   return (dispatch) => {
     dispatch(fetchProjectsBegin());
-    return fetch('http://localhost:5000/api')
+    return fetch(url)
       .then(handleErrors)
       .then((res) => {
         res.json();
