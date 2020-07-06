@@ -20,13 +20,13 @@ const App = ({ dispatch, projects }) => {
   return (
     <div>
       {projects.map((project, index) => (
-        // <h1 key={index}>{project.title}</h1>
         <Card
+          key={index}
           style={{ width: 300 }}
           cover={
             <img
               alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              src={`https://res.cloudinary.com/hyavxktsb/image/upload/projects/${project.id}/cover.png`}
             />
           }
           actions={[
