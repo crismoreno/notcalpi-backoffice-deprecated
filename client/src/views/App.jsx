@@ -70,9 +70,10 @@ const App = ({ dispatch, projects }) => {
               minHeight: 280,
             }}
           >
-            {projects.map((project, index) => (
+            <p>Hello!!!</p>
+            {/* {projects.map((project, index) => (
               <ProjectCard project={project} key={index} />
-            ))}
+            ))} */}
           </Content>
         </Layout>
       </Layout>
