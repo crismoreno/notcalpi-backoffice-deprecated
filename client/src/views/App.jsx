@@ -71,8 +71,7 @@ const App = ({ dispatch, projects }) => {
             }}
           >
             {projects.map((project, index) => (
-              <p>Hello!!!</p>
-              // <ProjectCard project={project} key={index} />
+              <ProjectCard project={project} key={index} />
             ))}
           </Content>
         </Layout>
