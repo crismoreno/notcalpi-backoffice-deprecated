@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
-import App from './views/App';
+import App from './views/App.jsx';
 import thunk from 'redux-thunk';
-import initialData from './helpers/getProjects';
+// import initialData from './helpers/getProjects';
 import '../src/assets/styles/importer.css';
 
 require('@babel/polyfill');
