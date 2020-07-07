@@ -19,7 +19,7 @@ const { Header, Content, Sider } = Layout;
 const App = ({ dispatch, projects }) => {
   useEffect(() => {
     dispatch(fetchProjects());
-  }, [projects]);
+  });
 
   return (
     <Layout>
