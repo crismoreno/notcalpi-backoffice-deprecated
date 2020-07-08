@@ -6,11 +6,13 @@ import { connect } from 'react-redux';
 import { getProjects } from '../reducers/index';
 
 import { ProjectCard } from '../components/Card.jsx';
+import { Button } from 'antd';
 
 import {
   UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
+  FlagOutlined,
+  FolderOpenOutlined,
+  MailOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 
@@ -28,7 +30,7 @@ const App = ({ dispatch, projects }) => {
     <Layout>
       <Header className="header">
         <div className="logo">
-          <img height="20" src={require('../assets/img/white-logo.svg')} />
+          <img height="30" src={require('../assets/img/white-logo.svg')} />
         </div>
         <Menu mode="horizontal"></Menu>
       </Header>
@@ -40,28 +42,20 @@ const App = ({ dispatch, projects }) => {
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
           >
-            <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-              <Menu.Item key="1">option1</Menu.Item>
-              <Menu.Item key="2">option2</Menu.Item>
-              <Menu.Item key="3">option3</Menu.Item>
-              <Menu.Item key="4">option4</Menu.Item>
+            <Menu.Item key="1" icon={<FolderOpenOutlined />}>
+              Projects
+            </Menu.Item>
+            <SubMenu key="sub1" icon={<FlagOutlined />} title="Categories">
+              <Menu.Item key="2">Tags</Menu.Item>
+              <Menu.Item key="3">Coding Languages</Menu.Item>
+              <Menu.Item key="4">Made Ats</Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-              <Menu.Item key="5">option5</Menu.Item>
-              <Menu.Item key="6">option6</Menu.Item>
-              <Menu.Item key="7">option7</Menu.Item>
-              <Menu.Item key="8">option8</Menu.Item>
-            </SubMenu>
-            <SubMenu
-              key="sub3"
-              icon={<NotificationOutlined />}
-              title="subnav 3"
-            >
-              <Menu.Item key="9">option9</Menu.Item>
-              <Menu.Item key="10">option10</Menu.Item>
-              <Menu.Item key="11">option11</Menu.Item>
-              <Menu.Item key="12">option12</Menu.Item>
-            </SubMenu>
+            <Menu.Item key="2" icon={<MailOutlined />}>
+              Contact Forms
+            </Menu.Item>
+            <Menu.Item key="3" icon={<UserOutlined />}>
+              Users
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
@@ -73,9 +67,12 @@ const App = ({ dispatch, projects }) => {
               minHeight: 280,
             }}
           >
-            {projects.map((project, index) => (
-              <ProjectCard project={project} key={index} />
-            ))}
+            <Button type="primary">Add new project</Button>
+            <div className="project-cards-container">
+              {projects.map((project, index) => (
+                <ProjectCard project={project} key={index} />
+              ))}
+            </div>
           </Content>
         </Layout>
       </Layout>
