@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 import fetchProjects from '../helpers/getProjects';
 import { connect } from 'react-redux';
 
@@ -17,9 +18,11 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const App = ({ dispatch, projects }) => {
-  useEffect(() => {
-    dispatch(fetchProjects());
-  });
+  useDeepCompareEffect(() => {
+    if (!Array.isArray(projects) || !Boolean(projects.length)) {
+      dispatch(fetchProjects());
+    }
+  }, [projects]);
 
   return (
     <Layout>
