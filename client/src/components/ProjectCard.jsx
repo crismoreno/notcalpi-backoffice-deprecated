@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Card, Avatar } from 'antd';
 

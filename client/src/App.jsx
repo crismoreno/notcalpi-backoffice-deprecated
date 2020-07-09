@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Projects from './views/Projects.jsx';
 import Welcome from './views/Welcome.jsx';
+import Category from './views/Category.jsx';
 
 import {
   UserOutlined,
@@ -44,7 +45,7 @@ const App = (store) => {
             </Menu.Item>
             <SubMenu key="sub1" icon={<FlagOutlined />} title="Categories">
               <Menu.Item key="3">
-                <Link to="/tags">Tags</Link>
+                <Link to="/category/tag">Tags</Link>
               </Menu.Item>
               <Menu.Item key="4">Coding Languages</Menu.Item>
               <Menu.Item key="5">Made Ats</Menu.Item>
@@ -67,6 +68,9 @@ const App = (store) => {
               <Route path="/" exact component={Welcome} />
               <Route path="/projects">
                 <Projects store={store} />
+              </Route>
+              <Route path="/category/:cat">
+                <Category store={store} />
               </Route>
             </Switch>
           </Content>

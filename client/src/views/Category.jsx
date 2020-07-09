@@ -1,20 +1,22 @@
 import React from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
-import fetchProjects from '../helpers/getProjects';
+import { fetchTags } from '../helpers/getCategories';
+
 import { connect } from 'react-redux';
 
-import { getProjects } from '../reducers/index';
+import { getTags } from '../reducers/index';
 
-import { ProjectCard } from '../components/ProjectCard.jsx';
+import { CategoryCard } from '../components/CategoryCard.jsx';
+
 import { Button } from 'antd';
 
-const Projects = ({ dispatch, projects }) => {
+const Category = ({ dispatch, tags }) => {
   useDeepCompareEffect(() => {
-    if (!Array.isArray(projects) || !Boolean(projects.length)) {
-      dispatch(fetchProjects());
+    if (!Array.isArray(tags) || !Boolean(tags.length)) {
+      dispatch(fetchTags());
     }
-  }, [projects]);
+  }, [tags]);
   return (
     <div
       style={{
@@ -27,8 +29,8 @@ const Projects = ({ dispatch, projects }) => {
         Add new project
       </Button>
       <div className="project-cards-container">
-        {projects.map((project, index) => (
-          <ProjectCard project={project} key={index} />
+        {tags.map((tag, index) => (
+          <CategoryCard tag={tag} key={index} />
         ))}
       </div>
     </div>
@@ -36,7 +38,7 @@ const Projects = ({ dispatch, projects }) => {
 };
 
 const mapStateToProps = (state) => ({
-  projects: getProjects(state),
+  tags: getTags(state),
 });
 
-export default connect(mapStateToProps)(Projects);
+export default connect(mapStateToProps)(Category);

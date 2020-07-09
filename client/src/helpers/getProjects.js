@@ -1,8 +1,4 @@
-import {
-  // fetchProjectsBegin,
-  fetchProjectsSuccess,
-  // fetchProjectsFailure,
-} from '../actions';
+import { fetchProjectsSuccess } from '../actions';
 
 const url = '/api';
 
