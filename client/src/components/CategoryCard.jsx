@@ -5,6 +5,8 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
 export const CategoryCard = ({ entity }) => {
+  let name = entity.name || entity.short_name;
+  name = name.charAt(0).toUpperCase() + name.slice(1);
   return (
     <Card
       style={{ width: 300, marginTop: 16 }}
@@ -13,7 +15,7 @@ export const CategoryCard = ({ entity }) => {
       <Skeleton loading={false} avatar active>
         <Meta
           avatar={<Avatar src={require('../assets/img/cristina.png')} />}
-          title={`${entity.name}`}
+          title={`${name}`}
           description={`ID: ${entity.id}`}
         />
       </Skeleton>

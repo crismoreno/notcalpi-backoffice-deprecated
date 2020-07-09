@@ -62,7 +62,7 @@ const Category = ({
       }}
     >
       <Button type="primary" style={{ marginTop: '15px' }}>
-        Add new category
+        {`Add new ${cat.substring(0, cat.length - 1)}`}
       </Button>
       <div className="project-cards-container">
         {entity.map((entity, index) => (
