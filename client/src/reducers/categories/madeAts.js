@@ -1,41 +1,41 @@
 import {
-  CLEAR_TAGS,
-  FETCH_TAGS_BEGIN,
-  FETCH_TAGS_SUCCESS,
-  FETCH_TAGS_FAILURE,
+  CLEAR_MADEATS,
+  FETCH_MADEATS_BEGIN,
+  FETCH_MADEATS_SUCCESS,
+  FETCH_MADEATS_FAILURE,
 } from '../../actions/actionTypes';
 
 const initialState = {
-  tags: [],
+  madeAts: [],
   loading: false,
   error: null,
 };
 
-const tags = (state = initialState, action) => {
+const madeAts = (state = initialState, action) => {
   switch (action.type) {
-    case CLEAR_TAGS:
+    case CLEAR_MADEATS:
       return {
         ...state,
         loading: false,
-        tags: [],
+        madeAts: [],
       };
-    case FETCH_TAGS_BEGIN:
+    case FETCH_MADEATS_BEGIN:
       return {
         ...state,
         loading: true,
       };
-    case FETCH_TAGS_SUCCESS:
+    case FETCH_MADEATS_SUCCESS:
       return {
         ...state,
         loading: false,
-        tags: action.payload.tags,
+        madeAts: action.payload.madeAts,
       };
-    case FETCH_TAGS_FAILURE:
+    case FETCH_MADEATS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        tags: [],
+        madeAts: [],
       };
     default:
       // ALWAYS have a default case in a reducer
@@ -43,4 +43,4 @@ const tags = (state = initialState, action) => {
   }
 };
 
-export default tags;
+export default madeAts;

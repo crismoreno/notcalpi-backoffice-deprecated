@@ -1,22 +1,58 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
-
-import { fetchTags } from '../helpers/getCategories';
-
 import { connect } from 'react-redux';
 
-import { getTags } from '../reducers/index';
+import {
+  clearTags,
+  clearCodingLangs,
+  clearMadeAts,
+} from '../actions/categories';
+
+import {
+  fetchTags,
+  fetchCodingLangs,
+  fetchMadeAts,
+} from '../helpers/getCategories';
+
+import { getTags, getCodingLangs, getMadeAts } from '../reducers/index';
 
 import { CategoryCard } from '../components/CategoryCard.jsx';
 
 import { Button } from 'antd';
 
-const Category = ({ dispatch, tags }) => {
-  useDeepCompareEffect(() => {
-    if (!Array.isArray(tags) || !Boolean(tags.length)) {
-      dispatch(fetchTags());
+const Category = ({
+  dispatch,
+  tags,
+  madeAts,
+  codingLangs,
+  match: {
+    params: { cat },
+  },
+}) => {
+  useEffect(() => {
+    switch (cat) {
+      case 'tags':
+        dispatch(clearCodingLangs());
+        dispatch(clearMadeAts());
+        dispatch(fetchTags());
+        break;
+      case 'codingLangs':
+        dispatch(clearTags());
+        dispatch(clearMadeAts());
+        dispatch(fetchCodingLangs());
+        break;
+      case 'madeAts':
+        dispatch(clearTags());
+        dispatch(clearCodingLangs());
+        dispatch(fetchMadeAts());
+        break;
+      case 'default':
+        return null;
     }
-  }, [tags]);
+  }, [cat]);
+
+  let entity = eval(cat);
+
   return (
     <div
       style={{
@@ -26,11 +62,11 @@ const Category = ({ dispatch, tags }) => {
       }}
     >
       <Button type="primary" style={{ marginTop: '15px' }}>
-        Add new project
+        Add new category
       </Button>
       <div className="project-cards-container">
-        {tags.map((tag, index) => (
-          <CategoryCard tag={tag} key={index} />
+        {entity.map((entity, index) => (
+          <CategoryCard entity={entity} key={index} />
         ))}
       </div>
     </div>
@@ -39,6 +75,8 @@ const Category = ({ dispatch, tags }) => {
 
 const mapStateToProps = (state) => ({
   tags: getTags(state),
+  codingLangs: getCodingLangs(state),
+  madeAts: getMadeAts(state),
 });
 
 export default connect(mapStateToProps)(Category);

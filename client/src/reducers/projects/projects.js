@@ -2,7 +2,7 @@ import {
   FETCH_PROJECTS_BEGIN,
   FETCH_PROJECTS_SUCCESS,
   FETCH_PROJECTS_FAILURE,
-} from '../../actions';
+} from '../../actions/actionTypes';
 
 const initialState = {
   projects: [],

@@ -1,4 +1,4 @@
-import { fetchProjectsSuccess } from '../actions';
+import { fetchProjectsSuccess } from '../actions/projects';
 
 const url = '/api';
 

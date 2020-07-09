@@ -1,13 +1,16 @@
 import projects from './projects/projects';
-import tags from './categories/tags';
+import categories from './categories';
 import { combineReducers } from 'redux';
 
 const reducers = combineReducers({
   projects,
-  tags,
+  categories,
 });
 
 export default reducers;
 
 export const getProjects = (state) => state.projects.projects;
-export const getTags = (state) => state.tags.tags;
+export const getTags = (state) => state.categories.tags.tags;
+export const getCodingLangs = (state) =>
+  state.categories.codingLangs.codingLangs;
+export const getMadeAts = (state) => state.categories.madeAts.madeAts;

@@ -1,41 +1,41 @@
 import {
-  CLEAR_TAGS,
-  FETCH_TAGS_BEGIN,
-  FETCH_TAGS_SUCCESS,
-  FETCH_TAGS_FAILURE,
+  CLEAR_CODINGLANGS,
+  FETCH_CODINGLANGS_BEGIN,
+  FETCH_CODINGLANGS_SUCCESS,
+  FETCH_CODINGLANGS_FAILURE,
 } from '../../actions/actionTypes';
 
 const initialState = {
-  tags: [],
+  codingLangs: [],
   loading: false,
   error: null,
 };
 
-const tags = (state = initialState, action) => {
+const codingLangs = (state = initialState, action) => {
   switch (action.type) {
-    case CLEAR_TAGS:
+    case CLEAR_CODINGLANGS:
       return {
         ...state,
         loading: false,
-        tags: [],
+        codingLangs: [],
       };
-    case FETCH_TAGS_BEGIN:
+    case FETCH_CODINGLANGS_BEGIN:
       return {
         ...state,
         loading: true,
       };
-    case FETCH_TAGS_SUCCESS:
+    case FETCH_CODINGLANGS_SUCCESS:
       return {
         ...state,
         loading: false,
-        tags: action.payload.tags,
+        codingLangs: action.payload.codingLangs,
       };
-    case FETCH_TAGS_FAILURE:
+    case FETCH_CODINGLANGS_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        tags: [],
+        codingLangs: [],
       };
     default:
       // ALWAYS have a default case in a reducer
@@ -43,4 +43,4 @@ const tags = (state = initialState, action) => {
   }
 };
 
-export default tags;
+export default codingLangs;

@@ -45,10 +45,14 @@ const App = (store) => {
             </Menu.Item>
             <SubMenu key="sub1" icon={<FlagOutlined />} title="Categories">
               <Menu.Item key="3">
-                <Link to="/category/tag">Tags</Link>
+                <Link to="/category/tags">Tags</Link>
               </Menu.Item>
-              <Menu.Item key="4">Coding Languages</Menu.Item>
-              <Menu.Item key="5">Made Ats</Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/category/codingLangs">Coding Languages</Link>
+              </Menu.Item>
+              <Menu.Item key="5">
+                <Link to="/category/madeAts">Made Ats</Link>
+              </Menu.Item>
             </SubMenu>
             <Menu.Item key="6" icon={<MailOutlined />}>
               Contact Forms
@@ -69,9 +73,10 @@ const App = (store) => {
               <Route path="/projects">
                 <Projects store={store} />
               </Route>
-              <Route path="/category/:cat">
-                <Category store={store} />
-              </Route>
+              <Route
+                path="/category/:cat"
+                render={({ match }) => <Category match={match} store={store} />}
+              />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
