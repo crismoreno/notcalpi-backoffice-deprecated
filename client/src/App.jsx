@@ -10,6 +10,7 @@ import {
   FolderOpenOutlined,
   MailOutlined,
   SmileOutlined,
+  DesktopOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 
@@ -59,6 +60,11 @@ const App = (store) => {
             </Menu.Item>
             <Menu.Item key="7" icon={<UserOutlined />}>
               Users
+            </Menu.Item>
+            <Menu.Item key="8" icon={<DesktopOutlined />}>
+              <a target="_blank" href="https://www.cristinamoreno.dev/">
+                Visit FrontOffice
+              </a>
             </Menu.Item>
           </Menu>
         </Sider>

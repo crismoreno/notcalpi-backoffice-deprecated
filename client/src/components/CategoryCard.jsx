@@ -1,5 +1,5 @@
 import React from 'react';
-import { Skeleton, Switch, Card, Avatar } from 'antd';
+import { Skeleton, Card, Avatar } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
