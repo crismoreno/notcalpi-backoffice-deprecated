@@ -18,7 +18,10 @@ router.get("/featured", projectsController.getAllFeaturedProjects);
 router.get("/project/:id", projectController.getProjectById);
 // Get all tags related to single Project
 router.get("/projecttags/:id", projectController.getTagsByProjectId);
-router.get("/projectcodinglangs/:id", projectController.getCodingLangsByProjectId);
+router.get(
+  "/projectcodinglangs/:id",
+  projectController.getCodingLangsByProjectId
+);
 router.get("/projectmadeat/:id", projectController.getMadeAtByProjectId);
 
 // Find projects by tags
@@ -39,6 +42,6 @@ router.get("/madeat", filteringMadeAts.getProjectsByMadeAtId);
 //Get a list with all available madeAts
 router.get("/madeatslist", filteringMadeAts.getAllAvailableMadeAts);
 
-router.post("/postForm", contactFormController.postContactForm);
+router.get("/getForms", contactFormController.getContactForms);
 
 module.exports = router;

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Projects from './views/Projects.jsx';
 import Welcome from './views/Welcome.jsx';
 import Category from './views/Category.jsx';
+import ContactForms from './views/ContactForms.jsx';
 
 import {
   UserOutlined,
@@ -56,7 +57,7 @@ const App = (store) => {
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="6" icon={<MailOutlined />}>
-              Contact Forms
+              <Link to="/contactForms">Contact Forms</Link>
             </Menu.Item>
             <Menu.Item key="7" icon={<UserOutlined />}>
               Users
@@ -82,6 +83,10 @@ const App = (store) => {
               <Route
                 path="/category/:cat"
                 render={({ match }) => <Category match={match} store={store} />}
+              />
+              <Route
+                path="/contactForms"
+                render={() => <ContactForms store={store} />}
               />
             </Switch>
           </Content>
