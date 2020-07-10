@@ -9,6 +9,8 @@ import { getContactForms } from '../reducers/index';
 
 import { ContactsTable } from '../components/ContactsTable.jsx';
 
+import { PageHeader } from 'antd';
+
 const columns = [
   {
     title: 'id',
@@ -58,7 +60,17 @@ const ContactForms = ({ dispatch, contactForms }) => {
     i.createdAt = moment(i.createdAt).utc().format('DD.MM.YYYY');
   });
 
-  return <ContactsTable data={contactForms} columns={columns} />;
+  return (
+    <>
+      <PageHeader
+        className="contact-forms-page-header"
+        title="Contact Froms"
+        // subTitle="This is a subtitle"
+      />
+      ,
+      <ContactsTable data={contactForms} columns={columns} />
+    </>
+  );
 };
 
 const mapStateToProps = (state) => ({
