@@ -7,6 +7,7 @@ const filteringMadeAts = require("../controllers/filteringMadeAts.controller.js"
 const filteringCodingLang = require("../controllers/filteringCodingLang.controller.js");
 
 const contactFormController = require("../controllers/contactForm.controller.js");
+const usersController = require("../controllers/users.controller.js");
 
 const router = express.Router();
 
@@ -41,7 +42,11 @@ router.get("/codinglangslist", filteringCodingLang.getAllAvailableCodingLangs);
 router.get("/madeat", filteringMadeAts.getProjectsByMadeAtId);
 //Get a list with all available madeAts
 router.get("/madeatslist", filteringMadeAts.getAllAvailableMadeAts);
-
+//Get a list with all the contact forms received
 router.get("/getForms", contactFormController.getContactForms);
+//User registration
+router.post("/register", usersController.createUser);
+//Get all users
+router.get("/users", usersController.getAllUsers);
 
 module.exports = router;

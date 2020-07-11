@@ -1,8 +1,7 @@
-const db = require("../sequelize-models");
+const db = require("../sequelizers");
 const { QueryTypes } = require("sequelize");
 const Sequelize = db.sequelize;
 const ContactForms = db.contactForms;
-var nodemailer = require("nodemailer");
 
 const model = {
   // Post COntact Form to DB and Send Email

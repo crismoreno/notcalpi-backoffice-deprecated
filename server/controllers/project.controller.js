@@ -1,4 +1,4 @@
-const db = require("../sequelize-models");
+const db = require("../sequelizers");
 const projectModel = require("../models/project.model")
 const ProjectMadeAt = db.projectMadeAt;
 const controller = {

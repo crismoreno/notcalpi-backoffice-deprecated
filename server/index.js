@@ -6,14 +6,15 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+// app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const api = require("./routes/api");
 
 app.use("/api", api);
 
-const db = require("./sequelize-models");
+const db = require("./sequelizers");
 
 // db.sequelize.sync({ alter: true });
 db.sequelize.sync();

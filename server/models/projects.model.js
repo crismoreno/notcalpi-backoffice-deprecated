@@ -1,4 +1,4 @@
-const db = require("../sequelize-models");
+const db = require("../sequelizers");
 const Projects = db.projects;
 const model = {
 	// Retrieve all showable projects

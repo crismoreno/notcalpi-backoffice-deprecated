@@ -1,4 +1,4 @@
-const db = require("../sequelize-models");
+const db = require("../sequelizers");
 const Projects = db.projects;
 const ProjectTags = db.projectTags;
 const Tags = db.tags;

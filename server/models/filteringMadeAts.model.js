@@ -1,4 +1,4 @@
-const db = require("../sequelize-models");
+const db = require("../sequelizers");
 const madeAt = db.madeAt;
 const { QueryTypes } = require("sequelize");
 const Sequelize = db.sequelize;

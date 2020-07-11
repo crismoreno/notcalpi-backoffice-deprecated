@@ -16,7 +16,7 @@ export const CategoryCard = ({ entity }) => {
         <Meta
           avatar={<Avatar src={require('../assets/img/cristina.png')} />}
           title={`${name}`}
-          description={`ID: ${entity.id}`}
+          description={`id: ${entity.id}`}
         />
       </Skeleton>
     </Card>
