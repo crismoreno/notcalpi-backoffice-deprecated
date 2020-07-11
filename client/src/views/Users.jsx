@@ -41,9 +41,11 @@ const Users = ({ dispatch, users }) => {
     }
   }, [users]);
 
-  users.map((i) => {
-    i.createdAt = moment(i.createdAt).utc().format('DD.MM.YYYY');
-  });
+  if (Array.isArray(users)) {
+    users.map((i) => {
+      i.createdAt = moment(i.createdAt).utc().format('DD.MM.YYYY');
+    });
+  }
 
   return (
     <>

@@ -56,9 +56,11 @@ const ContactForms = ({ dispatch, contactForms }) => {
     }
   }, [contactForms]);
 
-  contactForms.map((i) => {
-    i.createdAt = moment(i.createdAt).utc().format('DD.MM.YYYY');
-  });
+  if (Array.isArray(contactForms)) {
+    contactForms.map((i) => {
+      i.createdAt = moment(i.createdAt).utc().format('DD.MM.YYYY');
+    });
+  }
 
   return (
     <>
