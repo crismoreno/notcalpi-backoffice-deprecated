@@ -1,4 +1,6 @@
 const express = require("express");
+const passport = require("passport");
+
 const projectsController = require("../controllers/projects.controller.js");
 const projectController = require("../controllers/project.controller.js");
 
@@ -12,7 +14,7 @@ const usersController = require("../controllers/users.controller.js");
 const router = express.Router();
 
 //Retreiving all showable projects
-router.get("/", projectsController.getAllShowableProjects);
+router.get("/", passport.authenticate('jwt', { session: false }), projectsController.getAllShowableProjects);
 // Find all featured projects
 router.get("/featured", projectsController.getAllFeaturedProjects);
 // Find a single project by ID
@@ -46,6 +48,8 @@ router.get("/madeatslist", filteringMadeAts.getAllAvailableMadeAts);
 router.get("/getForms", contactFormController.getContactForms);
 //User registration
 router.post("/register", usersController.createUser);
+//User login
+router.post("/login", usersController.loginUser);
 //Get all users
 router.get("/users", usersController.getAllUsers);
 

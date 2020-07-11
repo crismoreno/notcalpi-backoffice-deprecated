@@ -8,6 +8,7 @@ const controller = {
 				res.send(err)
 			}else{
 				res.send(projects)
+				res.json({ msg: 'Congrats! You are seeing this because you are authorized'});
 			}
 		})
 	},

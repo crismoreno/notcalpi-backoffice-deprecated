@@ -1,7 +1,6 @@
 const db = require("../sequelizers");
 const Users = db.user;
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 
 const model = {
