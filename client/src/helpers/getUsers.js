@@ -12,6 +12,7 @@ function fetchUsers() {
     return fetch(url, requestOptions).then((response) => {
       response.json().then((data) => {
         dispatch(fetchUsersSuccess(data));
+        console.log(data, 'data');
         return data;
       });
     });

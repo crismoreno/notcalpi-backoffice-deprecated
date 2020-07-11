@@ -19,5 +19,5 @@ export const getCodingLangs = (state) =>
   state.categories.codingLangs.codingLangs;
 export const getMadeAts = (state) => state.categories.madeAts.madeAts;
 export const getContactForms = (state) => state.contactForms.contactForms;
-export const getUsers = (state) => state.users.users;
+export const getUsers = (state) => state.users.users.users;
 export const getAuth = (state) => state.users.login;
