@@ -18,10 +18,6 @@ function loginUser(body) {
       },
     })
       .then(function (response) {
-        console.log(response.data.token, response);
-        // dispatch(loginSuccess(response.data.token));
-      })
-      .then(function (response) {
         localStorage.setItem('user', JSON.stringify(response.data.token));
       })
       .catch(function (response) {
