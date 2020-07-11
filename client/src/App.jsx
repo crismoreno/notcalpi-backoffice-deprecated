@@ -4,6 +4,7 @@ import Projects from './views/Projects.jsx';
 import Welcome from './views/Welcome.jsx';
 import Category from './views/Category.jsx';
 import ContactForms from './views/ContactForms.jsx';
+import Users from './views/Users.jsx';
 
 import {
   UserOutlined,
@@ -60,7 +61,7 @@ const App = (store) => {
               <Link to="/contactForms">Contact Forms</Link>
             </Menu.Item>
             <Menu.Item key="7" icon={<UserOutlined />}>
-              Users
+              <Link to="/users">Users</Link>
             </Menu.Item>
             <Menu.Item key="8" icon={<DesktopOutlined />}>
               <a target="_blank" href="https://www.cristinamoreno.dev/">
@@ -88,6 +89,7 @@ const App = (store) => {
                 path="/contactForms"
                 render={() => <ContactForms store={store} />}
               />
+              <Route path="/users" render={() => <Users store={store} />} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
