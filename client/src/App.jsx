@@ -6,6 +6,7 @@ import Category from './views/Category.jsx';
 import ContactForms from './views/ContactForms.jsx';
 import Users from './views/Users.jsx';
 import Login from './views/Login.jsx';
+import { PrivateRoute } from './components/privateRoute.jsx';
 
 import {
   UserOutlined,
@@ -30,7 +31,7 @@ const App = (store) => {
 
   return (
     <Router>
-      <Route path="/" exact component={Login} />
+      <Route path="/" exact render={() => <Login store={store} />} />
       <Route path="/admin">
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>

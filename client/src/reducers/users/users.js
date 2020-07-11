@@ -1,5 +1,5 @@
 import {
-  FETCH_USERS_BEGIN,
+  FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
 } from '../../actions/actionTypes';
@@ -12,7 +12,7 @@ const initialState = {
 
 const users = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS_BEGIN:
+    case FETCH_USERS_REQUEST:
       return {
         ...state,
         loading: true,

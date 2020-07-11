@@ -1,6 +1,6 @@
 import {
   CLEAR_MADEATS,
-  FETCH_MADEATS_BEGIN,
+  FETCH_MADEATS_REQUEST,
   FETCH_MADEATS_SUCCESS,
   FETCH_MADEATS_FAILURE,
 } from '../../actions/actionTypes';
@@ -19,7 +19,7 @@ const madeAts = (state = initialState, action) => {
         loading: false,
         madeAts: [],
       };
-    case FETCH_MADEATS_BEGIN:
+    case FETCH_MADEATS_REQUEST:
       return {
         ...state,
         loading: true,

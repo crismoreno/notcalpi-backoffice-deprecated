@@ -1,5 +1,5 @@
 import {
-  FETCH_CONTACTFORMS_BEGIN,
+  FETCH_CONTACTFORMS_REQUEST,
   FETCH_CONTACTFORMS_SUCCESS,
   FETCH_CONTACTFORMS_FAILURE,
 } from '../../actions/actionTypes';
@@ -12,7 +12,7 @@ const initialState = {
 
 const contactForms = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CONTACTFORMS_BEGIN:
+    case FETCH_CONTACTFORMS_REQUEST:
       return {
         ...state,
         loading: true,

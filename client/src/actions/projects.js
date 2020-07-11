@@ -1,11 +1,11 @@
 import {
-  FETCH_PROJECTS_BEGIN,
+  FETCH_PROJECTS_REQUEST,
   FETCH_PROJECTS_SUCCESS,
   FETCH_PROJECTS_FAILURE,
 } from './actionTypes';
 //FETCH PROJECTS
 export const fetchProjectsBegin = () => ({
-  type: FETCH_PROJECTS_BEGIN,
+  type: FETCH_PROJECTS_REQUEST,
 });
 export const fetchProjectsSuccess = (projects) => ({
   type: FETCH_PROJECTS_SUCCESS,

@@ -1,7 +1,7 @@
 import projects from './projects/projects';
 import categories from './categories';
 import contactForms from './contactForms/contactForms';
-import users from './users/users';
+import users from './users';
 import { combineReducers } from 'redux';
 
 const reducers = combineReducers({
@@ -20,3 +20,4 @@ export const getCodingLangs = (state) =>
 export const getMadeAts = (state) => state.categories.madeAts.madeAts;
 export const getContactForms = (state) => state.contactForms.contactForms;
 export const getUsers = (state) => state.users.users;
+export const getAuth = (state) => state.users.login;

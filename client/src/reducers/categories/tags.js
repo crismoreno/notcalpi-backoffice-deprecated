@@ -1,6 +1,6 @@
 import {
   CLEAR_TAGS,
-  FETCH_TAGS_BEGIN,
+  FETCH_TAGS_REQUEST,
   FETCH_TAGS_SUCCESS,
   FETCH_TAGS_FAILURE,
 } from '../../actions/actionTypes';
@@ -19,7 +19,7 @@ const tags = (state = initialState, action) => {
         loading: false,
         tags: [],
       };
-    case FETCH_TAGS_BEGIN:
+    case FETCH_TAGS_REQUEST:
       return {
         ...state,
         loading: true,

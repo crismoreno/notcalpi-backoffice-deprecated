@@ -1,10 +1,15 @@
 import { fetchProjectsSuccess } from '../actions/projects';
+import { authHeader } from './authHeader';
 
 const url = '/api';
 
 function fetchProjects() {
   return (dispatch) => {
-    return fetch(url).then((response) => {
+    const requestOptions = {
+      method: 'GET',
+      headers: authHeader(),
+    };
+    return fetch(url, requestOptions).then((response) => {
       response.json().then((data) => {
         dispatch(fetchProjectsSuccess(data));
         return data;

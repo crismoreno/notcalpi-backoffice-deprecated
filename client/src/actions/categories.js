@@ -2,13 +2,13 @@ import {
   CLEAR_TAGS,
   CLEAR_CODINGLANGS,
   CLEAR_MADEATS,
-  FETCH_TAGS_BEGIN,
+  FETCH_TAGS_REQUEST,
   FETCH_TAGS_SUCCESS,
   FETCH_TAGS_FAILURE,
-  FETCH_CODINGLANGS_BEGIN,
+  FETCH_CODINGLANGS_REQUEST,
   FETCH_CODINGLANGS_SUCCESS,
   FETCH_CODINGLANGS_FAILURE,
-  FETCH_MADEATS_BEGIN,
+  FETCH_MADEATS_REQUEST,
   FETCH_MADEATS_SUCCESS,
   FETCH_MADEATS_FAILURE,
 } from './actionTypes';
@@ -26,7 +26,7 @@ export const clearMadeAts = () => ({
 
 //FETCH TAGS
 export const fetchTagsBegin = () => ({
-  type: FETCH_TAGS_BEGIN,
+  type: FETCH_TAGS_REQUEST,
 });
 export const fetchTagsSuccess = (tags) => ({
   type: FETCH_TAGS_SUCCESS,
@@ -40,7 +40,7 @@ export const fetchTagsFailure = (error) => ({
 
 //FETCH CODINGLANGS
 export const fetchCodingLangsBegin = () => ({
-  type: FETCH_CODINGLANGS_BEGIN,
+  type: FETCH_CODINGLANGS_REQUEST,
 });
 export const fetchCodingLangsSuccess = (codingLangs) => ({
   type: FETCH_CODINGLANGS_SUCCESS,
@@ -54,7 +54,7 @@ export const fetchCodingLangsFailure = (error) => ({
 
 //FETCH CODINGLANGS
 export const fetchMadeAtsBegin = () => ({
-  type: FETCH_MADEATS_BEGIN,
+  type: FETCH_MADEATS_REQUEST,
 });
 export const fetchMadeAtsSuccess = (madeAts) => ({
   type: FETCH_MADEATS_SUCCESS,

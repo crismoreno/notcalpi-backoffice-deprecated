@@ -1,10 +1,15 @@
 import { fetchUsersSuccess } from '../actions/users';
+import { authHeader } from './authHeader';
 
-const url = '/api';
+const url = '/api/users';
 
 function fetchUsers() {
   return (dispatch) => {
-    return fetch(`${url}/users`).then((response) => {
+    const requestOptions = {
+      method: 'GET',
+      headers: authHeader(),
+    };
+    return fetch(url, requestOptions).then((response) => {
       response.json().then((data) => {
         dispatch(fetchUsersSuccess(data));
         return data;

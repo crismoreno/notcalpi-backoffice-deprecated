@@ -1,5 +1,5 @@
 import {
-  FETCH_PROJECTS_BEGIN,
+  FETCH_PROJECTS_REQUEST,
   FETCH_PROJECTS_SUCCESS,
   FETCH_PROJECTS_FAILURE,
 } from '../../actions/actionTypes';
@@ -12,7 +12,7 @@ const initialState = {
 
 const projects = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PROJECTS_BEGIN:
+    case FETCH_PROJECTS_REQUEST:
       return {
         ...state,
         loading: true,

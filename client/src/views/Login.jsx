@@ -1,5 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Input, Button, Checkbox } from 'antd';
+
+import { getAuth } from '../reducers/index';
+
+import loginUser from '../helpers/login';
 
 const layout = {
   labelCol: {
@@ -16,9 +21,11 @@ const tailLayout = {
   },
 };
 
-const Login = () => {
+const Login = ({ dispatch }) => {
   const onFinish = (values) => {
-    console.log('Success:', values);
+    dispatch(loginUser(values));
+    // loginUser(values);
+    // localStorage.getItem('user') ? <Redirect to="/home" /> : null;
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -84,4 +91,9 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+
+const mapStateToProps = (state) => ({
+  auth: getAuth(state),
+});
+
+export default connect(mapStateToProps)(Login);

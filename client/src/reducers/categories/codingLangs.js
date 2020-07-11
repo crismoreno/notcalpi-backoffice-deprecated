@@ -1,6 +1,6 @@
 import {
   CLEAR_CODINGLANGS,
-  FETCH_CODINGLANGS_BEGIN,
+  FETCH_CODINGLANGS_REQUEST,
   FETCH_CODINGLANGS_SUCCESS,
   FETCH_CODINGLANGS_FAILURE,
 } from '../../actions/actionTypes';
@@ -19,7 +19,7 @@ const codingLangs = (state = initialState, action) => {
         loading: false,
         codingLangs: [],
       };
-    case FETCH_CODINGLANGS_BEGIN:
+    case FETCH_CODINGLANGS_REQUEST:
       return {
         ...state,
         loading: true,
