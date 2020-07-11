@@ -3,7 +3,7 @@ import axios from 'axios';
 const url = '/api';
 import qs from 'qs';
 
-function loginUser(body) {
+function loginUser(body, callback) {
   return (dispatch) => {
     const { username, password } = body;
     axios({
@@ -19,8 +19,10 @@ function loginUser(body) {
     })
       .then(function (response) {
         localStorage.setItem('user', JSON.stringify(response.data.token));
+        callback(null, 'successfully logged in');
       })
       .catch(function (response) {
+        callback(err, 'null');
         console.log(response);
       });
   };

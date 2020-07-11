@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
+import { Redirect } from 'react-router-dom';
 
 import { getAuth } from '../reducers/index';
 
@@ -22,15 +23,31 @@ const tailLayout = {
 };
 
 const Login = ({ dispatch }) => {
+  const [isRedirect, setIsRedirect] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.hasOwnProperty('user')) {
+      setIsRedirect(true);
+    }
+  });
+
   const onFinish = (values) => {
-    dispatch(loginUser(values));
-    // loginUser(values);
-    // localStorage.getItem('user') ? <Redirect to="/home" /> : null;
+    dispatch(
+      loginUser(values, (err, result) => {
+        if (result) {
+          setIsRedirect(true);
+        }
+      })
+    );
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  if (isRedirect) {
+    return <Redirect to="/admin" />;
+  }
 
   return (
     <div className="login-form-container">
@@ -77,12 +94,8 @@ const Login = ({ dispatch }) => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
+            <Button style={{ width: '100%' }} type="primary" htmlType="submit">
               Submit
             </Button>
           </Form.Item>
