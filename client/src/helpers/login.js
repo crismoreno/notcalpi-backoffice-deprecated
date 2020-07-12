@@ -18,13 +18,11 @@ function loginUser(body, callback) {
       },
     })
       .then(function (response) {
-        // localStorage.setItem('user', JSON.stringify(response.data.token));
-        console.log('Loged in', response);
+        localStorage.setItem('user', JSON.stringify(response.data.token));
         callback(null, 'successfully logged in');
       })
       .catch(function (err) {
-        // callback(err, null);
-        console.log(err);
+        callback(err, null);
       });
   };
 }

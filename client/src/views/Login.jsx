@@ -9,7 +9,7 @@ import loginUser from '../helpers/login';
 
 const layout = {
   labelCol: {
-    span: 8,
+    span: 16,
   },
   wrapperCol: {
     span: 16,
@@ -60,7 +60,7 @@ const Login = ({ dispatch }) => {
           src={require('../assets/img/notcalpi.png')}
         />
         <Form
-          {...layout}
+          // {...layout}
           name="login"
           initialValues={{
             remember: true,
