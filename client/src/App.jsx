@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Projects from './views/Projects.jsx';
 import Welcome from './views/Welcome.jsx';
 import Category from './views/Category.jsx';
 import ContactForms from './views/ContactForms.jsx';
 import Users from './views/Users.jsx';
 import Login from './views/Login.jsx';
-import { PrivateRoute } from './components/privateRoute.jsx';
 
 import {
   UserOutlined,
