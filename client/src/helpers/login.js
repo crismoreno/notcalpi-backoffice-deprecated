@@ -4,13 +4,13 @@ const url = '/api';
 import qs from 'qs';
 
 function loginUser(body, callback) {
-  return (dispatch) => {
-    const { username, password } = body;
+  return () => {
+    const { email, password } = body;
     axios({
       method: 'post',
       url: `${url}/login`,
       data: qs.stringify({
-        name: username,
+        email,
         password,
       }),
       headers: {
@@ -18,12 +18,13 @@ function loginUser(body, callback) {
       },
     })
       .then(function (response) {
-        localStorage.setItem('user', JSON.stringify(response.data.token));
+        // localStorage.setItem('user', JSON.stringify(response.data.token));
+        console.log('Loged in', response);
         callback(null, 'successfully logged in');
       })
       .catch(function (err) {
-        callback(err, null);
-        console.log(response);
+        // callback(err, null);
+        console.log(err);
       });
   };
 }
