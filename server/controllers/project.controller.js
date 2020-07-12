@@ -2,6 +2,7 @@ const db = require("../sequelizers");
 const projectModel = require("../models/project.model")
 const ProjectMadeAt = db.projectMadeAt;
 const controller = {
+	// INFO GET
 		// Find a single project by ID
 	getProjectById : (req, res) => {
 		const idToFetch = req.params.id;
@@ -43,6 +44,19 @@ const controller = {
 				res.send(err)
 			}else{
 				res.send(madeAts)
+			}
+		})
+	},
+
+	// INFO DELETE
+	// Delete project by projectId
+	deleteProjectbyId: (req, res) => {
+		const idToDelete = req.params.id;
+		projectModel.deleteProjectbyId(idToDelete, (err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
 			}
 		})
 	}

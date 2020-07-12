@@ -7,6 +7,7 @@ const Tags = db.tags;
 const CodingLangs = db.codingLangs;
 const madeAt = db.madeAt;
 const model = {
+		// INFO GET
 	// Find a single project by ID
 	getProjectById: async (idToFetch, response) => {
 		try{
@@ -51,6 +52,15 @@ const model = {
 		}catch(err){
 			response(err, null)
 		}
-	}
+	},
+	// INFO DELETE
+	deleteProjectbyId: async (idToDelete, resolve) => {
+		try{
+			await Projects.destroy({ where: { id: idToDelete }});
+			resolve(null, 'Project deleted successfully')
+		}catch(err){
+			resolve(err, null)
+		}
+	},
 }
 module.exports = model;
