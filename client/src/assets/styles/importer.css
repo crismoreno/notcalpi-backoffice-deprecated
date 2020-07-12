@@ -4,6 +4,19 @@
   justify-content: center;
   align-items: center;
 }
+.unauthorised-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  height: 316px;
+}
+.unauthorised-screen .contact-forms-page-header {
+  padding: 16px 24px;
+}
 .login-form-container {
   height: 316px;
   padding: 0 70px;
@@ -16,7 +29,7 @@
   top: 0;
   bottom: 0;
 }
-.login-form {
+.login-form-container .login-form {
   width: 100%;
   display: flex;
   justify-content: center;

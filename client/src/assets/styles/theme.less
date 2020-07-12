@@ -1,11 +1,21 @@
-// * {
-//   border: 1px solid red;
-// }
-
 #app {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.unauthorised-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  height: 316px;
+  .contact-forms-page-header {
+    padding: 16px 24px;
+  }
 }
 
 .login-form-container {
@@ -19,22 +29,11 @@
   margin: auto;
   top: 0;
   bottom: 0;
-}
-.login-form {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.project-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  .notcalpi-card {
-    margin: 10px;
+  .login-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
-}
-
-.contact-forms-page-header {
-  padding-left: 0;
 }

@@ -18,7 +18,6 @@ const App = ({ auth }, store) => {
     } else {
       setisLoggedIn(false);
     }
-    console.log('isUserLoggedIn', auth.loggedIn);
   }, [auth.loggedIn]);
 
   return (

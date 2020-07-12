@@ -1,12 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { FrownOutlined } from '@ant-design/icons';
+import { PageHeader, Button } from 'antd';
+
 const Unauthorized = () => {
   return (
-    <>
-      <h1> 403 Unauthorised 403!</h1>
-      <Link to="/">Back to Home</Link>
-    </>
+    <div className="unauthorised-screen">
+      <FrownOutlined style={{ fontSize: '64px', color: 'black' }} />
+      <PageHeader
+        className="contact-forms-page-header"
+        title="403 This is a forbidden route"
+        // subTitle="This is a subtitle"
+      />
+      <Button type="primary">
+        <Link to="/">Go back to safety</Link>
+      </Button>
+    </div>
   );
 };
 
