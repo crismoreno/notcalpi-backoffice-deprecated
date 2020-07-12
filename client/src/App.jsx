@@ -41,7 +41,6 @@ const App = ({ auth, dispatch, logoutDispacher }, store) => {
 
   return (
     <Router>
-      <h1>{`Auth: ${auth.loggedIn}`}</h1>
       <Route path="/" exact render={() => <Login store={store} />} />
       <Route path="/admin">
         <Layout style={{ minHeight: '100vh' }}>
