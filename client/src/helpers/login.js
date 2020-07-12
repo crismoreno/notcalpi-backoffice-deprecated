@@ -21,8 +21,8 @@ function loginUser(body, callback) {
         localStorage.setItem('user', JSON.stringify(response.data.token));
         callback(null, 'successfully logged in');
       })
-      .catch(function (response) {
-        callback(err, 'null');
+      .catch(function (err) {
+        callback(err, null);
         console.log(response);
       });
   };

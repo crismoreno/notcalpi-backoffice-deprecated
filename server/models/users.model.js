@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt');
 
 
 const model = {
-	createUser: async ({ name, password }) => {
+	createUser: async ({ username, password, email }) => {
 		bcrypt.hash(password, 10, async function(err, hash){
 			password = hash;
-			return await Users.create({ name, password });
+			return await Users.create({ username, password, email });
 	});
 	},
 	getAllUsers: async () => {

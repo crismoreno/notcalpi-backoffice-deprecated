@@ -32,15 +32,15 @@ passport.use(strategy);
 
 const controller = {
 	createUser: (req, res) => {
-		const { name, password } = req.body;
-		usersModel.createUser({name, password}).then(() =>
+		const { username, password, email } = req.body;
+		usersModel.createUser({username, password, email}).then(() =>
 			res.json({ msg: "account created successfully" })
 		)
 	},
 	loginUser: async (req, res, next) =>{
-		const { name, password } = req.body;
-		if (name && password) {
-			let user = await usersModel.getUser({ name });
+		const { password, email } = req.body;
+		if (email && password) {
+			let user = await usersModel.getUser({ email });
 			if (!user) {
 				res.status(401).json({ msg: "No such user found", user });
 			}
@@ -48,18 +48,15 @@ const controller = {
 			if (match) {
 				let payload = { id: user.id };
 				let token = jwt.sign(payload, jwtOptions.secretOrKey);
-				res.json({ msg: "ok", token: token });
+				res.json({ msg: "ok", token: token, username: user.username });
 			} else {
 				res.status(401).json({ msg: "Password is incorrect" });
 			}
 		}
 	},
 	getAllUsers: (req, res) => {
-		usersModel.getAllUsers().then(user => res.json(user)); 
+		usersModel.getAllUsers().then(user => res.json(user));
 	},
-	// getUser: (req, res) => {
-	// 	usersModel.getUser();
-	// },
 }
 
 module.exports = controller;
