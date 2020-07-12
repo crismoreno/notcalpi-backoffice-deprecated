@@ -94,7 +94,7 @@ const Dashboard = ({ auth, logoutDispacher }, store) => {
         >
           <Switch>
             <Route path="/admin" exact>
-              <Welcome username={auth}></Welcome>
+              <Welcome username={auth} logoutHandler={logoutHandler}></Welcome>
             </Route>
             <Route path="/admin/projects" exact>
               <Projects store={store} />

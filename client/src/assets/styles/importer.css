@@ -46,3 +46,7 @@
 .contact-forms-page-header {
   padding-left: 0;
 }
+.welcome-screen {
+  display: flex;
+  justify-content: space-between;
+}
