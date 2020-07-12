@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Welcome = () => {
-  return <h1>Hello Welcome!</h1>;
+const Welcome = ({ username: { username } }) => {
+  return <h1>{`Hello Welcome ${username}!`}</h1>;
 };
 
 export default Welcome;

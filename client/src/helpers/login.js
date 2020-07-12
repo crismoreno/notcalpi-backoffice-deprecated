@@ -1,10 +1,10 @@
-import { loginSuccess } from '../actions/users';
+import { loginSuccess, logout } from '../actions/users';
 import axios from 'axios';
 const url = '/api';
 import qs from 'qs';
 
 function loginUser(body, callback) {
-  return () => {
+  return (dispatch) => {
     const { email, password } = body;
     axios({
       method: 'post',
@@ -18,7 +18,14 @@ function loginUser(body, callback) {
       },
     })
       .then(function (response) {
-        localStorage.setItem('user', JSON.stringify(response.data.token));
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            token: response.data.token,
+            username: response.data.username,
+          })
+        );
+        dispatch(loginSuccess(response.data));
         callback(null, 'successfully logged in');
       })
       .catch(function (err) {
@@ -27,4 +34,12 @@ function loginUser(body, callback) {
   };
 }
 
-export default loginUser;
+function logoutUser() {
+  localStorage.removeItem('user');
+  // return (dispatch) => {
+  //   // remove user from local storage to log user out
+  //   // dispatch(logout());
+  // };
+}
+
+export { loginUser, logoutUser };

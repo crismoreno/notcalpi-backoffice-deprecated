@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import { getAuth } from '../reducers/index';
 
-import loginUser from '../helpers/login';
+import { loginUser } from '../helpers/login';
 
 const layout = {
   labelCol: {

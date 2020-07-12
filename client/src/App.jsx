@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 // import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Projects from './views/Projects.jsx';
@@ -7,6 +8,10 @@ import Category from './views/Category.jsx';
 import ContactForms from './views/ContactForms.jsx';
 import Users from './views/Users.jsx';
 import Login from './views/Login.jsx';
+
+import { logoutUser } from './helpers/login';
+import { getAuth } from './reducers/index';
+import { logout } from './actions/users';
 
 import {
   UserOutlined,
@@ -22,19 +27,21 @@ import { Layout, Menu, Button } from 'antd';
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-const App = (store) => {
+const App = ({ auth, dispatch, logoutDispacher }, store) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const onCollapse = () => {
     collapsed === false ? setCollapsed(true) : setCollapsed(false);
   };
 
-  const logoutUser = () => {
-    localStorage.clear();
+  const logoutHandler = () => {
+    logoutUser();
+    logoutDispacher();
   };
 
   return (
     <Router>
+      <h1>{`Auth: ${auth.loggedIn}`}</h1>
       <Route path="/" exact render={() => <Login store={store} />} />
       <Route path="/admin">
         <Layout style={{ minHeight: '100vh' }}>
@@ -78,7 +85,7 @@ const App = (store) => {
                 </a>
               </Menu.Item>
               <Menu.Item key="9" icon={<LogoutOutlined />}>
-                <Link to="/" onClick={logoutUser}>
+                <Link to="/" onClick={logoutHandler}>
                   Logout
                 </Link>
               </Menu.Item>
@@ -91,7 +98,9 @@ const App = (store) => {
               }}
             >
               <Switch>
-                <Route path="/admin" exact component={Welcome} />
+                <Route path="/admin" exact>
+                  <Welcome username={auth}></Welcome>
+                </Route>
                 <Route path="/admin/projects" exact>
                   <Projects store={store} />
                 </Route>
@@ -123,4 +132,11 @@ const App = (store) => {
     </Router>
   );
 };
-export default App;
+
+const mapDispatchToProps = (dispatch) => ({
+  logoutDispacher: () => dispatch(logout()),
+});
+const mapStateToProps = (state) => ({
+  auth: getAuth(state),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(App);

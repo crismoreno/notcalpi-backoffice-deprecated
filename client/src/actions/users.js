@@ -5,6 +5,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT,
 } from './actionTypes';
 //FETCH USERS
 export const fetchUsersBegin = () => ({
@@ -24,12 +25,16 @@ export const fetchUsersFailure = (error) => ({
 export const loginBegin = () => ({
   type: LOGIN_REQUEST,
 });
-export const loginSuccess = (loginBegin) => ({
+export const loginSuccess = (loginData) => ({
   type: LOGIN_SUCCESS,
-  payload: { login },
+  payload: { loginData },
 });
 
 export const loginFailure = (error) => ({
   type: LOGIN_FAILURE,
   payload: { error },
+});
+//LOGOUT USER
+export const logout = () => ({
+  type: LOGOUT,
 });
