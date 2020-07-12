@@ -29,6 +29,10 @@ const App = (store) => {
     collapsed === false ? setCollapsed(true) : setCollapsed(false);
   };
 
+  const logoutUser = () => {
+    localStorage.clear();
+  };
+
   return (
     <Router>
       <Route path="/" exact render={() => <Login store={store} />} />
@@ -74,7 +78,9 @@ const App = (store) => {
                 </a>
               </Menu.Item>
               <Menu.Item key="9" icon={<LogoutOutlined />}>
-                <Link to="/">Logout</Link>
+                <Link to="/" onClick={logoutUser}>
+                  Logout
+                </Link>
               </Menu.Item>
             </Menu>
           </Sider>
