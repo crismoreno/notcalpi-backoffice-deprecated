@@ -6,6 +6,7 @@ import Welcome from './Welcome.jsx';
 import Category from './Category.jsx';
 import ContactForms from './ContactForms.jsx';
 import Users from './Users.jsx';
+import NotFound from '../views/NotFound.jsx';
 
 import { logoutUser } from '../helpers/login';
 import { getAuth } from '../reducers/index';
@@ -113,6 +114,7 @@ const Dashboard = ({ auth, logoutDispacher }, store) => {
               exact
               render={() => <Users store={store} />}
             />
+            <Route component={NotFound} />
           </Switch>
         </Content>
         <Footer style={{ textAlign: 'center' }}>

@@ -13,9 +13,9 @@
   bottom: 0;
   position: absolute;
   height: 316px;
-}
-.unauthorised-screen .contact-forms-page-header {
-  padding: 16px 24px;
+  left: 0;
+  right: 0;
+  width: 250px;
 }
 .login-form-container {
   height: 316px;

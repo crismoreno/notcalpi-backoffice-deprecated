@@ -6,6 +6,7 @@ import Login from './views/Login.jsx';
 import Dashboard from './views/Dashboard.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Unauthorised from './views/Unauthorised.jsx';
+import NotFound from './views/NotFound.jsx';
 
 import { getAuth } from './reducers/index';
 
@@ -22,14 +23,17 @@ const App = ({ auth }, store) => {
 
   return (
     <Router>
-      <Route path="/" exact render={() => <Login store={store} />} />
-      <ProtectedRoute
-        path="/admin"
-        component={Dashboard}
-        store={store}
-        auth={auth}
-      />
-      <Route exact path="/unauthorised" component={Unauthorised} />
+      <Switch>
+        <Route path="/" exact render={() => <Login store={store} />} />
+        <ProtectedRoute
+          path="/admin"
+          component={Dashboard}
+          store={store}
+          auth={auth}
+        />
+        <Route exact path="/unauthorised" component={Unauthorised} />
+        <Route component={NotFound} />
+      </Switch>
     </Router>
   );
 };
