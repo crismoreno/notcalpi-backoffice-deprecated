@@ -25,7 +25,6 @@ const App = ({ auth }, store) => {
       <Route path="/" exact render={() => <Login store={store} />} />
       <ProtectedRoute
         path="/admin"
-        exact
         component={Dashboard}
         store={store}
         auth={auth}
