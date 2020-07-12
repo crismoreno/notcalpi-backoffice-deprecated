@@ -31,11 +31,16 @@ passport.use(strategy);
 //AUTH STUFF FINISHES HERE
 
 const controller = {
-	createUser: (req, res) => {
+	createUser: async (req, res) => {
 		const { username, password, email } = req.body;
-		usersModel.createUser({username, password, email}).then(() =>
-			res.json({ msg: "account created successfully" })
-		)
+		let userExists = await usersModel.getUser({ email });
+		if (userExists) {
+			res.status(401).json({ msg: "This user is already in the system" });
+		}else{
+			usersModel.createUser({username, password, email}).then(() =>
+				res.json({ msg: "account created successfully" })
+			)
+		}
 	},
 	loginUser: async (req, res, next) =>{
 		const { password, email } = req.body;
@@ -48,7 +53,7 @@ const controller = {
 			if (match) {
 				let payload = { id: user.id };
 				let token = jwt.sign(payload, jwtOptions.secretOrKey);
-				res.json({ msg: "ok", token: token, username: user.username });
+				res.json({ msg: "Log in was successful", token: token, username: user.username });
 			} else {
 				res.status(401).json({ msg: "Password is incorrect" });
 			}
