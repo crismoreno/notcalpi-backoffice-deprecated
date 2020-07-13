@@ -29,7 +29,7 @@ const Login = ({ dispatch }) => {
     if (localStorage.hasOwnProperty('user')) {
       setIsRedirect(true);
     }
-  });
+  }, []);
 
   const onFinish = (values) => {
     dispatch(
