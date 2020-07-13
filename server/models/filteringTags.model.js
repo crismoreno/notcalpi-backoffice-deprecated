@@ -31,7 +31,7 @@ const model = {
 	//Get a list with all available tags
 	getAllAvailableTags: async (response) => {
 		try{
-			const tags = await Tags.findAll()
+			const tags = await Tags.findAll({attributes: ['id', 'name']})
 			response(null, tags)
 		}catch(err){
 			response(err, null)

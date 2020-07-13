@@ -29,7 +29,7 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 	//Get a list with all available madeAts
 	getAllAvailableMadeAts: async (response) => {
 		try{
-			const madeAts = await madeAt.findAll()
+			const madeAts = await madeAt.findAll({attributes: ['id', 'short_name']})
 			response(null, madeAts)
 		}catch(err){
 			response(err, null)
