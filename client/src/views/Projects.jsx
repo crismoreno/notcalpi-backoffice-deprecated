@@ -28,7 +28,7 @@ const Projects = ({ dispatch, projects }) => {
       </Button>
       <div className="project-cards-container">
         {projects.map((project, index) => (
-          <ProjectCard project={project} key={index} />
+          <ProjectCard project={project} key={index} dispatch={dispatch} />
         ))}
       </div>
     </div>

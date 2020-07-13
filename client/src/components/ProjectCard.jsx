@@ -2,14 +2,22 @@ import React from 'react';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Card, Avatar, Popconfirm, message } from 'antd';
 
+import deleteProject from '../helpers/deleteProject';
+
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+
 const { Meta } = Card;
 
-export const ProjectCard = ({ project, project: { id, title, customer } }) => {
+export const ProjectCard = ({
+  dispatch,
+  project,
+  project: { id, title, customer, show },
+}) => {
   const handleCancelDelete = () => {
     message.success('You cancelled the deletion of the project successfully');
   };
   const handleConfirmDelete = ({ id, title }) => {
-    console.log(`project deleted id: ${id}`);
+    dispatch(deleteProject(id));
     message.success(`You deleted ${title} successfully`);
   };
   return (
@@ -25,7 +33,7 @@ export const ProjectCard = ({ project, project: { id, title, customer } }) => {
       actions={[
         <EditOutlined key="edit" />,
         <Popconfirm
-          title="Are you sure about deleting this project?"
+          title={` Are you sure about deleting ${title}?`}
           onConfirm={() => {
             handleConfirmDelete(project);
           }}
@@ -38,7 +46,7 @@ export const ProjectCard = ({ project, project: { id, title, customer } }) => {
       ]}
     >
       <Meta
-        avatar={<Avatar src={require('../assets/img/cristina.png')} />}
+        avatar={show === true ? <EyeOutlined /> : <EyeInvisibleOutlined />}
         title={title}
         description={customer}
       />

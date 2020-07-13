@@ -12,6 +12,16 @@ const controller = {
 			}
 		})
 	},
+	getAllProjects: (req, res) => {
+		projectsModel.getAllProjects((err, projects) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(projects)
+				res.json({ msg: 'Congrats! You are seeing this because you are authorized'});
+			}
+		})
+	},
 		// Retrieve all featured projects
 	getAllFeaturedProjects : (req, res) => {
 		projectsModel.getAllFeaturedProjects((err, projects) =>{

@@ -13,6 +13,16 @@ const model = {
 			response(err, null)
 		}
 	},
+	getAllProjects: async (response) =>{
+		try{
+			const projects = await Projects.findAll({
+				order: [['orderby', 'ASC']]
+			})
+			response(null, projects)
+		}catch(err){
+			response(err, null)
+		}
+	},
 	// Retrieve all featured projects
 	getAllFeaturedProjects: async (response) => {
 		try{

@@ -13,7 +13,7 @@ const usersController = require("../controllers/users.controller.js");
 const router = express.Router();
 
 //Retreiving all showable projects
-router.get("/", passport.authenticate('jwt', { session: false }), projectsController.getAllShowableProjects);
+router.get("/", passport.authenticate('jwt', { session: false }), projectsController.getAllProjects);
 // router.get("/", projectsController.getAllShowableProjects);
 // Find all featured projects
 router.get("/featured", passport.authenticate('jwt', { session: false }), projectsController.getAllFeaturedProjects);
