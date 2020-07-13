@@ -57,6 +57,9 @@ const model = {
 	deleteProjectbyId: async (idToDelete, resolve) => {
 		try{
 			await Projects.destroy({ where: { id: idToDelete }});
+			await ProjectTags.destroy({ where: { projectId: idToDelete }});
+			await ProjectCodingLangs.destroy({ where: { projectId: idToDelete }});
+			await ProjectMadeAt.destroy({ where: { projectId: idToDelete }});
 			resolve(null, 'Project deleted successfully')
 		}catch(err){
 			resolve(err, null)
