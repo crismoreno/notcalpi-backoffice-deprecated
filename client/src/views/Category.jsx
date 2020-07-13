@@ -17,7 +17,7 @@ import { getTags, getCodingLangs, getMadeAts } from '../reducers/index';
 
 import { CategoryCard } from '../components/CategoryCard.jsx';
 
-import { Button } from 'antd';
+import { Button, PageHeader } from 'antd';
 
 const Category = ({
   dispatch,
@@ -60,9 +60,22 @@ const Category = ({
         alignItems: 'flex-end',
       }}
     >
-      <Button type="primary" style={{ marginTop: '15px' }}>
-        {`Add new ${cat.substring(0, cat.length - 1)}`}
-      </Button>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}
+      >
+        <PageHeader
+          className="contact-forms-page-header"
+          title={`Check ${cat}`}
+          // subTitle="This is a subtitle"
+        />
+        <Button type="primary" style={{ marginTop: '15px' }}>
+          {`Add new ${cat.substring(0, cat.length - 1)}`}
+        </Button>
+      </div>
       <div className="project-cards-container">
         {entity.map((entity, index) => (
           <CategoryCard entity={entity} key={index} />
