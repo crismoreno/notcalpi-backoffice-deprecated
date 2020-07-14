@@ -41,6 +41,15 @@ const controller = {
 				res.send(tags)
 			}
 		})
+	},
+	getAllAvailableTagsAndProjects: (req, res) => {
+		filteringTagsModel.getAllAvailableTagsAndProjects((err, tags) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(tags)
+			}
+		})
 	}
 }
 module.exports = controller;

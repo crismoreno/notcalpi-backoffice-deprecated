@@ -36,6 +36,32 @@ const model = {
 		}catch(err){
 			response(err, null)
 		}
-	}
+	}, 
+	getAllAvailableTagsAndProjects : async (response) => {
+		try{
+			const projects = await Sequelize.query(
+				`SELECT
+				tags.name,
+				tags.id,
+				GROUP_CONCAT(projects.title) AS projects
+		FROM
+				tags
+		INNER JOIN project_tags ON tags.id = project_tags.tagId
+		INNER JOIN projects ON project_tags.projectId = projects.id
+		GROUP BY
+				name`,
+				{
+					type: QueryTypes.SELECT,
+					raw: true,
+					plain: false,
+					logging: console.log,
+					nest: true,
+				}
+			)
+			response(null, projects)
+		}catch(err){
+			response(err, null)
+		}
+	},
 }
 module.exports = model;

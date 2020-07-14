@@ -32,6 +32,7 @@ router.get("/projectmadeat/:id", passport.authenticate('jwt', { session: false }
 router.get("/tags", passport.authenticate('jwt', { session: false }), filteringTags.getProjectsByTagsId);
 //Get a list with all available tags
 router.get("/tagslist", passport.authenticate('jwt', { session: false }), filteringTags.getAllAvailableTags);
+router.get("/tagslist-projects", passport.authenticate('jwt', { session: false }), filteringTags.getAllAvailableTagsAndProjects);
 
 // Find projects by codingLangs
 //http://localhost:5000/api/codinglangs?codinglangs=1,2
