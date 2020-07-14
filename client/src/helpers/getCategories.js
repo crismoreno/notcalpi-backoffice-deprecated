@@ -14,12 +14,14 @@ const requestOptions = {
 
 function fetchTags() {
   return (dispatch) => {
-    return fetch(`${url}/tagslist`, requestOptions).then((response) => {
-      response.json().then((data) => {
-        dispatch(fetchTagsSuccess(data));
-        return data;
-      });
-    });
+    return fetch(`${url}/tagslist-projects`, requestOptions).then(
+      (response) => {
+        response.json().then((data) => {
+          dispatch(fetchTagsSuccess(data));
+          return data;
+        });
+      }
+    );
   };
 }
 
