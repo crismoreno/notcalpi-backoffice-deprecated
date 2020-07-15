@@ -28,11 +28,20 @@ const controller = {
 	},
 	//Get a list with all available tags
 	getAllAvailableCodingLangs: (req, res) => {
-		filteringCodingLangModel.getAllAvailableCodingLangs((err, tags) =>{
+		filteringCodingLangModel.getAllAvailableCodingLangs((err, codingLangs) =>{
 			if(err){
 				res.send(err)
 			}else{
-				res.send(tags)
+				res.send(codingLangs)
+			}
+		})
+	},
+	getAllAvailableCodingLangsAndProjects: (req, res) => {
+		filteringCodingLangModel.getAllAvailableCodingLangsAndProjects((err, codingLangs) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(codingLangs)
 			}
 		})
 	}

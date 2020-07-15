@@ -35,6 +35,15 @@ const controller = {
 				res.send(madeAts)
 			}
 		})
+	},
+	getAllAvailableMadeAtsAndProjects: (req, res) => {
+		filteringMadeAtsModel.getAllAvailableMadeAtsAndProjects((err, madeAts) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(madeAts)
+			}
+		})
 	}
 }
 module.exports = controller;

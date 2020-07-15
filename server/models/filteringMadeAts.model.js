@@ -11,6 +11,7 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 				`SELECT p.id, p.title, p.customer, GROUP_CONCAT(pma.madeatId) as madeats
 				FROM projects p
 				LEFT JOIN project_madeats as pma ON p.id = pma.projectId LEFT JOIN madeats ma ON ma.id=pma.madeatId AND ma.id IN (${madeAtsIds})
+				WHERE p.show = TRUE
 				GROUP BY p.id,p.title
 				HAVING COUNT(pma.madeatId) >= COUNT(ma.id) AND COUNT(ma.id) = ${madeAtsIds.length}`,
 				{
@@ -34,6 +35,32 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 		}catch(err){
 			response(err, null)
 		}
-	}
+	},
+	getAllAvailableMadeAtsAndProjects: async (response) => {
+		try{
+			const projects = await Sequelize.query(
+				`SELECT
+				madeats.short_name,
+				madeats.id,
+				GROUP_CONCAT(projects.title) AS projects
+		FROM
+				madeats
+		INNER JOIN project_madeats ON madeats.id = project_madeats.madeatId
+		INNER JOIN projects ON project_madeats.projectId = projects.id
+		GROUP BY
+		short_name`,
+				{
+					type: QueryTypes.SELECT,
+					raw: true,
+					plain: false,
+					logging: console.log,
+					nest: true,
+				}
+			)
+			response(null, projects)
+		}catch(err){
+			response(err, null)
+		}
+	},
 }
 module.exports = model;

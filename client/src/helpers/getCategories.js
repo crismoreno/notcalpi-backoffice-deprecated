@@ -27,23 +27,27 @@ function fetchTags() {
 
 function fetchCodingLangs() {
   return (dispatch) => {
-    return fetch(`${url}/codinglangslist`, requestOptions).then((response) => {
-      response.json().then((data) => {
-        dispatch(fetchCodingLangsSuccess(data));
-        return data;
-      });
-    });
+    return fetch(`${url}/codinglangslist-projects`, requestOptions).then(
+      (response) => {
+        response.json().then((data) => {
+          dispatch(fetchCodingLangsSuccess(data));
+          return data;
+        });
+      }
+    );
   };
 }
 
 function fetchMadeAts() {
   return (dispatch) => {
-    return fetch(`${url}/madeatslist`, requestOptions).then((response) => {
-      response.json().then((data) => {
-        dispatch(fetchMadeAtsSuccess(data));
-        return data;
-      });
-    });
+    return fetch(`${url}/madeatslist-projects`, requestOptions).then(
+      (response) => {
+        response.json().then((data) => {
+          dispatch(fetchMadeAtsSuccess(data));
+          return data;
+        });
+      }
+    );
   };
 }
 

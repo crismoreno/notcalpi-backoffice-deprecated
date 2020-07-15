@@ -39,12 +39,14 @@ router.get("/tagslist-projects", passport.authenticate('jwt', { session: false }
 router.get("/codinglangs", passport.authenticate('jwt', { session: false }), filteringCodingLang.getProjectsByCodingLangsId);
 //Get a list with all available codingLangs
 router.get("/codinglangslist", passport.authenticate('jwt', { session: false }), filteringCodingLang.getAllAvailableCodingLangs);
+router.get("/codinglangslist-projects", passport.authenticate('jwt', { session: false }), filteringCodingLang.getAllAvailableCodingLangsAndProjects);
 
 // Find projects by madeAts
 //http://localhost:5000/api/madeat?madeat=1,2
 router.get("/madeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.getProjectsByMadeAtId);
 //Get a list with all available madeAts
 router.get("/madeatslist", passport.authenticate('jwt', { session: false }), filteringMadeAts.getAllAvailableMadeAts);
+router.get("/madeatslist-projects", passport.authenticate('jwt', { session: false }), filteringMadeAts.getAllAvailableMadeAtsAndProjects);
 //Get a list with all the contact forms received
 router.get("/getForms", passport.authenticate('jwt', { session: false }), contactFormController.getContactForms);
 //User registration
