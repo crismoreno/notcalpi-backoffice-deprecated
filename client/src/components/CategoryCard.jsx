@@ -20,9 +20,17 @@ export const CategoryCard = ({ entity }) => {
     },
   ];
 
+  const arrProjectsUsingTag = entity.projects.split(',');
+
   const contentList = {
     CatId: <p>{`id: ${entity.id}`}</p>,
-    Projects: <p>Projects depending on this tag</p>,
+    Projects: (
+      <ul>
+        {arrProjectsUsingTag.map((element, index) => (
+          <li key={index}>{element}</li>
+        ))}
+      </ul>
+    ),
   };
 
   const onTabChange = (key, type) => {
