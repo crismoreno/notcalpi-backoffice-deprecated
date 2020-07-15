@@ -29,7 +29,7 @@ export const CategoryCard = ({ entity }) => {
       title={`${name}`}
       actions={[
         <EditOutlined key="edit" />,
-        <DeleteOutlined key="delete" />,
+        !arrProjectsUsingTag.length ? <DeleteOutlined key="delete" /> : null,
         <LinkOutlined key="see" onClick={warningProjects} />,
       ]}
     >
