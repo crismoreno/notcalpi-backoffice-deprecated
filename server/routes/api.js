@@ -14,45 +14,64 @@ const router = express.Router();
 
 //Retreiving all projects
 router.get("/", passport.authenticate('jwt', { session: false }), projectsController.getAllProjects);
+
 // Find all featured projects
-router.get("/featured", passport.authenticate('jwt', { session: false }), projectsController.getAllFeaturedProjects);
+// router.get("/featured", passport.authenticate('jwt', { session: false }), projectsController.getAllFeaturedProjects);
+
 // Find a single project by ID
-router.get("/project/:id", passport.authenticate('jwt', { session: false }), projectController.getProjectById);
+// router.get("/project/:id", passport.authenticate('jwt', { session: false }), projectController.getProjectById);
+
 // Get all tags related to single Project
-router.get("/projecttags/:id", passport.authenticate('jwt', { session: false }),projectController.getTagsByProjectId);
-router.get(
-	"/projectcodinglangs/:id",
-	passport.authenticate('jwt', { session: false }),
-  projectController.getCodingLangsByProjectId
-);
-router.get("/projectmadeat/:id", passport.authenticate('jwt', { session: false }), projectController.getMadeAtByProjectId);
+// router.get("/projecttags/:id", passport.authenticate('jwt', { session: false }),projectController.getTagsByProjectId);
+
+// Get all codingLangs related to single Project
+// router.get(
+// 	"/projectcodinglangs/:id",
+// 	passport.authenticate('jwt', { session: false }),
+//   projectController.getCodingLangsByProjectId
+// );
+// Get all madeAts related to single Project
+// router.get("/projectmadeat/:id", passport.authenticate('jwt', { session: false }), projectController.getMadeAtByProjectId);
 
 // Find projects by tags
 //http://localhost:5000/api/tags?tags=1,2
-router.get("/tags", passport.authenticate('jwt', { session: false }), filteringTags.getProjectsByTagsId);
+// router.get("/tags", passport.authenticate('jwt', { session: false }), filteringTags.getProjectsByTagsId);
+
 //Get a list with all available tags
-router.get("/tagslist", passport.authenticate('jwt', { session: false }), filteringTags.getAllAvailableTags);
+// router.get("/tagslist", passport.authenticate('jwt', { session: false }), filteringTags.getAllAvailableTags);
+
+//Get a list with all available tags with related projects
 router.get("/tagslist-projects", passport.authenticate('jwt', { session: false }), filteringTags.getAllAvailableTagsAndProjects);
 
 // Find projects by codingLangs
 //http://localhost:5000/api/codinglangs?codinglangs=1,2
-router.get("/codinglangs", passport.authenticate('jwt', { session: false }), filteringCodingLang.getProjectsByCodingLangsId);
+// router.get("/codinglangs", passport.authenticate('jwt', { session: false }), filteringCodingLang.getProjectsByCodingLangsId);
+
 //Get a list with all available codingLangs
-router.get("/codinglangslist", passport.authenticate('jwt', { session: false }), filteringCodingLang.getAllAvailableCodingLangs);
+// router.get("/codinglangslist", passport.authenticate('jwt', { session: false }), filteringCodingLang.getAllAvailableCodingLangs);
+
+//Get a list with all available codingLangs with related projects
 router.get("/codinglangslist-projects", passport.authenticate('jwt', { session: false }), filteringCodingLang.getAllAvailableCodingLangsAndProjects);
 
 // Find projects by madeAts
 //http://localhost:5000/api/madeat?madeat=1,2
-router.get("/madeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.getProjectsByMadeAtId);
+// router.get("/madeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.getProjectsByMadeAtId);
+
 //Get a list with all available madeAts
-router.get("/madeatslist", passport.authenticate('jwt', { session: false }), filteringMadeAts.getAllAvailableMadeAts);
+// router.get("/madeatslist", passport.authenticate('jwt', { session: false }), filteringMadeAts.getAllAvailableMadeAts);
+
+//Get a list with all available madeats with related projects
 router.get("/madeatslist-projects", passport.authenticate('jwt', { session: false }), filteringMadeAts.getAllAvailableMadeAtsAndProjects);
+
 //Get a list with all the contact forms received
 router.get("/getForms", passport.authenticate('jwt', { session: false }), contactFormController.getContactForms);
+
 //User registration
 router.post("/register", usersController.createUser);
+
 //User login
 router.post("/login", usersController.loginUser);
+
 //Get all users
 router.get("/users", passport.authenticate('jwt', { session: false }), usersController.getAllUsers);
 
