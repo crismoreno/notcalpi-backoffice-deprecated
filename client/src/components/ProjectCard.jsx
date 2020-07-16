@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  EditOutlined,
-  DeleteOutlined,
-  FlagOutlined,
-  FolderOutlined,
-} from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, FlagOutlined } from '@ant-design/icons';
 import { Card, Popconfirm, message } from 'antd';
 
 import deleteProject from '../helpers/deleteProject';
