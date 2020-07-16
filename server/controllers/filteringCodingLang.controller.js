@@ -36,6 +36,7 @@ const controller = {
 			}
 		})
 	},
+		//Get a list with all available codinglangs with related projects
 	getAllAvailableCodingLangsAndProjects: (req, res) => {
 		filteringCodingLangModel.getAllAvailableCodingLangsAndProjects((err, codingLangs) =>{
 			if(err){
@@ -44,6 +45,16 @@ const controller = {
 				res.send(codingLangs)
 			}
 		})
-	}
+	},
+	//Delete a codinglang by id
+	deleteCodingLangbyId: (req, res) => {
+		filteringCodingLangModel.deleteCodingLangbyId((err, tags) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(tags)
+			}
+		})
+	},
 }
 module.exports = controller;

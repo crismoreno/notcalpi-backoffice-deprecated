@@ -42,6 +42,7 @@ const controller = {
 			}
 		})
 	},
+	//Get a list with all available tags with related projects
 	getAllAvailableTagsAndProjects: (req, res) => {
 		filteringTagsModel.getAllAvailableTagsAndProjects((err, tags) =>{
 			if(err){
@@ -50,6 +51,18 @@ const controller = {
 				res.send(tags)
 			}
 		})
-	}
+	},
+	// INFO DELETE
+	//Delete a tag by id
+	deleteTagbyId: (req, res) => {
+		const idToDelete = req.params.id;
+		filteringTagsModel.deleteTagbyId(idToDelete, (err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
+	},
 }
 module.exports = controller;

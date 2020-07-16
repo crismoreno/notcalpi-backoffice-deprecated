@@ -36,6 +36,7 @@ const controller = {
 			}
 		})
 	},
+		//Get a list with all available madeats with related projects
 	getAllAvailableMadeAtsAndProjects: (req, res) => {
 		filteringMadeAtsModel.getAllAvailableMadeAtsAndProjects((err, madeAts) =>{
 			if(err){
@@ -44,6 +45,16 @@ const controller = {
 				res.send(madeAts)
 			}
 		})
-	}
+	},
+	//Delete a madeat by id
+	deleteMadeAtbyId: (req, res) => {
+		filteringMadeAtsModel.deleteMadeAtbyId((err, tags) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(tags)
+			}
+		})
+	},
 }
 module.exports = controller;

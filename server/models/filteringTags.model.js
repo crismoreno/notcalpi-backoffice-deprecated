@@ -64,5 +64,14 @@ const model = {
 			response(err, null)
 		}
 	},
+		// INFO DELETE
+	deleteTagbyId: async (idToDelete, resolve) =>{
+		try{
+			await Tags.destroy({ where: { id: idToDelete }});
+			resolve(null, 'Tag deleted successfully')
+		}catch(err){
+			resolve(err, null)
+		}
+	}
 }
 module.exports = model;
