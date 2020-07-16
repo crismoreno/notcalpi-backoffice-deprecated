@@ -64,7 +64,7 @@ const model = {
 			response(err, null)
 		}
 	},
-		// INFO DELETE
+	// INFO DELETE
 	deleteTagbyId: async (idToDelete, resolve) =>{
 		try{
 			await Tags.destroy({ where: { id: idToDelete }});

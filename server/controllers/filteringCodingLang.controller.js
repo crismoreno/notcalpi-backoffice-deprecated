@@ -48,11 +48,12 @@ const controller = {
 	},
 	//Delete a codinglang by id
 	deleteCodingLangbyId: (req, res) => {
-		filteringCodingLangModel.deleteCodingLangbyId((err, tags) =>{
+		const idToDelete = req.params.id;
+		filteringCodingLangModel.deleteCodingLangbyId(idToDelete, (err, resolve) => {
 			if(err){
 				res.send(err)
 			}else{
-				res.send(tags)
+				res.send(resolve)
 			}
 		})
 	},

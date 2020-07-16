@@ -82,9 +82,9 @@ router.delete("/deleteproject/:id", passport.authenticate('jwt', { session: fals
 router.delete("/deletetag/:id", passport.authenticate('jwt', { session: false }), filteringTags.deleteTagbyId)
 
 //delete codinglang by tag id
-// router.delete("/deletecodinglang/:id", passport.authenticate('jwt', { session: false }), filteringCodingLang.deleteCodingLangbyId)
+router.delete("/deletecodinglang/:id", passport.authenticate('jwt', { session: false }), filteringCodingLang.deleteCodingLangbyId)
 
 //delete madeat by tag id
-// router.delete("/deletemadeat/:id", passport.authenticate('jwt', { session: false }), filteringMadeAts.deleteMadeAtbyId)
+router.delete("/deletemadeat/:id", passport.authenticate('jwt', { session: false }), filteringMadeAts.deleteMadeAtbyId)
 
 module.exports = router;

@@ -48,11 +48,12 @@ const controller = {
 	},
 	//Delete a madeat by id
 	deleteMadeAtbyId: (req, res) => {
-		filteringMadeAtsModel.deleteMadeAtbyId((err, tags) =>{
+		const idToDelete = req.params.id;
+		filteringMadeAtsModel.deleteMadeAtbyId(idToDelete, (err, resolve) =>{
 			if(err){
 				res.send(err)
 			}else{
-				res.send(tags)
+				res.send(resolve)
 			}
 		})
 	},

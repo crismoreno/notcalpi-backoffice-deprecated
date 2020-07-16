@@ -1,6 +1,11 @@
 import React from 'react';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Card, Avatar, Popconfirm, message } from 'antd';
+import {
+  EditOutlined,
+  DeleteOutlined,
+  FlagOutlined,
+  FolderOutlined,
+} from '@ant-design/icons';
+import { Card, Popconfirm, message } from 'antd';
 
 import deleteProject from '../helpers/deleteProject';
 
@@ -11,7 +16,7 @@ const { Meta } = Card;
 export const ProjectCard = ({
   dispatch,
   project,
-  project: { id, title, customer, show },
+  project: { id, title, customer, show, is_featured },
 }) => {
   const handleCancelDelete = () => {
     message.success('You cancelled the deletion of the project successfully');
@@ -24,6 +29,7 @@ export const ProjectCard = ({
     <Card
       style={{ width: 300 }}
       className="notcalpi-card"
+      // title={is_featured ? <FlagOutlined /> : <FolderOutlined />}
       cover={
         <img
           alt="example"
@@ -46,9 +52,11 @@ export const ProjectCard = ({
       ]}
     >
       <Meta
+        // avatar={show === true ? <EyeOutlined /> : <EyeInvisibleOutlined />}
         avatar={show === true ? <EyeOutlined /> : <EyeInvisibleOutlined />}
         title={title}
-        description={customer}
+        // title={is_featured ? <FlagOutlined /> : <FolderOutlined />}
+        description={is_featured ? <FlagOutlined /> : customer}
       />
     </Card>
   );

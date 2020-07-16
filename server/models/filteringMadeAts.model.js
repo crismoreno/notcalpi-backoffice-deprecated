@@ -62,5 +62,14 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 			response(err, null)
 		}
 	},
+	// INFO DELETE
+	deleteMadeAtbyId: async (idToDelete, resolve) =>{
+		try{
+			await madeAt.destroy({ where: { id: idToDelete }});
+			resolve(null, 'MadeAt deleted successfully')
+		}catch(err){
+			resolve(err, null)
+		}
+	},
 }
 module.exports = model;

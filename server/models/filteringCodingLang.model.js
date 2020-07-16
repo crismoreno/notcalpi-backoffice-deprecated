@@ -62,5 +62,14 @@ const model = {
 			response(err, null)
 		}
 	},
+	// INFO DELETE
+		deleteCodingLangbyId: async (idToDelete, resolve) =>{
+		try{
+			await CodingLangs.destroy({ where: { id: idToDelete }});
+			resolve(null, 'CodingLang deleted successfully')
+		}catch(err){
+			resolve(err, null)
+		}
+	},
 }
 module.exports = model;
