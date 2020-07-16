@@ -45,8 +45,8 @@ const model = {
 				GROUP_CONCAT(projects.title) AS projects
 		FROM
 				codinglangs
-		INNER JOIN project_codinglangs ON codinglangs.id = project_codinglangs.codinglangId
-		INNER JOIN projects ON project_codinglangs.projectId = projects.id
+		LEFT JOIN project_codinglangs ON codinglangs.id = project_codinglangs.codinglangId
+		LEFT JOIN projects ON project_codinglangs.projectId = projects.id
 		GROUP BY
 				name`,
 				{

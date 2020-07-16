@@ -47,8 +47,8 @@ const model = {
 				GROUP_CONCAT(projects.title) AS projects
 		FROM
 				tags
-		INNER JOIN project_tags ON tags.id = project_tags.tagId
-		INNER JOIN projects ON project_tags.projectId = projects.id
+		LEFT JOIN project_tags ON tags.id = project_tags.tagId
+		LEFT JOIN projects ON project_tags.projectId = projects.id
 		GROUP BY
 				name`,
 				{

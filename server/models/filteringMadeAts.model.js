@@ -45,8 +45,8 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 				GROUP_CONCAT(projects.title) AS projects
 		FROM
 				madeats
-		INNER JOIN project_madeats ON madeats.id = project_madeats.madeatId
-		INNER JOIN projects ON project_madeats.projectId = projects.id
+		LEFT JOIN project_madeats ON madeats.id = project_madeats.madeatId
+		LEFT JOIN projects ON project_madeats.projectId = projects.id
 		GROUP BY
 		short_name`,
 				{
