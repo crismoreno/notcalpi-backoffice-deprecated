@@ -2,7 +2,7 @@ import React from 'react';
 import { EditOutlined, DeleteOutlined, FlagOutlined } from '@ant-design/icons';
 import { Card, Popconfirm, message } from 'antd';
 
-import deleteProject from '../helpers/deleteProject';
+import deleteProject from '../helpers/DELETE/deleteProject';
 
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 

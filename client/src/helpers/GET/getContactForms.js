@@ -1,5 +1,5 @@
-import { fetchContactFormsSuccess } from '../actions/contactForms';
-import { authHeader } from './authHeader';
+import { fetchContactFormsSuccess } from '../../actions/contactForms';
+import { authHeader } from '../authHeader';
 
 const url = '/api';
 

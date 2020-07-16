@@ -2,7 +2,7 @@ import React from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import moment from 'moment';
 
-import fetchContactForms from '../helpers/getContactForms';
+import fetchContactForms from '../helpers/GET/getContactForms';
 import { connect } from 'react-redux';
 
 import { getContactForms } from '../reducers/index';

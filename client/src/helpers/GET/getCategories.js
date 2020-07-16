@@ -2,9 +2,9 @@ import {
   fetchTagsSuccess,
   fetchCodingLangsSuccess,
   fetchMadeAtsSuccess,
-} from '../actions/categories';
+} from '../../actions/categories';
 
-import { authHeader } from './authHeader';
+import { authHeader } from '../authHeader';
 
 const url = '/api';
 const requestOptions = {

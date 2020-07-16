@@ -1,5 +1,5 @@
-import { fetchProjectsSuccess } from '../actions/projects';
-import { authHeader } from './authHeader';
+import { fetchProjectsSuccess } from '../../actions/projects';
+import { authHeader } from '../authHeader';
 
 const url = '/api';
 

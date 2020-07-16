@@ -2,7 +2,7 @@ import React from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import moment from 'moment';
 
-import fetchUsers from '../helpers/getUsers';
+import fetchUsers from '../helpers/GET/getUsers';
 import { connect } from 'react-redux';
 
 import { getUsers } from '../reducers/index';

@@ -3,11 +3,11 @@ import { Card, Modal, Popconfirm, message } from 'antd';
 import { EditOutlined, DeleteOutlined, LinkOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
-// import deleteTag from '../helpers/deleteTag';
-// import deleteCodingLang from '../helpers/deleteTag';
-// import deleteMadeAt from '../helpers/deleteTag';
+import deleteTag from '../helpers/DELETE/deleteTags';
+import deleteCodingLang from '../helpers/DELETE/deleteCodingLangs';
+import deleteMadeAt from '../helpers/DELETE/deleteMadeAts';
 
-export const CategoryCard = ({ entity }) => {
+export const CategoryCard = ({ entity, entityType, dispatch }) => {
   let name = entity.name || entity.short_name;
   name = name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -39,8 +39,21 @@ export const CategoryCard = ({ entity }) => {
     message.success('You cancelled the deletion of the entity successfully');
   };
 
-  const handleConfirmDelete = (entityId) => {
-    console.log(`You Deleted entity id: ${entityId}`);
+  const handleConfirmDelete = ({ id, name }) => {
+    switch (entityType) {
+      case 'tag':
+        dispatch(deleteTag(id));
+        break;
+      case 'codingLang':
+        dispatch(deleteCodingLang(id));
+        break;
+      case 'madeAt':
+        dispatch(deleteMadeAt(id));
+        break;
+      case 'default':
+        return null;
+    }
+    message.success(`You deleted ${name} successfully`);
   };
 
   const noProjectsCard = () => {
@@ -53,7 +66,7 @@ export const CategoryCard = ({ entity }) => {
           <Popconfirm
             title={` Are you sure about deleting ${name}?`}
             onConfirm={() => {
-              handleConfirmDelete(entity.id);
+              handleConfirmDelete(entity);
             }}
             onCancel={handleCancelDelete}
             okText="Delete"
@@ -63,10 +76,7 @@ export const CategoryCard = ({ entity }) => {
           </Popconfirm>,
         ]}
       >
-        <ul>
-          <li>{`catId: ${entity.id}`}</li>
-          <li>0 Projects</li>
-        </ul>
+        <Meta title={`catId: ${entity.id}`} description={'0 projects'} />
       </Card>
     );
   };

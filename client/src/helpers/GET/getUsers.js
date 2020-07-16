@@ -1,5 +1,5 @@
-import { fetchUsersSuccess } from '../actions/users';
-import { authHeader } from './authHeader';
+import { fetchUsersSuccess } from '../../actions/users';
+import { authHeader } from '../authHeader';
 
 const url = '/api/users';
 

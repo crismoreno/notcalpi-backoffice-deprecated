@@ -1,5 +1,5 @@
-import { authHeader } from './authHeader';
-import fetchProjects from './getProjects';
+import { authHeader } from '../authHeader';
+import fetchProjects from '../GET/getProjects';
 
 const url = '/api/deleteproject';
 

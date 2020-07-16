@@ -11,7 +11,7 @@ import {
   fetchTags,
   fetchCodingLangs,
   fetchMadeAts,
-} from '../helpers/getCategories';
+} from '../helpers/GET/getCategories';
 
 import { getTags, getCodingLangs, getMadeAts } from '../reducers/index';
 
@@ -78,7 +78,12 @@ const Category = ({
       </div>
       <div className="project-cards-container">
         {entity.map((entity, index) => (
-          <CategoryCard entity={entity} key={index} />
+          <CategoryCard
+            entity={entity}
+            key={index}
+            entityType={cat.substring(0, cat.length - 1)}
+            dispatch={dispatch}
+          />
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
-import fetchProjects from '../helpers/getProjects';
+import fetchProjects from '../helpers/GET/getProjects';
 import { connect } from 'react-redux';
 
 import { getProjects } from '../reducers/index';
