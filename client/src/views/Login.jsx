@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
 import { Redirect } from 'react-router-dom';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import { getAuth } from '../reducers/index';
 
@@ -60,8 +61,8 @@ const Login = ({ dispatch }) => {
           src={require('../assets/img/notcalpi.png')}
         />
         <Form
-          // {...layout}
           name="login"
+          className="login-form"
           initialValues={{
             remember: true,
           }}
@@ -69,7 +70,7 @@ const Login = ({ dispatch }) => {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Email"
+            name="Email"
             name="email"
             rules={[
               {
@@ -78,25 +79,34 @@ const Login = ({ dispatch }) => {
               },
             ]}
           >
-            <Input />
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Email"
+            />
           </Form.Item>
-
           <Form.Item
-            label="Password"
             name="password"
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: 'Please input your Password!',
               },
             ]}
           >
-            <Input.Password />
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+            />
           </Form.Item>
 
-          <Form.Item {...tailLayout}>
-            <Button style={{ width: '100%' }} type="primary" htmlType="submit">
-              Submit
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Log in
             </Button>
           </Form.Item>
         </Form>

@@ -58,28 +58,26 @@ export const CategoryCard = ({ entity, entityType, dispatch }) => {
 
   const noProjectsCard = () => {
     return (
-      <Badge count={0}>
-        <Card
-          style={{ width: '20%', margin: '5px' }}
-          title={`${name}`}
-          actions={[
-            <EditOutlined key="edit" />,
-            <Popconfirm
-              title={` Are you sure about deleting ${name}?`}
-              onConfirm={() => {
-                handleConfirmDelete(entity);
-              }}
-              onCancel={handleCancelDelete}
-              okText="Delete"
-              cancelText="Cancel"
-            >
-              <DeleteOutlined key="delete" />
-            </Popconfirm>,
-          ]}
-        >
-          <Meta title={`catId: ${entity.id}`} description={'0 projects'} />
-        </Card>
-      </Badge>
+      <Card
+        style={{ width: '20%', margin: '5px' }}
+        title={`${name}`}
+        actions={[
+          <EditOutlined key="edit" />,
+          <Popconfirm
+            title={` Are you sure about deleting ${name}?`}
+            onConfirm={() => {
+              handleConfirmDelete(entity);
+            }}
+            onCancel={handleCancelDelete}
+            okText="Delete"
+            cancelText="Cancel"
+          >
+            <DeleteOutlined key="delete" />
+          </Popconfirm>,
+        ]}
+      >
+        <Meta title={`catId: ${entity.id}`} description={'0 projects'} />
+      </Card>
     );
   };
 
