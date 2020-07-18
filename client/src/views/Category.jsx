@@ -12,6 +12,7 @@ import {
   fetchCodingLangs,
   fetchMadeAts,
 } from '../helpers/GET/getCategories';
+import { PlusOutlined } from '@ant-design/icons';
 
 import { getTags, getCodingLangs, getMadeAts } from '../reducers/index';
 
@@ -53,13 +54,7 @@ const Category = ({
   let entity = eval(cat);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-      }}
-    >
+    <div>
       <div
         style={{
           display: 'flex',
@@ -73,6 +68,7 @@ const Category = ({
           // subTitle="This is a subtitle"
         />
         <Button type="primary" style={{ marginTop: '15px' }}>
+          <PlusOutlined />
           {`Add new ${cat.substring(0, cat.length - 1)}`}
         </Button>
       </div>
