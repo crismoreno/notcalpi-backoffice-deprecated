@@ -72,6 +72,15 @@ const model = {
 		}catch(err){
 			resolve(err, null)
 		}
+	},
+	// INFO DELETE
+	createTag: async (name, resolve) =>{
+		try{
+			await Tags.create({name});
+			resolve(null, 'Tag created successfully')
+		}catch(err){
+			resolve(err, null)
+		}
 	}
 }
 module.exports = model;

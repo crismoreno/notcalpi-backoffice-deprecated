@@ -66,6 +66,8 @@ router.get("/madeatslist-projects", passport.authenticate('jwt', { session: fals
 //Get a list with all the contact forms received
 router.get("/getForms", passport.authenticate('jwt', { session: false }), contactFormController.getContactForms);
 
+//INFO AUTH
+
 //User registration
 router.post("/register", usersController.createUser);
 
@@ -74,6 +76,8 @@ router.post("/login", usersController.loginUser);
 
 //Get all users
 router.get("/users", passport.authenticate('jwt', { session: false }), usersController.getAllUsers);
+
+//INFO DELETES
 
 //delete project by project id
 router.delete("/deleteproject/:id", passport.authenticate('jwt', { session: false }), projectController.deleteProjectbyId)
@@ -86,5 +90,16 @@ router.delete("/deletecodinglang/:id", passport.authenticate('jwt', { session: f
 
 //delete madeat by tag id
 router.delete("/deletemadeat/:id", passport.authenticate('jwt', { session: false }), filteringMadeAts.deleteMadeAtbyId)
+
+//INFO CREATES
+
+//create tag by tag id
+router.post("/createtag", passport.authenticate('jwt', { session: false }), filteringTags.createTag)
+
+//create codinglang by tag id
+// router.create("/createcodinglang", passport.authenticate('jwt', { session: false }), filteringCodingLang.createCodingLang)
+
+//create madeat by tag id
+// router.create("/createmadeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.createMadeAt)
 
 module.exports = router;

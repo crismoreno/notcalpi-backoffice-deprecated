@@ -46,6 +46,7 @@ const controller = {
 			}
 		})
 	},
+	// INFO DELETE
 	//Delete a madeat by id
 	deleteMadeAtbyId: (req, res) => {
 		const idToDelete = req.params.id;
@@ -57,5 +58,16 @@ const controller = {
 			}
 		})
 	},
+	// INFO CREATE
+	//Create a madeat by id
+	createMadeAt: (req, res) =>{
+		filteringMadeAtsModel.createMadeAt((err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
+	}
 }
 module.exports = controller;

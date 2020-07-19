@@ -10,7 +10,6 @@ const CategoryDrawer = ({
   entityId = null,
   entityName = null,
 }) => {
-  console.log(entityType);
   return (
     <Drawer
       title={

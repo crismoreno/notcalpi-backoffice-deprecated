@@ -46,6 +46,7 @@ const controller = {
 			}
 		})
 	},
+		// INFO DELETE
 	//Delete a codinglang by id
 	deleteCodingLangbyId: (req, res) => {
 		const idToDelete = req.params.id;
@@ -57,5 +58,16 @@ const controller = {
 			}
 		})
 	},
+	// INFO CREATE
+		//Create a coodinglang by id
+	createCoodingLang: (req, res) =>{
+		filteringCodingLangModel.createCodingLang((err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
+	}
 }
 module.exports = controller;

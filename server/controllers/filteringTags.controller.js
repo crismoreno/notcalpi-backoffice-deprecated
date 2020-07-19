@@ -64,5 +64,17 @@ const controller = {
 			}
 		})
 	},
+	// INFO CREATE
+	//Create a tag by id
+	createTag: (req, res) =>{
+		const name = req.body.name;
+		filteringTagsModel.createTag(name,(err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
+	}
 }
 module.exports = controller;
