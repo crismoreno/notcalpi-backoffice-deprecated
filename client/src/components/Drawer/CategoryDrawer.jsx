@@ -3,10 +3,23 @@ import { Drawer, Form, Button, Col, Row } from 'antd';
 
 import InputText from './components/InputText.jsx';
 
-const CategoryDrawer = ({ visibility, onClose, entity }) => {
+const CategoryDrawer = ({
+  visibility,
+  onClose,
+  entityType,
+  entityId = null,
+  entityName = null,
+}) => {
+  console.log(entityType);
   return (
     <Drawer
-      title={`Add new ${entity.substring(0, entity.length - 1)}`}
+      title={
+        entityName
+          ? `Edit ${entityType.substring(0, entityType.length - 1)}: ${
+              entityName[0].toUpperCase() + entityName.slice(1)
+            }`
+          : `Add new ${entityType}`
+      }
       width={720}
       onClose={onClose}
       visible={visibility}
@@ -29,7 +42,12 @@ const CategoryDrawer = ({ visibility, onClose, entity }) => {
       <Form layout="vertical" hideRequiredMark>
         <Row gutter={16}>
           <Col span={24}>
-            <InputText required={true} inputName={'Title'} />
+            <InputText
+              required={true}
+              inputName={entityName || 'Title'}
+              inputLabel={'Title'}
+              // inputValue={entityName || 'Title'}
+            />
           </Col>
         </Row>
       </Form>

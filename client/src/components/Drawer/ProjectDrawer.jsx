@@ -50,21 +50,37 @@ const ProjectDrawer = ({ visibility, onClose }) => {
 
         <Row gutter={16}>
           <Col span={24}>
-            <InputText required={true} inputName={'Title'} />
+            <InputText
+              required={true}
+              inputName={'Title'}
+              inputLabel={'Title'}
+            />
           </Col>
         </Row>
 
         <Row gutter={16}>
           <Col span={12}>
-            <InputText required={true} inputName={'Customer'} />
+            <InputText
+              required={true}
+              inputName={'Customer'}
+              inputLabel={'Customer'}
+            />
           </Col>
           <Col span={12}>
-            <InputText required={true} inputName={'Collaborators'} />
+            <InputText
+              required={true}
+              inputName={'Collaborators'}
+              inputLabel={'Collaborators'}
+            />
           </Col>
         </Row>
         <Row gutter={16}>
           <Col span={12}>
-            <InputText required={true} inputName={'Completion Date'} />
+            <InputText
+              required={true}
+              inputName={'Completion Date'}
+              inputLabel={'Completion Date'}
+            />
           </Col>
           <Col span={12}>
             <InputNum inputName={'Priority'} />

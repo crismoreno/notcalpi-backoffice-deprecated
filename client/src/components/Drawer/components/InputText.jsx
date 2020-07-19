@@ -1,10 +1,11 @@
 import React from 'react';
 import { Form, Input } from 'antd';
-const InputText = ({ inputName, required }) => {
+const InputText = ({ inputLabel, inputName, required, inputValue }) => {
   return (
     <Form.Item
       name={inputName.toLowerCase()}
-      label={inputName}
+      label={inputLabel}
+      value={inputValue}
       hasFeedback
       rules={[
         {

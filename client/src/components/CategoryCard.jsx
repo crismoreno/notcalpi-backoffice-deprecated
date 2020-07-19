@@ -7,7 +7,7 @@ import deleteTag from '../helpers/DELETE/deleteTags';
 import deleteCodingLang from '../helpers/DELETE/deleteCodingLangs';
 import deleteMadeAt from '../helpers/DELETE/deleteMadeAts';
 
-export const CategoryCard = ({ entity, entityType, dispatch }) => {
+export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
   let name = entity.name || entity.short_name;
   name = name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -56,13 +56,26 @@ export const CategoryCard = ({ entity, entityType, dispatch }) => {
     message.success(`You deleted ${name} successfully`);
   };
 
+  // const handleClickEditCat = ({ catType, catId, catName }) => {
+  //   handleShowDrawer();
+  //   return (
+  //     <CategoryDrawer
+  //       visibility={showDrawer}
+  //       onClose={handleHideDrawer}
+  //       entity={catType}
+  //       entityId={catId}
+  //       entityName={catName}
+  //     />
+  //   );
+  // };
+
   const noProjectsCard = () => {
     return (
       <Card
         style={{ width: '20%', margin: '5px' }}
         title={`${name}`}
         actions={[
-          <EditOutlined key="edit" />,
+          <EditOutlined key="edit" onClick={onClickEdit} />,
           <Popconfirm
             title={` Are you sure about deleting ${name}?`}
             onConfirm={() => {
@@ -87,7 +100,7 @@ export const CategoryCard = ({ entity, entityType, dispatch }) => {
         style={{ width: '20%', margin: '5px' }}
         title={`${name}`}
         actions={[
-          <EditOutlined key="edit" />,
+          <EditOutlined key="edit" onClick={onClickEdit} />,
           <LinkOutlined key="see" onClick={warningProjects} />,
         ]}
       >

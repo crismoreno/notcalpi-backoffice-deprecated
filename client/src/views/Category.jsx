@@ -55,10 +55,18 @@ const Category = ({
   let entity = eval(cat);
 
   const [showDrawer, setShowDrawer] = useState(false);
+  const [drawerProps, setDrawerProps] = useState(null);
 
-  const handleShowDrawer = () => {
-    setShowDrawer(true);
+  useEffect(() => {
+    if (drawerProps != null) {
+      setShowDrawer(true);
+    }
+  }, [drawerProps]);
+
+  const handleShowDrawer = ({ entityType, entityId, entityName }) => {
+    setDrawerProps({ entityType, entityId, entityName });
   };
+
   const handleHideDrawer = () => {
     setShowDrawer(false);
   };
@@ -80,7 +88,13 @@ const Category = ({
         <Button
           type="primary"
           style={{ marginTop: '15px' }}
-          onClick={handleShowDrawer}
+          onClick={() => {
+            handleShowDrawer({
+              entityType: cat,
+              entityId: null,
+              entityName: null,
+            });
+          }}
         >
           <PlusOutlined />
           {`Add new ${cat.substring(0, cat.length - 1)}`}
@@ -88,16 +102,23 @@ const Category = ({
         <CategoryDrawer
           visibility={showDrawer}
           onClose={handleHideDrawer}
-          entity={cat}
+          {...drawerProps}
         />
       </div>
       <div className="project-cards-container">
         {entity.map((entity, index) => (
           <CategoryCard
-            entity={entity}
             key={index}
+            entity={entity}
             entityType={cat.substring(0, cat.length - 1)}
             dispatch={dispatch}
+            onClickEdit={() => {
+              handleShowDrawer({
+                entityType: cat,
+                entityId: entity.id,
+                entityName: entity.name,
+              });
+            }}
           />
         ))}
       </div>
