@@ -21,11 +21,9 @@ const Projects = ({ dispatch, projects }) => {
   const [showDrawer, setShowDrawer] = useState(false);
 
   const handleShowDrawer = () => {
-    console.log('show');
     setShowDrawer(true);
   };
   const handleHideDrawer = () => {
-    console.log('hide');
     setShowDrawer(false);
   };
 
@@ -48,7 +46,8 @@ const Projects = ({ dispatch, projects }) => {
       <ProjectDrawer
         visibility={showDrawer}
         onClose={handleHideDrawer}
-        title={'Add new project'}
+        projects={projects}
+        // title={`Add new project to be ID: ${projects[0].id}`}
       />
       <div className="project-cards-container">
         {projects.map((project, index) => (

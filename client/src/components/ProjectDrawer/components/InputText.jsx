@@ -1,18 +1,19 @@
 import React from 'react';
 import { Form, Input } from 'antd';
-const InputText = ({ inputType, required }) => {
+const InputText = ({ inputName, required }) => {
   return (
     <Form.Item
-      name={inputType.toLowerCase()}
-      label={inputType}
+      name={inputName.toLowerCase()}
+      label={inputName}
+      hasFeedback
       rules={[
         {
           required: { required },
-          message: `${inputType}`,
+          message: `${inputName}`,
         },
       ]}
     >
-      <Input placeholder={`${inputType}`} />
+      <Input placeholder={`${inputName}`} />
     </Form.Item>
   );
 };

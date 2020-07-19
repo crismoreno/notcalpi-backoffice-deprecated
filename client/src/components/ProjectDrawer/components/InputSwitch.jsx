@@ -5,6 +5,8 @@ const InputSwitch = ({ inputName, required }) => {
     <Form.Item
       name={inputName.toLowerCase()}
       label={inputName}
+      valuePropName="checked"
+      hasFeedback
       rules={[
         {
           required: { required },

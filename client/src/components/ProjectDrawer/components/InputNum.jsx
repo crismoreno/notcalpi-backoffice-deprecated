@@ -5,6 +5,7 @@ const InputNum = ({ inputName, required }) => {
     <Form.Item
       name={inputName.toLowerCase()}
       label={inputName}
+      hasFeedback
       rules={[
         {
           required: { required },

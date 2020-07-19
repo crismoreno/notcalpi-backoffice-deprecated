@@ -1,19 +1,20 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 
-const TextArea = () => {
+const TextArea = ({ inputName }) => {
   return (
     <Form.Item
-      name="description"
-      label="Description"
+      name={`${inputName.toLowerCase()}`}
+      label={`${inputName}`}
+      hasFeedback
       rules={[
         {
           required: true,
-          message: 'please enter url description',
+          message: `${inputName}`,
         },
       ]}
     >
-      <Input.TextArea rows={4} placeholder="please enter url description" />
+      <Input.TextArea rows={4} placeholder={`${inputName}`} />
     </Form.Item>
   );
 };
