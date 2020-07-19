@@ -56,19 +56,6 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
     message.success(`You deleted ${name} successfully`);
   };
 
-  // const handleClickEditCat = ({ catType, catId, catName }) => {
-  //   handleShowDrawer();
-  //   return (
-  //     <CategoryDrawer
-  //       visibility={showDrawer}
-  //       onClose={handleHideDrawer}
-  //       entity={catType}
-  //       entityId={catId}
-  //       entityName={catName}
-  //     />
-  //   );
-  // };
-
   const noProjectsCard = () => {
     return (
       <Card

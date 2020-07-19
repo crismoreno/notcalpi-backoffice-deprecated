@@ -116,7 +116,7 @@ const Category = ({
               handleShowDrawer({
                 entityType: cat,
                 entityId: entity.id,
-                entityName: entity.name,
+                entityName: entity.name || entity.short_name,
               });
             }}
           />
