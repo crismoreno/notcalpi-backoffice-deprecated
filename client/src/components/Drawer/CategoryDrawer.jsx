@@ -15,7 +15,7 @@ const CategoryDrawer = ({
     <Drawer
       title={
         entityName
-          ? `Edit ${entityType.substring(0, entityType.length - 1)}: ${
+          ? `Edit ${entityType}: ${
               entityName[0].toUpperCase() + entityName.slice(1)
             }`
           : `Add new ${entityType}`
@@ -44,7 +44,7 @@ const CategoryDrawer = ({
           <Col span={24}>
             <InputText
               required={true}
-              inputName={entityName || 'Title'}
+              inputName={entityName || `${entityType} title`}
               inputLabel={'Title'}
               // inputValue={entityName || 'Title'}
             />

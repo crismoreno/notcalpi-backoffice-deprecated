@@ -90,7 +90,7 @@ const Category = ({
           style={{ marginTop: '15px' }}
           onClick={() => {
             handleShowDrawer({
-              entityType: cat,
+              entityType: cat.substring(0, cat.length - 1),
               entityId: null,
               entityName: null,
             });
@@ -114,7 +114,7 @@ const Category = ({
             dispatch={dispatch}
             onClickEdit={() => {
               handleShowDrawer({
-                entityType: cat,
+                entityType: cat.substring(0, cat.length - 1),
                 entityId: entity.id,
                 entityName: entity.name || entity.short_name,
               });
