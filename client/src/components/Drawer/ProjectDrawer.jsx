@@ -1,11 +1,11 @@
 import React from 'react';
 import { Drawer, Form, Button, Col, Row } from 'antd';
 
-import useDeepCompareEffect from 'use-deep-compare-effect';
-import { connect } from 'react-redux';
-import fetchProjects from '../../helpers/GET/getProjects';
+// import useDeepCompareEffect from 'use-deep-compare-effect';
+// import { connect } from 'react-redux';
+// import fetchProjects from '../../helpers/GET/getProjects';
 
-import { getProjects } from '../../reducers/index';
+// import { getProjects } from '../../reducers/index';
 
 import InputNum from './components/InputNum.jsx';
 import InputSwitch from './components/InputSwitch.jsx';
@@ -18,12 +18,11 @@ import Tags from './components/Tags.jsx';
 import TextArea from './components/TextArea.jsx';
 import Uploader from './components/Uploader.jsx';
 
-const ProjectDrawer = ({ visibility, onClose, projects }) => {
-  console.log(projects[0], typeof projects, 'projects');
+const ProjectDrawer = ({ visibility, onClose }) => {
   return (
     <Drawer
-      title={`Add new project to be ID: `}
-      width={720}
+      title={`Add new project to be ID`}
+      width={900}
       onClose={onClose}
       visible={visibility}
       bodyStyle={{ paddingBottom: 80 }}
@@ -121,8 +120,8 @@ const ProjectDrawer = ({ visibility, onClose, projects }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  projects: getProjects(state),
-});
+// const mapStateToProps = (state) => ({
+//   projects: getProjects(state),
+// });
 
-export default connect(mapStateToProps)(ProjectDrawer);
+export default ProjectDrawer;

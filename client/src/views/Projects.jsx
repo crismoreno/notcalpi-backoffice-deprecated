@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { getProjects } from '../reducers/index';
 
 import { ProjectCard } from '../components/ProjectCard.jsx';
-import ProjectDrawer from '../components/ProjectDrawer/ProjectDrawer.jsx';
+import ProjectDrawer from '../components/Drawer/ProjectDrawer.jsx';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
@@ -46,8 +46,7 @@ const Projects = ({ dispatch, projects }) => {
       <ProjectDrawer
         visibility={showDrawer}
         onClose={handleHideDrawer}
-        projects={projects}
-        // title={`Add new project to be ID: ${projects[0].id}`}
+        id={projects}
       />
       <div className="project-cards-container">
         {projects.map((project, index) => (

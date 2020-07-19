@@ -30,7 +30,8 @@ const MadeAts = ({ madeats, dispatch }) => {
       <Select placeholder="Made At">
         {madeats.map((madeat, index) => (
           <Select.Option key={index} value={madeat.id}>
-            {madeat.short_name}
+            {madeat.short_name.charAt(0).toUpperCase() +
+              madeat.short_name.slice(1)}
           </Select.Option>
         ))}
       </Select>
