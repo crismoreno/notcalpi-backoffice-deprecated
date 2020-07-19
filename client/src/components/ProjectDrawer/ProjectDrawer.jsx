@@ -45,6 +45,12 @@ const ProjectDrawer = ({ visibility, onClose, projects }) => {
       <Form layout="vertical" hideRequiredMark>
         <Row gutter={16}>
           <Col span={24}>
+            <Uploader />
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+          <Col span={24}>
             <InputText required={true} inputName={'Title'} />
           </Col>
         </Row>
@@ -94,26 +100,20 @@ const ProjectDrawer = ({ visibility, onClose, projects }) => {
         </Row>
 
         <Row gutter={16}>
-          <Col span={24}>
-            <Uploader />
+          <Col span={6}>
+            <InputSwitch inputName={'Visible'} required={true} />
+          </Col>
+          <Col span={6}>
+            <InputSwitch inputName={'Featured'} required={true} />
+          </Col>
+          <Col span={12}>
+            <MadeAts />
           </Col>
         </Row>
 
         <Row gutter={16}>
           <Col span={24}>
             <TextArea inputName={'Description'} />
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col span={8}>
-            <InputSwitch inputName={'Visible'} required={true} />
-          </Col>
-          <Col span={8}>
-            <InputSwitch inputName={'Featured'} required={true} />
-          </Col>
-          <Col span={8}>
-            <MadeAts />
           </Col>
         </Row>
       </Form>
