@@ -1,10 +1,15 @@
 import React from 'react';
-import { EditOutlined, DeleteOutlined, FlagOutlined } from '@ant-design/icons';
 import { Card, Popconfirm, message } from 'antd';
 
 import deleteProject from '../helpers/DELETE/deleteProject';
 
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import {
+  EyeInvisibleOutlined,
+  EyeOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  FlagOutlined,
+} from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -33,6 +38,12 @@ export const ProjectCard = ({
       }
       actions={[
         <EditOutlined key="edit" />,
+        <a
+          target="_blank"
+          href={`https://www.cristinamoreno.dev/#/project/${id}`}
+        >
+          <EyeOutlined key="see" />
+        </a>,
         <Popconfirm
           title={` Are you sure about deleting ${title}?`}
           onConfirm={() => {
