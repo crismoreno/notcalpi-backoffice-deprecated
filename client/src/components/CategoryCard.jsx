@@ -1,6 +1,11 @@
 import React from 'react';
 import { Card, Modal, Popconfirm, message } from 'antd';
-import { EditOutlined, DeleteOutlined, LinkOutlined } from '@ant-design/icons';
+import {
+  EditOutlined,
+  DeleteOutlined,
+  LinkOutlined,
+  EyeOutlined,
+} from '@ant-design/icons';
 const { Meta } = Card;
 
 import deleteTag from '../helpers/DELETE/deleteTags';
@@ -56,6 +61,14 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
     message.success(`You deleted ${name} successfully`);
   };
 
+  const linkToPreview = () => {
+    if (entityType === 'madeAt') {
+      entityType = 'place';
+    }
+    const url = `https://www.cristinamoreno.dev/#/portfolio?${entityType}=${entity.id}`;
+    return url;
+  };
+
   const noProjectsCard = () => {
     return (
       <Card
@@ -88,6 +101,16 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
         title={`${name}`}
         actions={[
           <EditOutlined key="edit" onClick={onClickEdit} />,
+          <a
+            target="_blank"
+            href={
+              entityType === 'madeAt'
+                ? `https://www.cristinamoreno.dev/#/portfolio?place=${entity.id}`
+                : `https://www.cristinamoreno.dev/#/portfolio?${entityType}=${entity.id}`
+            }
+          >
+            <EyeOutlined key="see" />,
+          </a>,
           <LinkOutlined key="see" onClick={warningProjects} />,
         ]}
       >
