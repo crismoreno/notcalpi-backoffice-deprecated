@@ -61,7 +61,9 @@ const controller = {
 	// INFO CREATE
 	//Create a madeat by id
 	createMadeAt: (req, res) =>{
-		filteringMadeAtsModel.createMadeAt((err, resolve) =>{
+		const shortName = req.body.short_name;
+		const fullName = req.body.full_name;
+		filteringMadeAtsModel.createMadeAt({shortName, fullName},(err, resolve) =>{
 			if(err){
 				res.send(err)
 			}else{

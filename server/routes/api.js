@@ -97,9 +97,9 @@ router.delete("/deletemadeat/:id", passport.authenticate('jwt', { session: false
 router.post("/createtag", passport.authenticate('jwt', { session: false }), filteringTags.createTag)
 
 //create codinglang by tag id
-// router.create("/createcodinglang", passport.authenticate('jwt', { session: false }), filteringCodingLang.createCodingLang)
+router.post("/createcodinglang", passport.authenticate('jwt', { session: false }), filteringCodingLang.createCodingLang)
 
 //create madeat by tag id
-// router.create("/createmadeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.createMadeAt)
+router.post("/createmadeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.createMadeAt)
 
 module.exports = router;

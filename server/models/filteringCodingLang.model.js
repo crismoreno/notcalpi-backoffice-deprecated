@@ -71,5 +71,14 @@ const model = {
 			resolve(err, null)
 		}
 	},
+	// INFO CREATE
+		createCodingLang: async ({name, priority}, resolve) =>{
+		try{
+			await CodingLangs.create({name, orderby:priority});
+			resolve(null, 'CodingLang created successfully')
+		}catch(err){
+			resolve(err, null)
+		}
+	},
 }
 module.exports = model;

@@ -73,7 +73,7 @@ const model = {
 			resolve(err, null)
 		}
 	},
-	// INFO DELETE
+	// INFO CREATE
 	createTag: async (name, resolve) =>{
 		try{
 			await Tags.create({name});

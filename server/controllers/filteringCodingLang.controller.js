@@ -60,8 +60,10 @@ const controller = {
 	},
 	// INFO CREATE
 		//Create a coodinglang by id
-	createCoodingLang: (req, res) =>{
-		filteringCodingLangModel.createCodingLang((err, resolve) =>{
+	createCodingLang: (req, res) =>{
+		const name = req.body.name;
+		const priority = req.body.priority;
+		filteringCodingLangModel.createCodingLang({name,priority}, (err, resolve) =>{
 			if(err){
 				res.send(err)
 			}else{

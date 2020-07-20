@@ -71,5 +71,14 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 			resolve(err, null)
 		}
 	},
+	// INFO CREATE
+	createMadeAt: async ({shortName, fullName}, resolve) =>{
+		try{
+			await madeAt.create({full_name: fullName, short_name: shortName});
+			resolve(null, 'MadeAt created successfully')
+		}catch(err){
+			resolve(err, null)
+		}
+	},
 }
 module.exports = model;
