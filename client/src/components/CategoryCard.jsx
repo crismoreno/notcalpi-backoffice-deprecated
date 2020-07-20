@@ -44,7 +44,7 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
     message.success('You cancelled the deletion of the entity successfully');
   };
 
-  const handleConfirmDelete = ({ id, name }) => {
+  const handleConfirmDelete = ({ id, name, full_name }) => {
     switch (entityType) {
       case 'tag':
         dispatch(deleteTag(id));
@@ -58,7 +58,7 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
       case 'default':
         return null;
     }
-    message.success(`You deleted ${name} successfully`);
+    message.success(`You deleted ${full_name || name} successfully`);
   };
 
   const linkToPreview = () => {

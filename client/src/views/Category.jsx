@@ -71,6 +71,7 @@ const Category = ({
     priority,
   }) => {
     setDrawerProps({
+      dispatch,
       entityType,
       entityId,
       entityName,
