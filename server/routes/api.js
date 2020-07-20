@@ -111,5 +111,8 @@ router.put("/updatetag/:id", passport.authenticate('jwt', { session: false }), f
 //update codinglang by id
 router.put("/updatecodinglang/:id", passport.authenticate('jwt', { session: false }), filteringCodingLang.updateCodingLang)
 
+//update madeat by id
+router.put("/updatemadeat/:id", passport.authenticate('jwt', { session: false }), filteringMadeAts.updateMadeAt)
+
 
 module.exports = router;

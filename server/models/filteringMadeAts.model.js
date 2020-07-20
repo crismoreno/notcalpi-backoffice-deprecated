@@ -81,5 +81,16 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 			resolve(err, null)
 		}
 	},
+	// INFO UPDATE
+	updateMadeAt: ({shortName, fullName, idToUpdate}, resolve) =>{
+		madeAt.update(
+			{short_name: shortName, full_name: fullName},
+			{ returning: true, where: { id: idToUpdate } },
+			)
+		.then(function(data) {
+			resolve(null, data)
+		})
+		.catch((err) => {resolve(err, null)})
+	}
 }
 module.exports = model;

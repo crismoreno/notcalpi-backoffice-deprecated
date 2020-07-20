@@ -70,6 +70,20 @@ const controller = {
 				res.send(resolve)
 			}
 		})
+	},
+	// INFO UPDATE
+	//Update a madeat by id
+	updateMadeAt: (req, res) =>{
+		const shortName = req.body.short_name;
+		const fullName = req.body.full_name;
+		const idToUpdate = req.params.id;
+		filteringMadeAtsModel.updateMadeAt({shortName, fullName, idToUpdate}, (err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		});
 	}
 }
 module.exports = controller;
