@@ -81,6 +81,17 @@ const model = {
 		}catch(err){
 			resolve(err, null)
 		}
+	},
+	// INFO UPDATE
+	updateTag: ({name, idToUpdate}, resolve) =>{
+		Tags.update(
+			{name: name},
+			{ returning: true, where: { id: idToUpdate } },
+			)
+		.then(function(data) {
+			resolve(null, data)
+		})
+		.catch((err) => {resolve(err, null)})
 	}
 }
 module.exports = model;

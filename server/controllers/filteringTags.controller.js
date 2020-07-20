@@ -65,7 +65,7 @@ const controller = {
 		})
 	},
 	// INFO CREATE
-	//Create a tag by id
+	//Create a tag
 	createTag: (req, res) =>{
 		const name = req.body.name;
 		filteringTagsModel.createTag(name,(err, resolve) =>{
@@ -75,6 +75,19 @@ const controller = {
 				res.send(resolve)
 			}
 		})
+	},
+	// INFO UPDATE
+	//Update a tag by id
+	updateTag: (req, res, next) =>{
+		const name = req.body.name;
+		const idToUpdate = req.params.id;
+		filteringTagsModel.updateTag({name, idToUpdate}, (err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		});
 	}
 }
 module.exports = controller;

@@ -102,4 +102,11 @@ router.post("/createcodinglang", passport.authenticate('jwt', { session: false }
 //create madeat by tag id
 router.post("/createmadeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.createMadeAt)
 
+
+//INFO UPDATES
+
+//update tag by tag id
+router.put("/updatetag/:id", passport.authenticate('jwt', { session: false }), filteringTags.updateTag)
+
+
 module.exports = router;
