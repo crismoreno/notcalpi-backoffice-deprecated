@@ -78,7 +78,7 @@ const controller = {
 	},
 	// INFO UPDATE
 	//Update a tag by id
-	updateTag: (req, res, next) =>{
+	updateTag: (req, res) =>{
 		const name = req.body.name;
 		const idToUpdate = req.params.id;
 		filteringTagsModel.updateTag({name, idToUpdate}, (err, resolve) =>{

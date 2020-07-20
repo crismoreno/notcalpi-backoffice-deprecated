@@ -81,5 +81,17 @@ const model = {
 			resolve(err, null)
 		}
 	},
+	// INFO UPDATE
+	updateCodingLang: ({name, priority, idToUpdate}, resolve) =>{
+		CodingLangs.update(
+			{name: name, orderby: priority},
+			// {orderby: priority},
+			{ returning: true, where: { id: idToUpdate } },
+			)
+		.then(function(data) {
+			resolve(null, data)
+		})
+		.catch((err) => {resolve(err, null)})
+	},
 }
 module.exports = model;

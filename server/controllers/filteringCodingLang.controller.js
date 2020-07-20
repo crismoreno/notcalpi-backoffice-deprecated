@@ -59,7 +59,7 @@ const controller = {
 		})
 	},
 	// INFO CREATE
-		//Create a coodinglang by id
+	//Create a coodinglang by id
 	createCodingLang: (req, res) =>{
 		const name = req.body.name;
 		const priority = req.body.priority;
@@ -70,6 +70,20 @@ const controller = {
 				res.send(resolve)
 			}
 		})
+	},
+	// INFO UPDATE
+	//Update a tag by id
+	updateCodingLang: (req, res) =>{
+		const name = req.body.name;
+		const priority = req.body.priority;
+		const idToUpdate = req.params.id;
+		filteringCodingLangModel.updateCodingLang({name, priority, idToUpdate}, (err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		});
 	}
 }
 module.exports = controller;
