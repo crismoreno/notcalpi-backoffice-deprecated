@@ -1,6 +1,12 @@
 import React from 'react';
 import { Form, Input } from 'antd';
-const InputText = ({ inputLabel, inputName, required, inputValue }) => {
+const InputText = ({
+  inputLabel,
+  inputName,
+  required,
+  inputValue,
+  inputPlaceholder,
+}) => {
   return (
     <Form.Item
       name={inputName.toLowerCase()}
@@ -10,11 +16,11 @@ const InputText = ({ inputLabel, inputName, required, inputValue }) => {
       rules={[
         {
           required: { required },
-          message: `${inputName}`,
+          message: `Add a valid ${inputName}`,
         },
       ]}
     >
-      <Input placeholder={`${inputName}`} />
+      <Input placeholder={inputPlaceholder} />
     </Form.Item>
   );
 };

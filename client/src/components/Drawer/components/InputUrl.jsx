@@ -1,5 +1,20 @@
 import React from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input, Select } from 'antd';
+
+const { Option } = Select;
+
+const selectBefore = (
+  <Select defaultValue="http://" className="select-before">
+    <Option value="http://">http://</Option>
+    <Option value="https://">https://</Option>
+  </Select>
+);
+// const selectAfter = (
+//   <Select defaultValue=".com" className="select-after">
+//     <Option value=".com">.com</Option>
+//     <Option value=".es">.es</Option>
+//   </Select>
+// );
 
 const InputUrl = ({ inputName, required }) => {
   return (
@@ -11,8 +26,8 @@ const InputUrl = ({ inputName, required }) => {
     >
       <Input
         style={{ width: '100%' }}
-        addonBefore="https://"
-        // addonAfter=".com"
+        addonBefore={selectBefore}
+        // addonAfter={selectAfter}
         placeholder={`${inputName}`}
       />
     </Form.Item>

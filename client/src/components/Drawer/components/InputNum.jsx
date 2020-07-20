@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, InputNumber } from 'antd';
-const InputNum = ({ inputLabel, inputName, required }) => {
+const InputNum = ({ inputLabel, inputName, required, inputPlaceholder }) => {
   return (
     <Form.Item
       name={typeof inputName === 'string' ? inputName.toLowerCase() : inputName}
@@ -9,11 +9,11 @@ const InputNum = ({ inputLabel, inputName, required }) => {
       rules={[
         {
           required: { required },
-          message: `${inputName}`,
+          message: `Add a valid ${inputName}`,
         },
       ]}
     >
-      <InputNumber placeholder={`${inputName}`} style={{ width: '100%' }} />
+      <InputNumber placeholder={inputPlaceholder} style={{ width: '100%' }} />
     </Form.Item>
   );
 };

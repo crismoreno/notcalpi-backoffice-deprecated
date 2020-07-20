@@ -54,6 +54,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
               required={true}
               inputName={'Title'}
               inputLabel={'Title'}
+              inputPlaceholder={'Title'}
             />
           </Col>
         </Row>
@@ -64,6 +65,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
               required={true}
               inputName={'Customer'}
               inputLabel={'Customer'}
+              inputPlaceholder={'Customer'}
             />
           </Col>
           <Col span={12}>
@@ -71,6 +73,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
               required={true}
               inputName={'Collaborators'}
               inputLabel={'Collaborators'}
+              inputPlaceholder={'Collaborators'}
             />
           </Col>
         </Row>
@@ -80,6 +83,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
               required={true}
               inputName={'Completion Date'}
               inputLabel={'Completion Date'}
+              inputPlaceholder={'Completion Date'}
             />
           </Col>
           <Col span={12}>

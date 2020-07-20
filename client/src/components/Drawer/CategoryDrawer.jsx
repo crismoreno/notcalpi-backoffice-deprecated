@@ -7,6 +7,10 @@ import { createTag } from '../../helpers/CREATE/createTag';
 import { createMadeAt } from '../../helpers/CREATE/createMadeAt';
 import { createCodingLang } from '../../helpers/CREATE/createCodingLang';
 
+import { updateTag } from '../../helpers/UPDATE/updateTag';
+import { updateMadeAt } from '../../helpers/UPDATE/updateMadeAt';
+import { updateCodingLang } from '../../helpers/UPDATE/updateCodingLang';
+
 const CategoryDrawer = ({
   dispatch,
   visibility,
@@ -23,9 +27,10 @@ const CategoryDrawer = ({
         <Row gutter={16}>
           <Col span={24}>
             <InputText
-              required={true}
-              inputName={entityName || `title`}
+              required={entityId !== null ? false : true}
+              inputName={`title`}
               inputLabel={'Title'}
+              inputPlaceholder={entityName || `Title`}
             />
           </Col>
         </Row>
@@ -51,16 +56,18 @@ const CategoryDrawer = ({
         <Row gutter={16}>
           <Col span={12}>
             <InputText
-              required={true}
-              inputName={entityName || `Title`}
+              required={entityId !== null ? false : true}
+              inputName={`Title`}
               inputLabel={'Title'}
+              inputPlaceholder={entityName || `Title`}
             />
           </Col>
           <Col span={12}>
             <InputNum
-              required={true}
-              inputName={priority || `Priority`}
+              required={entityId !== null ? false : true}
+              inputName={`Priority`}
               inputLabel={`Priority`}
+              inputPlaceholder={priority || `Priority`}
             />
           </Col>
         </Row>
@@ -86,16 +93,18 @@ const CategoryDrawer = ({
         <Row gutter={16}>
           <Col span={12}>
             <InputText
-              required={true}
-              inputName={entityName || `ShortName`}
+              required={entityId !== null ? false : true}
+              inputName={`ShortName`}
               inputLabel={'Short Name'}
+              inputPlaceholder={entityName || `ShortName`}
             />
           </Col>
           <Col span={12}>
             <InputText
-              required={true}
-              inputName={entityFullName || `FullName`}
+              required={entityId !== null ? false : true}
+              inputName={`FullName`}
               inputLabel={'Full Name'}
+              inputPlaceholder={entityFullName || `FullName`}
             />
           </Col>
         </Row>
@@ -171,7 +180,40 @@ const CategoryDrawer = ({
       }
       //Update Cats
     } else {
-      console.log(values, entityId, entityType);
+      switch (entityType) {
+        case 'tag':
+          dispatch(
+            updateTag({ values, entityId }, (err, result) => {
+              if (result) {
+                message.success(`Tag ${values.title} updated successfully!`);
+                onClose();
+              }
+            })
+          );
+          break;
+        case 'codingLang':
+          dispatch(
+            updateCodingLang({ values, entityId }, (err, result) => {
+              if (result) {
+                message.success(`Tag ${values.title} updated successfully!`);
+                onClose();
+              }
+            })
+          );
+          break;
+        case 'madeAt':
+          dispatch(
+            updateMadeAt({ values, entityId }, (err, result) => {
+              if (result) {
+                message.success(`Tag ${values.fullname} updated successfully!`);
+                onClose();
+              }
+            })
+          );
+          break;
+        case 'default':
+          return null;
+      }
     }
   };
 
