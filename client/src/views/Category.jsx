@@ -63,8 +63,20 @@ const Category = ({
     }
   }, [drawerProps]);
 
-  const handleShowDrawer = ({ entityType, entityId, entityName }) => {
-    setDrawerProps({ entityType, entityId, entityName });
+  const handleShowDrawer = ({
+    entityType,
+    entityId,
+    entityName,
+    entityFullName,
+    priority,
+  }) => {
+    setDrawerProps({
+      entityType,
+      entityId,
+      entityName,
+      entityFullName,
+      priority,
+    });
   };
 
   const handleHideDrawer = () => {
@@ -93,6 +105,8 @@ const Category = ({
               entityType: cat.substring(0, cat.length - 1),
               entityId: null,
               entityName: null,
+              entityFullName: null,
+              priority: null,
             });
           }}
         >
@@ -117,6 +131,8 @@ const Category = ({
                 entityType: cat.substring(0, cat.length - 1),
                 entityId: entity.id,
                 entityName: entity.name || entity.short_name,
+                entityFullName: entity.full_name || null,
+                priority: entity.orderby || null,
               });
             }}
           />

@@ -41,6 +41,7 @@ getProjectsByMadeAtId: async (madeAtsIds, response) => {
 			const projects = await Sequelize.query(
 				`SELECT
 				madeats.short_name,
+				madeats.full_name,
 				madeats.id,
 				GROUP_CONCAT(projects.title) AS projects
 		FROM

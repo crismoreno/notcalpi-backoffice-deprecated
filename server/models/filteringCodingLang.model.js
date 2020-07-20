@@ -42,6 +42,7 @@ const model = {
 				`SELECT
 				codinglangs.name,
 				codinglangs.id,
+				codinglangs.orderby,
 				GROUP_CONCAT(projects.title) AS projects
 		FROM
 				codinglangs

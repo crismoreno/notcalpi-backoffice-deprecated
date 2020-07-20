@@ -83,7 +83,11 @@ const ProjectDrawer = ({ visibility, onClose }) => {
             />
           </Col>
           <Col span={12}>
-            <InputNum inputName={'Priority'} />
+            <InputNum
+              inputName={'Priority'}
+              inputLabel={'Priority'}
+              required={true}
+            />
           </Col>
         </Row>
 

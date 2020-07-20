@@ -2,14 +2,85 @@ import React from 'react';
 import { Drawer, Form, Button, Col, Row } from 'antd';
 
 import InputText from './components/InputText.jsx';
+import InputNum from './components/InputNum.jsx';
 
 const CategoryDrawer = ({
   visibility,
   onClose,
   entityType,
+  entityFullName = null,
+  priority = null,
   entityId = null,
   entityName = null,
 }) => {
+  const TagForm = () => {
+    return (
+      <Row gutter={16}>
+        <Col span={24}>
+          <InputText
+            required={true}
+            inputName={entityName || `title`}
+            inputLabel={'Title'}
+          />
+        </Col>
+      </Row>
+    );
+  };
+  const CodingLangForm = () => {
+    return (
+      <Row gutter={16}>
+        <Col span={12}>
+          <InputText
+            required={true}
+            inputName={entityName || `Title`}
+            inputLabel={'Title'}
+          />
+        </Col>
+        <Col span={12}>
+          <InputNum
+            required={true}
+            inputName={priority || `Priority`}
+            inputLabel={`Priority`}
+          />
+        </Col>
+      </Row>
+    );
+  };
+  const MadeAtForm = () => {
+    return (
+      <Row gutter={16}>
+        <Col span={12}>
+          <InputText
+            required={true}
+            inputName={entityName || `Short name`}
+            inputLabel={'Short Name'}
+          />
+        </Col>
+        <Col span={12}>
+          <InputText
+            required={true}
+            inputName={entityFullName || `Full name`}
+            inputLabel={'Full Name'}
+          />
+        </Col>
+      </Row>
+    );
+  };
+
+  const SelectFormType = () => {
+    switch (entityType) {
+      case 'tag':
+        return <TagForm />;
+        break;
+      case 'codingLang':
+        return <CodingLangForm />;
+        break;
+      case 'madeAt':
+        return <MadeAtForm />;
+        break;
+    }
+  };
+
   return (
     <Drawer
       title={
@@ -39,16 +110,7 @@ const CategoryDrawer = ({
       }
     >
       <Form layout="vertical" hideRequiredMark>
-        <Row gutter={16}>
-          <Col span={24}>
-            <InputText
-              required={true}
-              inputName={entityName || `${entityType} title`}
-              inputLabel={'Title'}
-              // inputValue={entityName || 'Title'}
-            />
-          </Col>
-        </Row>
+        {SelectFormType}
       </Form>
     </Drawer>
   );

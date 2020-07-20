@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, InputNumber } from 'antd';
-const InputNum = ({ inputName, required }) => {
+const InputNum = ({ inputLabel, inputName, required }) => {
   return (
     <Form.Item
-      name={inputName.toLowerCase()}
-      label={inputName}
+      name={typeof inputName === 'string' ? inputName.toLowerCase() : inputName}
+      label={inputLabel}
       hasFeedback
       rules={[
         {
