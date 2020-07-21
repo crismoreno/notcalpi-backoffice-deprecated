@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 
-const TextArea = ({ inputName }) => {
+const TextArea = ({ inputName, required }) => {
   return (
     <Form.Item
       name={`${inputName.toLowerCase()}`}
@@ -9,7 +9,7 @@ const TextArea = ({ inputName }) => {
       hasFeedback
       rules={[
         {
-          required: true,
+          required: required,
           message: `${inputName}`,
         },
       ]}

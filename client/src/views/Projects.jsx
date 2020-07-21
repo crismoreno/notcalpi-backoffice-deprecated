@@ -27,8 +27,15 @@ const Projects = ({ dispatch, projects }) => {
     }
   }, [drawerProps]);
 
-  const handleShowDrawer = (project) => {
-    setDrawerProps(project);
+  const handleShowDrawer = (event, project = null) => {
+    event.persist();
+    if (project == null) {
+      setDrawerProps({});
+      // console.log(drawerProps, 'drawerProps');
+    } else {
+      setDrawerProps(project);
+      // console.log(drawerProps, 'drawerProps');
+    }
   };
   const handleHideDrawer = () => {
     setShowDrawer(false);
@@ -45,7 +52,9 @@ const Projects = ({ dispatch, projects }) => {
       <Button
         type="primary"
         style={{ marginTop: '15px' }}
-        onClick={handleShowDrawer}
+        onClick={(event) => {
+          handleShowDrawer(event, null);
+        }}
       >
         <PlusOutlined />
         Add new project
@@ -54,6 +63,7 @@ const Projects = ({ dispatch, projects }) => {
         visibility={showDrawer}
         onClose={handleHideDrawer}
         id={projects}
+        project={drawerProps}
       />
       <div className="project-cards-container">
         {projects.map((project, index) => (
@@ -61,8 +71,8 @@ const Projects = ({ dispatch, projects }) => {
             project={project}
             key={index}
             dispatch={dispatch}
-            onClickEdit={() => {
-              handleShowDrawer(project);
+            onClickEdit={(event) => {
+              handleShowDrawer(event, project);
             }}
           />
         ))}

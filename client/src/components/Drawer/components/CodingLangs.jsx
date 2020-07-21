@@ -8,7 +8,7 @@ import { Form, Select } from 'antd';
 
 import { getCodingLangs } from '../../../reducers/index';
 
-const CodingLangs = ({ codingLangs, dispatch }) => {
+const CodingLangs = ({ codingLangs, dispatch, required }) => {
   useDeepCompareEffect(() => {
     if (!Array.isArray(codingLangs) || !Boolean(codingLangs.length)) {
       dispatch(fetchCodingLangs());
@@ -21,7 +21,7 @@ const CodingLangs = ({ codingLangs, dispatch }) => {
       hasFeedback
       rules={[
         {
-          required: false,
+          required: required,
           type: 'array',
         },
       ]}

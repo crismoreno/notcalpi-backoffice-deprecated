@@ -22,7 +22,7 @@ const InputUrl = ({ inputName, required }) => {
       name={inputName.toLowerCase()}
       label={inputName}
       hasFeedback
-      rules={[{ required: { required }, message: `${inputName}` }]}
+      rules={[{ required: required, message: `${inputName}` }]}
     >
       <Input
         style={{ width: '100%' }}

@@ -8,7 +8,7 @@ import { Form, Select } from 'antd';
 
 import { getTags } from '../../../reducers/index';
 
-const Tags = ({ tags, dispatch }) => {
+const Tags = ({ tags, dispatch, required }) => {
   useDeepCompareEffect(() => {
     if (!Array.isArray(tags) || !Boolean(tags.length)) {
       dispatch(fetchTags());
@@ -21,7 +21,7 @@ const Tags = ({ tags, dispatch }) => {
       hasFeedback
       rules={[
         {
-          required: false,
+          required: required,
           type: 'array',
         },
       ]}

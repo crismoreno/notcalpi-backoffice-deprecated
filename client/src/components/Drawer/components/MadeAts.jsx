@@ -8,7 +8,7 @@ import { Form, Select } from 'antd';
 
 import { getMadeAts } from '../../../reducers/index';
 
-const MadeAts = ({ madeats, dispatch }) => {
+const MadeAts = ({ required, madeats, dispatch }) => {
   useDeepCompareEffect(() => {
     if (!Array.isArray(madeats) || !Boolean(madeats.length)) {
       dispatch(fetchMadeAts());
@@ -22,7 +22,7 @@ const MadeAts = ({ madeats, dispatch }) => {
       hasFeedback
       rules={[
         {
-          required: true,
+          required: required,
           message: 'Please select a MadeAt!',
         },
       ]}

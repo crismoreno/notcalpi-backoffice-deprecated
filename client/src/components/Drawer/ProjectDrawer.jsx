@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Drawer, Form, Button, Col, Row } from 'antd';
 
 import InputNum from './components/InputNum.jsx';
@@ -12,10 +12,49 @@ import Tags from './components/Tags.jsx';
 import TextArea from './components/TextArea.jsx';
 import Uploader from './components/Uploader.jsx';
 
-const ProjectDrawer = ({ visibility, onClose }) => {
+const ProjectDrawer = ({ visibility, onClose, project }) => {
+  let isCreateForm = true;
+
+  if (project !== null && project.title) {
+    isCreateForm = false;
+  } else {
+    isCreateForm = true;
+  }
+
+  if (isCreateForm === false) {
+    const {
+      id,
+      orderby,
+      title,
+      customer,
+      collaborators,
+      completion_date,
+      description,
+      link_to_repo,
+      link_to_prod,
+      link_to_doownload,
+      video,
+      is_featured,
+      show,
+    } = project;
+  }
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+  const onFinish = (values) => {
+    console.log(values, 'values');
+  };
+
+  const formRef = useRef(null);
+
   return (
     <Drawer
-      title={`Add new project to be ID`}
+      title={
+        isCreateForm === true
+          ? `Add new project`
+          : `Edit project: ${project.title}`
+      }
       width={900}
       onClose={onClose}
       visible={visibility}
@@ -35,7 +74,14 @@ const ProjectDrawer = ({ visibility, onClose }) => {
         </div>
       }
     >
-      <Form layout="vertical" hideRequiredMark>
+      <Form
+        layout="vertical"
+        ref={formRef}
+        name="create-edit-project-form"
+        className="create-edit-project-form"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
         <Row gutter={16}>
           <Col span={24}>
             <Uploader />
@@ -45,7 +91,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
         <Row gutter={16}>
           <Col span={24}>
             <InputText
-              required={true}
+              required={isCreateForm === true ? true : false}
               inputName={'Title'}
               inputLabel={'Title'}
               inputPlaceholder={'Title'}
@@ -56,7 +102,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
         <Row gutter={16}>
           <Col span={12}>
             <InputText
-              required={true}
+              required={isCreateForm === true ? true : false}
               inputName={'Customer'}
               inputLabel={'Customer'}
               inputPlaceholder={'Customer'}
@@ -64,7 +110,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
           </Col>
           <Col span={12}>
             <InputText
-              required={true}
+              required={isCreateForm === true ? true : false}
               inputName={'Collaborators'}
               inputLabel={'Collaborators'}
               inputPlaceholder={'Collaborators'}
@@ -74,7 +120,7 @@ const ProjectDrawer = ({ visibility, onClose }) => {
         <Row gutter={16}>
           <Col span={12}>
             <InputText
-              required={true}
+              required={isCreateForm === true ? true : false}
               inputName={'Completion Date'}
               inputLabel={'Completion Date'}
               inputPlaceholder={'Completion Date'}
@@ -84,62 +130,80 @@ const ProjectDrawer = ({ visibility, onClose }) => {
             <InputNum
               inputName={'Priority'}
               inputLabel={'Priority'}
-              required={true}
+              required={isCreateForm === true ? true : false}
+              inputPlaceholder={'Priority'}
             />
           </Col>
         </Row>
 
         <Row gutter={16}>
           <Col span={12}>
-            <InputUrl required={false} inputName={'Production'} />
+            <InputUrl
+              required={isCreateForm === true ? true : false}
+              inputName={'Production url'}
+            />
           </Col>
           <Col span={12}>
-            <InputUrl required={false} inputName={'Repository'} />
-          </Col>
-        </Row>
-
-        <Row gutter={16}>
-          <Col span={12}>
-            <InputUrl required={false} inputName={'Download'} />
-          </Col>
-          <Col span={12}>
-            <InputUrl required={false} inputName={'Iframe'} />
+            <InputUrl
+              required={isCreateForm === true ? true : false}
+              inputName={'Repository url'}
+            />
           </Col>
         </Row>
 
         <Row gutter={16}>
           <Col span={12}>
-            <Tags />
+            <InputUrl
+              required={isCreateForm === true ? true : false}
+              inputName={'Download url'}
+            />
           </Col>
           <Col span={12}>
-            <CodingLangs />
+            <InputUrl
+              required={isCreateForm === true ? true : false}
+              inputName={'Iframe url'}
+            />
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+          <Col span={12}>
+            <Tags required={isCreateForm === true ? true : false} />
+          </Col>
+          <Col span={12}>
+            <CodingLangs required={isCreateForm === true ? true : false} />
           </Col>
         </Row>
 
         <Row gutter={16}>
           <Col span={6}>
-            <InputSwitch inputName={'Visible'} required={true} />
+            <InputSwitch
+              inputName={'Visible'}
+              required={isCreateForm === true ? true : false}
+            />
           </Col>
           <Col span={6}>
-            <InputSwitch inputName={'Featured'} required={true} />
+            <InputSwitch
+              inputName={'Featured'}
+              required={isCreateForm === true ? true : false}
+            />
           </Col>
           <Col span={12}>
-            <MadeAts />
+            <MadeAts required={isCreateForm === true ? true : false} />
           </Col>
         </Row>
 
         <Row gutter={16}>
           <Col span={24}>
-            <TextArea inputName={'Description'} />
+            <TextArea
+              inputName={'Description'}
+              required={isCreateForm === true ? true : false}
+            />
           </Col>
         </Row>
       </Form>
     </Drawer>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   projects: getProjects(state),
-// });
 
 export default ProjectDrawer;
