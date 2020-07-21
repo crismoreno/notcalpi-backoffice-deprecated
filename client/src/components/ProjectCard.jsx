@@ -16,6 +16,7 @@ const { Meta } = Card;
 export const ProjectCard = ({
   dispatch,
   project,
+  onClickEdit,
   project: { id, title, customer, show, is_featured },
 }) => {
   const handleCancelDelete = () => {
@@ -42,12 +43,16 @@ export const ProjectCard = ({
         />
       }
       actions={[
-        <EditOutlined key="edit" />,
+        <EditOutlined key="edit" onClick={onClickEdit} />,
         <a
           target="_blank"
           href={`https://www.cristinamoreno.dev/#/project/${id}`}
         >
-          <EyeOutlined key="see" />
+          {show === true ? (
+            <EyeOutlined key="see" />
+          ) : (
+            <EyeInvisibleOutlined key="see" />
+          )}
         </a>,
         <Popconfirm
           title={` Are you sure about deleting ${title}?`}
@@ -62,12 +67,23 @@ export const ProjectCard = ({
         </Popconfirm>,
       ]}
     >
+      <p>
+        {show === true ? (
+          <EyeOutlined style={{ marginRight: '20px' }} />
+        ) : (
+          <EyeInvisibleOutlined style={{ marginRight: '20px' }} />
+        )}
+        {id}
+      </p>
       <Meta
-        // avatar={show === true ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-        avatar={show === true ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+        avatar={
+          is_featured === true ? (
+            <FlagOutlined style={{ color: '#FF1844' }} />
+          ) : null
+        }
         title={title}
         // title={is_featured ? <FlagOutlined /> : <FolderOutlined />}
-        description={is_featured ? <FlagOutlined /> : customer}
+        description={customer}
       />
     </Card>
   );

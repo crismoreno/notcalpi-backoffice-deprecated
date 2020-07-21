@@ -1,12 +1,6 @@
 import React from 'react';
 import { Drawer, Form, Button, Col, Row } from 'antd';
 
-// import useDeepCompareEffect from 'use-deep-compare-effect';
-// import { connect } from 'react-redux';
-// import fetchProjects from '../../helpers/GET/getProjects';
-
-// import { getProjects } from '../../reducers/index';
-
 import InputNum from './components/InputNum.jsx';
 import InputSwitch from './components/InputSwitch.jsx';
 import InputText from './components/InputText.jsx';

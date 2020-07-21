@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 import fetchProjects from '../helpers/GET/getProjects';
@@ -19,9 +19,16 @@ const Projects = ({ dispatch, projects }) => {
   }, [projects]);
 
   const [showDrawer, setShowDrawer] = useState(false);
+  const [drawerProps, setDrawerProps] = useState(null);
 
-  const handleShowDrawer = () => {
-    setShowDrawer(true);
+  useEffect(() => {
+    if (drawerProps != null) {
+      setShowDrawer(true);
+    }
+  }, [drawerProps]);
+
+  const handleShowDrawer = (project) => {
+    setDrawerProps(project);
   };
   const handleHideDrawer = () => {
     setShowDrawer(false);
@@ -50,7 +57,14 @@ const Projects = ({ dispatch, projects }) => {
       />
       <div className="project-cards-container">
         {projects.map((project, index) => (
-          <ProjectCard project={project} key={index} dispatch={dispatch} />
+          <ProjectCard
+            project={project}
+            key={index}
+            dispatch={dispatch}
+            onClickEdit={() => {
+              handleShowDrawer(project);
+            }}
+          />
         ))}
       </div>
     </div>
