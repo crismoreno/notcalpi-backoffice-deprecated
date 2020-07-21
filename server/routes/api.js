@@ -22,16 +22,15 @@ router.get("/", passport.authenticate('jwt', { session: false }), projectsContro
 // router.get("/project/:id", passport.authenticate('jwt', { session: false }), projectController.getProjectById);
 
 // Get all tags related to single Project
-// router.get("/projecttags/:id", passport.authenticate('jwt', { session: false }),projectController.getTagsByProjectId);
-
+router.get("/projecttags/:id", passport.authenticate('jwt', { session: false }),projectController.getTagsByProjectId);
 // Get all codingLangs related to single Project
-// router.get(
-// 	"/projectcodinglangs/:id",
-// 	passport.authenticate('jwt', { session: false }),
-//   projectController.getCodingLangsByProjectId
-// );
+router.get(
+	"/projectcodinglangs/:id",
+	passport.authenticate('jwt', { session: false }),
+  projectController.getCodingLangsByProjectId
+);
 // Get all madeAts related to single Project
-// router.get("/projectmadeat/:id", passport.authenticate('jwt', { session: false }), projectController.getMadeAtByProjectId);
+router.get("/projectmadeat/:id", passport.authenticate('jwt', { session: false }), projectController.getMadeAtByProjectId);
 
 // Find projects by tags
 //http://localhost:5000/api/tags?tags=1,2
@@ -64,7 +63,7 @@ router.get("/codinglangslist-projects", passport.authenticate('jwt', { session: 
 router.get("/madeatslist-projects", passport.authenticate('jwt', { session: false }), filteringMadeAts.getAllAvailableMadeAtsAndProjects);
 
 //Get a list with all the cats assigned to a project
-router.get("/getAllCats/:id", passport.authenticate('jwt', { session: false }), projectController.getAllCatsById);
+// router.get("/getAllCats/:id", passport.authenticate('jwt', { session: false }), projectController.getAllCatsById);
 //Get a list with all the contact forms received
 router.get("/getForms", passport.authenticate('jwt', { session: false }), contactFormController.getContactForms);
 

@@ -213,7 +213,10 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
             />
           </Col>
           <Col span={12}>
-            <MadeAts required={isCreateForm === true ? true : false} />
+            <MadeAts
+              required={isCreateForm === true ? true : false}
+              projectId={isCreateForm === true ? false : project.id}
+            />
           </Col>
         </Row>
 

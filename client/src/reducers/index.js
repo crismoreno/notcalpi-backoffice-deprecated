@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import projects from './projects/projects';
 import categories from './categories';
 import contactForms from './contactForms/contactForms';
@@ -21,3 +22,9 @@ export const getMadeAts = (state) => state.categories.madeAts.madeAts;
 export const getContactForms = (state) => state.contactForms.contactForms;
 export const getUsers = (state) => state.users.users.users;
 export const getAuth = (state) => state.users.login;
+export const getMadeAtsByProjectId = (state) =>
+  get(state, 'categories.madeAtsByProject.madeAts', null);
+// .map((madeAt) => ({
+//   name: madeAt.madeat.short_name,
+//   id: madeAt.madeat.id,
+// }));

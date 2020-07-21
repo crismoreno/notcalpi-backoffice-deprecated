@@ -45,8 +45,9 @@ const model = {
 	getMadeAtByProjectId: async (idToFetch, response) => {
 		try{
 			const madeAts = await ProjectMadeAt.findAll({
+				attributes: [],
 				where: { projectId: idToFetch },
-				include: [{ model: madeAt }],
+				include: [{ model: madeAt, attributes: ['id', 'short_name'] }],
 			})
 			response(null, madeAts)
 		}catch(err){

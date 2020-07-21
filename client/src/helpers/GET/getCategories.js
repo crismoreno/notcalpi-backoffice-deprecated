@@ -1,7 +1,11 @@
 import {
+  clearMadeAtsByProject,
   fetchTagsSuccess,
   fetchCodingLangsSuccess,
   fetchMadeAtsSuccess,
+  fetchMadeAtsByProjectSuccess,
+  fetchCodingLangsByProjectSuccess,
+  fetchTagsByProjectSuccess,
 } from '../../actions/categories';
 
 import { authHeader } from '../authHeader';
@@ -51,4 +55,44 @@ function fetchMadeAts() {
   };
 }
 
-export { fetchTags, fetchCodingLangs, fetchMadeAts };
+function fetchTagsByProjectId(projectId) {
+  return (dispatch) => {
+    return fetch(`${url}/projecttags/${projectId}`, requestOptions).then(
+      (response) => {
+        response.json().then((data) => {
+          dispatch(fetchTagsByProjectSuccess(data));
+          return data;
+        });
+      }
+    );
+  };
+}
+
+function fetchCodingLangsByProjectId(projectId) {
+  return (dispatch) => {
+    return fetch(`${url}/projectcodinglangs/${projectId}`, requestOptions).then(
+      (response) => {
+        response.json().then((data) => {
+          dispatch(fetchCodingLangsByProjectSuccess(data));
+          return data;
+        });
+      }
+    );
+  };
+}
+
+function fetchMadeAtsByProjectId(projectId) {
+  return (dispatch) => {
+    return fetch(`${url}/projectmadeat/${projectId}`, requestOptions).then(
+      (response) => {
+        response.json().then((data) => {
+          dispatch(clearMadeAtsByProject());
+          dispatch(fetchMadeAtsByProjectSuccess(data));
+          return data;
+        });
+      }
+    );
+  };
+}
+
+export { fetchTags, fetchCodingLangs, fetchMadeAts, fetchMadeAtsByProjectId };

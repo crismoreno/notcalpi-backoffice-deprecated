@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
 import { fetchMadeAts } from '../../../helpers/GET/getCategories';
+import { fetchMadeAtsByProjectId } from '../../../helpers/GET/getCategories';
 
 import { Form, Select } from 'antd';
 
-import { getMadeAts } from '../../../reducers/index';
+import { getMadeAts, getMadeAtsByProjectId } from '../../../reducers/index';
 
-const MadeAts = ({ required, madeats, dispatch }) => {
+const MadeAts = ({
+  required,
+  madeats,
+  dispatch,
+  projectId,
+  madeAtsInProject,
+}) => {
+  const [madeAtsByProject, setMadeAtsByProject] = useState([]);
   useDeepCompareEffect(() => {
     if (!Array.isArray(madeats) || !Boolean(madeats.length)) {
-      dispatch(fetchMadeAts());
+      dispatch(fetchMadeAts(projectId));
     }
   }, [madeats]);
+
+  useDeepCompareEffect(() => {
+    if (!Array.isArray(madeAtsInProject) || !Boolean(madeAtsInProject.length)) {
+      dispatch(fetchMadeAtsByProjectId(projectId));
+    }
+  }, [madeAtsInProject]);
 
   return (
     <Form.Item
@@ -39,6 +53,7 @@ const MadeAts = ({ required, madeats, dispatch }) => {
 };
 const mapStateToProps = (state) => ({
   madeats: getMadeAts(state),
+  madeAtsInProject: getMadeAtsByProjectId(state),
 });
 
 export default connect(mapStateToProps)(MadeAts);
