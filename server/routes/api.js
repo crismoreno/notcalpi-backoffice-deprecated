@@ -63,6 +63,8 @@ router.get("/codinglangslist-projects", passport.authenticate('jwt', { session: 
 //Get a list with all available madeats with related projects
 router.get("/madeatslist-projects", passport.authenticate('jwt', { session: false }), filteringMadeAts.getAllAvailableMadeAtsAndProjects);
 
+//Get a list with all the cats assigned to a project
+router.get("/getAllCats/:id", passport.authenticate('jwt', { session: false }), projectController.getAllCatsById);
 //Get a list with all the contact forms received
 router.get("/getForms", passport.authenticate('jwt', { session: false }), contactFormController.getContactForms);
 

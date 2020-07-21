@@ -48,6 +48,18 @@ const controller = {
 		})
 	},
 
+	// Get all cats related to single Project
+	getAllCatsById: (req, res) => {
+		const idToFetch = req.params.id;
+		projectModel.getAllCatsById(idToFetch, (err, cats) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(cats)
+			}
+		})
+	},
+
 	// INFO DELETE
 	// Delete project by projectId
 	deleteProjectbyId: (req, res) => {

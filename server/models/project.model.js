@@ -53,6 +53,28 @@ const model = {
 			response(err, null)
 		}
 	},
+
+	// Get all cats related to single Project
+	getAllCatsById: async (idToFetch, response) => {
+		try{
+			const tags = await ProjectTags.findAll({
+				where: { projectId: idToFetch },
+				include: [{ model: Tags }],
+			})
+			const codingLangs = await ProjectCodingLangs.findAll({
+				where: { projectId: idToFetch },
+				include: [{ model: CodingLangs }],
+			})
+			const madeAts = await ProjectMadeAt.findAll({
+				where: { projectId: idToFetch },
+				include: [{ model: madeAt }],
+			})
+			response(null, {tags, codingLangs, madeAts})
+		}catch(err){
+			response(err, null)
+		}
+	},
+
 	// INFO DELETE
 	deleteProjectbyId: async (idToDelete, resolve) => {
 		try{
