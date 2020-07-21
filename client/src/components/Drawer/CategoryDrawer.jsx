@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Drawer, Form, Button, Col, Row, message } from 'antd';
 
 import InputText from './components/InputText.jsx';
@@ -21,6 +21,7 @@ const CategoryDrawer = ({
   entityId = null,
   entityName = null,
 }) => {
+  const formRef = useRef(null);
   const TagForm = () => {
     return (
       <>
@@ -215,6 +216,7 @@ const CategoryDrawer = ({
           return null;
       }
     }
+    formRef.current.resetFields();
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -225,9 +227,7 @@ const CategoryDrawer = ({
     <Drawer
       title={
         entityName
-          ? `Edit ${entityType}: ${
-              entityName[0].toUpperCase() + entityName.slice(1)
-            }`
+          ? `Edit ${entityType}: ${entityName}`
           : `Add new ${entityType}`
       }
       width={720}
@@ -252,6 +252,8 @@ const CategoryDrawer = ({
         layout="vertical"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        ref={formRef}
+        // hideRequiredMark
       >
         {SelectFormType}
       </Form>

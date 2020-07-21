@@ -54,6 +54,8 @@ const Category = ({
 
   let entity = eval(cat);
 
+  // console.log(cat, 'cat', entity);
+
   const [showDrawer, setShowDrawer] = useState(false);
   const [drawerProps, setDrawerProps] = useState(null);
 

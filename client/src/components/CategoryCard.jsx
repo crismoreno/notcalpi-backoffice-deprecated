@@ -14,7 +14,6 @@ import deleteMadeAt from '../helpers/DELETE/deleteMadeAts';
 
 export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
   let name = entity.name || entity.short_name;
-  name = name.charAt(0).toUpperCase() + name.slice(1);
 
   let arrProjectsUsingTag =
     entity.projects != null
@@ -35,7 +34,7 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
 
   const warningProjects = () => {
     Modal.warning({
-      title: <p>{`${name}`}</p>,
+      title: <p>{name}</p>,
       content: modalContent,
     });
   };
