@@ -94,7 +94,7 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
               required={isCreateForm === true ? true : false}
               inputName={'Title'}
               inputLabel={'Title'}
-              inputPlaceholder={'Title'}
+              inputPlaceholder={isCreateForm === true ? `Title` : project.title}
             />
           </Col>
         </Row>
@@ -105,7 +105,9 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
               required={isCreateForm === true ? true : false}
               inputName={'Customer'}
               inputLabel={'Customer'}
-              inputPlaceholder={'Customer'}
+              inputPlaceholder={
+                isCreateForm === true ? `Customer` : project.customer
+              }
             />
           </Col>
           <Col span={12}>
@@ -113,7 +115,9 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
               required={isCreateForm === true ? true : false}
               inputName={'Collaborators'}
               inputLabel={'Collaborators'}
-              inputPlaceholder={'Collaborators'}
+              inputPlaceholder={
+                isCreateForm === true ? `Collaborators` : project.collaborators
+              }
             />
           </Col>
         </Row>
@@ -123,7 +127,9 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
               required={isCreateForm === true ? true : false}
               inputName={'Completion Date'}
               inputLabel={'Completion Date'}
-              inputPlaceholder={'Completion Date'}
+              inputPlaceholder={
+                isCreateForm === true ? `Completion Date` : project.customer
+              }
             />
           </Col>
           <Col span={12}>
@@ -131,7 +137,9 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
               inputName={'Priority'}
               inputLabel={'Priority'}
               required={isCreateForm === true ? true : false}
-              inputPlaceholder={'Priority'}
+              inputPlaceholder={
+                isCreateForm === true ? `Priority` : project.orderby
+              }
             />
           </Col>
         </Row>
@@ -141,12 +149,18 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
             <InputUrl
               required={isCreateForm === true ? true : false}
               inputName={'Production url'}
+              inputPlaceholder={
+                isCreateForm === true ? `Production url'` : project.link_to_prod
+              }
             />
           </Col>
           <Col span={12}>
             <InputUrl
               required={isCreateForm === true ? true : false}
               inputName={'Repository url'}
+              inputPlaceholder={
+                isCreateForm === true ? `Repository url` : project.link_to_repo
+              }
             />
           </Col>
         </Row>
@@ -156,12 +170,20 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
             <InputUrl
               required={isCreateForm === true ? true : false}
               inputName={'Download url'}
+              inputPlaceholder={
+                isCreateForm === true
+                  ? `Repository url`
+                  : project.link_to_download
+              }
             />
           </Col>
           <Col span={12}>
             <InputUrl
               required={isCreateForm === true ? true : false}
               inputName={'Iframe url'}
+              inputPlaceholder={
+                isCreateForm === true ? `Repository url` : project.video
+              }
             />
           </Col>
         </Row>
@@ -180,12 +202,14 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
             <InputSwitch
               inputName={'Visible'}
               required={isCreateForm === true ? true : false}
+              checked={isCreateForm === true ? false : project.show}
             />
           </Col>
           <Col span={6}>
             <InputSwitch
               inputName={'Featured'}
               required={isCreateForm === true ? true : false}
+              checked={isCreateForm === true ? false : project.is_featured}
             />
           </Col>
           <Col span={12}>
@@ -198,6 +222,9 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
             <TextArea
               inputName={'Description'}
               required={isCreateForm === true ? true : false}
+              inputPlaceholder={
+                isCreateForm === true ? `Description` : project.description
+              }
             />
           </Col>
         </Row>

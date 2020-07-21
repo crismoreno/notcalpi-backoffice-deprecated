@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 
-const TextArea = ({ inputName, required }) => {
+const TextArea = ({ inputName, required, inputPlaceholder }) => {
   return (
     <Form.Item
       name={`${inputName.toLowerCase()}`}
@@ -14,7 +14,7 @@ const TextArea = ({ inputName, required }) => {
         },
       ]}
     >
-      <Input.TextArea rows={4} placeholder={`${inputName}`} />
+      <Input.TextArea rows={4} placeholder={inputPlaceholder} />
     </Form.Item>
   );
 };

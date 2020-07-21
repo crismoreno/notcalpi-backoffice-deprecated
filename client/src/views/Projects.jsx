@@ -31,10 +31,8 @@ const Projects = ({ dispatch, projects }) => {
     event.persist();
     if (project == null) {
       setDrawerProps({});
-      // console.log(drawerProps, 'drawerProps');
     } else {
       setDrawerProps(project);
-      // console.log(drawerProps, 'drawerProps');
     }
   };
   const handleHideDrawer = () => {

@@ -1,6 +1,13 @@
 import React from 'react';
 import { Form, Switch } from 'antd';
-const InputSwitch = ({ inputName, required }) => {
+const InputSwitch = ({ inputName, required, checked }) => {
+  const Switcher = () => {
+    return checked === true ? (
+      <Switch placeholder={`${inputName}`} defaultChecked />
+    ) : (
+      <Switch placeholder={`${inputName}`} />
+    );
+  };
   return (
     <Form.Item
       name={inputName.toLowerCase()}
@@ -14,7 +21,7 @@ const InputSwitch = ({ inputName, required }) => {
         },
       ]}
     >
-      <Switch placeholder={`${inputName}`} />
+      <Switcher />
     </Form.Item>
   );
 };

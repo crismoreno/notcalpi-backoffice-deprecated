@@ -26,7 +26,7 @@ const CodingLangs = ({ codingLangs, dispatch, required }) => {
         },
       ]}
     >
-      <Select mode="multiple" placeholder="Please select favourite colors">
+      <Select mode="multiple" placeholder="Coding Langs">
         {codingLangs.map((codingLang, index) => (
           <Select.Option key={index} value={codingLang.id}>
             {codingLang.name}

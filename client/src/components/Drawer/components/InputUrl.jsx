@@ -16,7 +16,7 @@ const selectBefore = (
 //   </Select>
 // );
 
-const InputUrl = ({ inputName, required }) => {
+const InputUrl = ({ inputName, required, inputPlaceholder }) => {
   return (
     <Form.Item
       name={inputName.toLowerCase()}
@@ -28,7 +28,7 @@ const InputUrl = ({ inputName, required }) => {
         style={{ width: '100%' }}
         addonBefore={selectBefore}
         // addonAfter={selectAfter}
-        placeholder={`${inputName}`}
+        placeholder={inputPlaceholder}
       />
     </Form.Item>
   );
