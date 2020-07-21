@@ -9,7 +9,7 @@ const InputSwitch = ({ inputName, required }) => {
       hasFeedback
       rules={[
         {
-          required: { required },
+          required: required,
           message: `${inputName}`,
         },
       ]}

@@ -8,7 +8,7 @@ const Selector = ({ selectorType, options, required }) => {
       label={selectorType}
       rules={[
         {
-          required: { required },
+          required: required,
           message: `Please select ${selectorType.toLowerCase()}`,
         },
       ]}

@@ -15,7 +15,7 @@ const InputText = ({
       hasFeedback
       rules={[
         {
-          required: { required },
+          required: required,
           message: `Add a valid ${inputName}`,
         },
       ]}
