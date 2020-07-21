@@ -59,6 +59,26 @@ const controller = {
 				res.send(resolve)
 			}
 		})
+	},
+	//INFO CREATE
+	//Create Project
+	createProject: (req, res) =>{
+		projectModel.createProject( req.body, (err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
+	},
+	updateProject: (req, res) => {
+		projectModel.updateProject( req, (err, resolve) =>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
 	}
 }
 module.exports = controller;

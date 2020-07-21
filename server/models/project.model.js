@@ -65,5 +65,44 @@ const model = {
 			resolve(err, null)
 		}
 	},
+	createProject: async(data, resolve) =>{
+		const {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, tags, codinglangs, madeats, show, is_featured, description} = data;
+		try{
+			await Projects.create({title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, show, is_featured, description});
+			const createdProject = await Projects.max('id');
+			const tagsArray = JSON.parse("[" + tags + "]");
+			const codingLangsArray = JSON.parse("[" + codinglangs + "]");
+			const madeAtsArray = JSON.parse("[" + madeats + "]");
+			tagsArray.forEach(element => ProjectTags.create({projectId: createdProject, tagId: element}));
+			codingLangsArray.forEach(element => ProjectCodingLangs.create({projectId: createdProject, codinglangId: element}));
+			madeAtsArray.forEach(element => ProjectMadeAt.create({projectId: createdProject, madeatId: element}));
+			resolve(null, 'Project created successfully')
+		}catch(err){
+			resolve(err, null)
+		}
+	},
+	updateProject: async(data, resolve) => {
+		const {params: {id}, body: {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, tags, codinglangs, madeats, show, is_featured, description}} = data;
+		try{
+		await Projects.update(
+			{title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, show, is_featured, description},
+			{ returning: true, where: { id: id } }
+		)
+		const tagsArray = JSON.parse("[" + tags + "]");
+		const codingLangsArray = JSON.parse("[" + codinglangs + "]");
+		const madeAtsArray = JSON.parse("[" + madeats + "]");
+
+		ProjectTags.destroy({where: { projectId: id } });
+		ProjectCodingLangs.destroy({where: { projectId: id } });
+		ProjectMadeAt.destroy({where: { projectId: id } });
+
+		tagsArray.forEach(element => ProjectTags.create({projectId: id, tagId: element}));
+		codingLangsArray.forEach(element => ProjectCodingLangs.create({projectId: id, codinglangId: element}));
+		madeAtsArray.forEach(element => ProjectMadeAt.create({projectId: id, madeatId: element}));
+		resolve(null, 'Project updated successfully')
+	}catch(err){
+			resolve(err, null)
+		}
+	}
 }
 module.exports = model;

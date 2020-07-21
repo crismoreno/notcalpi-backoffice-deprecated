@@ -25,6 +25,7 @@ export const ProjectCard = ({
     dispatch(deleteProject(id));
     message.success(`You deleted ${title} successfully`);
   };
+
   return (
     <Card
       style={{ width: 300 }}
@@ -32,6 +33,10 @@ export const ProjectCard = ({
       // title={is_featured ? <FlagOutlined /> : <FolderOutlined />}
       cover={
         <img
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = require('../assets/img/fallback-img.png');
+          }}
           alt="example"
           src={`https://res.cloudinary.com/hyavxktsb/image/upload/projects/${id}/cover.png`}
         />

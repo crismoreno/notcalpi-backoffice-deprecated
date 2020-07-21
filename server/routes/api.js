@@ -92,18 +92,22 @@ router.delete("/deletecodinglang/:id", passport.authenticate('jwt', { session: f
 router.delete("/deletemadeat/:id", passport.authenticate('jwt', { session: false }), filteringMadeAts.deleteMadeAtbyId)
 
 //INFO CREATES
+//create project
+router.post("/createproject", passport.authenticate('jwt', { session: false }), projectController.createProject)
 
-//create tag by tag id
+//create tag
 router.post("/createtag", passport.authenticate('jwt', { session: false }), filteringTags.createTag)
 
-//create codinglang by tag id
+//create codinglang
 router.post("/createcodinglang", passport.authenticate('jwt', { session: false }), filteringCodingLang.createCodingLang)
 
-//create madeat by tag id
+//create madeat
 router.post("/createmadeat", passport.authenticate('jwt', { session: false }), filteringMadeAts.createMadeAt)
 
 
 //INFO UPDATES
+//update project by id
+router.put("/updateproject/:id", passport.authenticate('jwt', { session: false }), projectController.updateProject)
 
 //update tag by id
 router.put("/updatetag/:id", passport.authenticate('jwt', { session: false }), filteringTags.updateTag)
