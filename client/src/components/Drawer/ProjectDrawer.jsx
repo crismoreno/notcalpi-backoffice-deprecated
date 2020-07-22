@@ -9,7 +9,7 @@ import CodingLangs from './components/CodingLangs.jsx';
 import MadeAts from './components/MadeAts.jsx';
 // import Selector from './components/Selector.jsx';
 import Tags from './components/Tags.jsx';
-import TextArea from './components/TextArea.jsx';
+import TextAreaInput from './components/TextAreaInput.jsx';
 import Uploader from './components/Uploader.jsx';
 
 const ProjectDrawer = ({ visibility, onClose, project }) => {
@@ -228,7 +228,7 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
 
         <Row gutter={16}>
           <Col span={24}>
-            <TextArea
+            <TextAreaInput
               inputName={'Description'}
               required={isCreateForm === true ? true : false}
               inputPlaceholder={

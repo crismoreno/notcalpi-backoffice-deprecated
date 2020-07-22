@@ -28,11 +28,11 @@ const Tags = ({ tags, dispatch, required, projectId, tagsInProject }) => {
 
   const SelectorKind = () => {
     return defaultChildren ? (
-      <Select mode="multiple" defaultValue={defaultChildren}>
+      <Select mode="multiple" defaultValue={defaultChildren} placeholder="Tags">
         {children}
       </Select>
     ) : (
-      <Select mode="multiple" defaultValue="Tags">
+      <Select mode="multiple" placeholder="Tags">
         {children}
       </Select>
     );

@@ -9,7 +9,7 @@ const InputText = ({
 }) => {
   return (
     <Form.Item
-      name={inputName.toLowerCase()}
+      // name={inputName.toLowerCase()}
       label={inputLabel}
       value={inputValue}
       hasFeedback
@@ -20,7 +20,7 @@ const InputText = ({
         },
       ]}
     >
-      <Input placeholder={inputPlaceholder} />
+      <Input defaultValue={inputPlaceholder} />
     </Form.Item>
   );
 };

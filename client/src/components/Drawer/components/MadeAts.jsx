@@ -27,7 +27,7 @@ const MadeAts = ({
 
   const SelectorKind = () =>
     madeAtsInProject && madeAtsInProject[0] ? (
-      <Select placeholder={madeAtsInProject[0].madeat.short_name}>
+      <Select defaultValue={madeAtsInProject[0].madeat.short_name}>
         {children}
       </Select>
     ) : (

@@ -19,7 +19,7 @@ const selectBefore = (
 const InputUrl = ({ inputName, required, inputPlaceholder }) => {
   return (
     <Form.Item
-      name={inputName.toLowerCase()}
+      // name={inputName.toLowerCase()}
       label={inputName}
       hasFeedback
       rules={[{ required: required, message: `${inputName}` }]}
@@ -28,7 +28,7 @@ const InputUrl = ({ inputName, required, inputPlaceholder }) => {
         style={{ width: '100%' }}
         addonBefore={selectBefore}
         // addonAfter={selectAfter}
-        placeholder={inputPlaceholder}
+        defaultValue={inputPlaceholder}
       />
     </Form.Item>
   );

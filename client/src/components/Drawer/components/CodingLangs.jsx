@@ -37,11 +37,15 @@ const CodingLangs = ({
 
   const SelectorKind = () => {
     return defaultChildren ? (
-      <Select mode="multiple" defaultValue={defaultChildren}>
+      <Select
+        mode="multiple"
+        defaultValue={defaultChildren}
+        placeholder="Coding Languages"
+      >
         {children}
       </Select>
     ) : (
-      <Select mode="multiple" defaultValue="Coding Languages">
+      <Select mode="multiple" placeholder="Coding Languages">
         {children}
       </Select>
     );
