@@ -143,6 +143,7 @@ const CategoryDrawer = ({
   };
 
   const onFinish = (values) => {
+    console.log(values);
     //Create Cats
     if (entityId === null) {
       switch (entityType) {
