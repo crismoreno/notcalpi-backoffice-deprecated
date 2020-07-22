@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import useDeepCompareEffect from 'use-deep-compare-effect';
 
-import { fetchMadeAts } from '../../../helpers/GET/getCategories';
-import { fetchMadeAtsByProjectId } from '../../../helpers/GET/getCategories';
+import {
+  fetchMadeAts,
+  fetchMadeAtsByProjectId,
+} from '../../../helpers/GET/getCategories';
 
 import { Form, Select } from 'antd';
 const { Option } = Select;
@@ -24,13 +25,13 @@ const MadeAts = ({
     }
   }, [projectId]);
 
-  const EditSelect = () =>
+  const SelectorKind = () =>
     madeAtsInProject && madeAtsInProject[0] ? (
-      <Select defaultValue={madeAtsInProject[0].madeat.short_name}>
+      <Select placeholder={madeAtsInProject[0].madeat.short_name}>
         {children}
       </Select>
     ) : (
-      <Select defaultValue="Made At">{children}</Select>
+      <Select placeholder="Made At">{children}</Select>
     );
 
   const children = [];
@@ -53,16 +54,7 @@ const MadeAts = ({
         },
       ]}
     >
-      <EditSelect />
-      {/* <Select
-        defaultValue={
-          madeAtsInProject && madeAtsInProject[0]
-            ? madeAtsInProject[0].madeat.short_name
-            : 'Made At'
-        }
-      >
-        {children}
-      </Select> */}
+      <SelectorKind />
     </Form.Item>
   );
 };

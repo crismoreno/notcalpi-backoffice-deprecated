@@ -190,7 +190,10 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
 
         <Row gutter={16}>
           <Col span={12}>
-            <Tags required={isCreateForm === true ? true : false} />
+            <Tags
+              required={isCreateForm === true ? true : false}
+              projectId={isCreateForm === true ? false : project.id}
+            />
           </Col>
           <Col span={12}>
             <CodingLangs required={isCreateForm === true ? true : false} />

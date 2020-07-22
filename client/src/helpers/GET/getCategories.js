@@ -1,5 +1,7 @@
 import {
   clearMadeAtsByProject,
+  clearTagsByProject,
+  clearCodingLangsByProject,
   fetchTagsSuccess,
   fetchCodingLangsSuccess,
   fetchMadeAtsSuccess,
@@ -62,6 +64,7 @@ function fetchTagsByProjectId(projectId) {
     return fetch(`${url}/projecttags/${projectId}`, requestOptions).then(
       (response) => {
         response.json().then((data) => {
+          dispatch(clearTagsByProject());
           dispatch(fetchTagsByProjectSuccess(data));
           return data;
         });
@@ -75,6 +78,7 @@ function fetchCodingLangsByProjectId(projectId) {
     return fetch(`${url}/projectcodinglangs/${projectId}`, requestOptions).then(
       (response) => {
         response.json().then((data) => {
+          dispatch(clearCodingLangsByProject());
           dispatch(fetchCodingLangsByProjectSuccess(data));
           return data;
         });
@@ -97,4 +101,11 @@ function fetchMadeAtsByProjectId(projectId) {
   };
 }
 
-export { fetchTags, fetchCodingLangs, fetchMadeAts, fetchMadeAtsByProjectId };
+export {
+  fetchTags,
+  fetchCodingLangs,
+  fetchMadeAts,
+  fetchMadeAtsByProjectId,
+  fetchTagsByProjectId,
+  fetchCodingLangsByProjectId,
+};

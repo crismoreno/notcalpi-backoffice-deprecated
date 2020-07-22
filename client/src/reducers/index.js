@@ -22,9 +22,7 @@ export const getMadeAts = (state) => state.categories.madeAts.madeAts;
 export const getContactForms = (state) => state.contactForms.contactForms;
 export const getUsers = (state) => state.users.users.users;
 export const getAuth = (state) => state.users.login;
+export const getTagsByProjectId = (state) =>
+  get(state, 'categories.tagsByProject.tags', null);
 export const getMadeAtsByProjectId = (state) =>
   get(state, 'categories.madeAtsByProject.madeAts', null);
-// .map((madeAt) => ({
-//   name: madeAt.madeat.short_name,
-//   id: madeAt.madeat.id,
-// }));
