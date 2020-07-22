@@ -35,7 +35,9 @@ const Projects = ({ dispatch, projects }) => {
       setDrawerProps(project);
     }
   };
+
   const handleHideDrawer = () => {
+    setDrawerProps(null);
     setShowDrawer(false);
   };
 

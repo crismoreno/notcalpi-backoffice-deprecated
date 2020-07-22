@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 
@@ -6,6 +6,7 @@ import { fetchMadeAts } from '../../../helpers/GET/getCategories';
 import { fetchMadeAtsByProjectId } from '../../../helpers/GET/getCategories';
 
 import { Form, Select } from 'antd';
+const { Option } = Select;
 
 import { getMadeAts, getMadeAtsByProjectId } from '../../../reducers/index';
 
@@ -16,26 +17,33 @@ const MadeAts = ({
   projectId,
   madeAtsInProject,
 }) => {
-  const [madeAtsByProject, setMadeAtsByProject] = useState([]);
-  useDeepCompareEffect(() => {
-    if (!Array.isArray(madeats) || !Boolean(madeats.length)) {
+  useEffect(() => {
+    dispatch(fetchMadeAtsByProjectId(projectId));
+    if (!madeats.length) {
       dispatch(fetchMadeAts(projectId));
     }
-  }, [madeats]);
+  }, [projectId]);
 
-  useDeepCompareEffect(() => {
-    if (!Array.isArray(madeAtsInProject) || !Boolean(madeAtsInProject.length)) {
-      dispatch(fetchMadeAtsByProjectId(projectId));
-    }
-  }, [madeAtsInProject]);
+  const EditSelect = () =>
+    madeAtsInProject && madeAtsInProject[0] ? (
+      <Select defaultValue={madeAtsInProject[0].madeat.short_name}>
+        {children}
+      </Select>
+    ) : (
+      <Select defaultValue="Made At">{children}</Select>
+    );
 
-  if (madeAtsInProject && madeAtsInProject[0]) {
-    console.log(madeAtsInProject[0].madeat.id);
+  const children = [];
+  for (let i = 0; i < madeats.length; i++) {
+    children.push(
+      <Option key={madeats[i].id} value={madeats[i].id}>
+        {madeats[i].short_name}
+      </Option>
+    );
   }
 
   return (
     <Form.Item
-      name="madeat"
       label="Made At"
       hasFeedback
       rules={[
@@ -45,13 +53,16 @@ const MadeAts = ({
         },
       ]}
     >
-      <Select placeholder="Made At">
-        {madeats.map((madeat, index) => (
-          <Select.Option key={index} value={madeat.id}>
-            {madeat.short_name}
-          </Select.Option>
-        ))}
-      </Select>
+      <EditSelect />
+      {/* <Select
+        defaultValue={
+          madeAtsInProject && madeAtsInProject[0]
+            ? madeAtsInProject[0].madeat.short_name
+            : 'Made At'
+        }
+      >
+        {children}
+      </Select> */}
     </Form.Item>
   );
 };

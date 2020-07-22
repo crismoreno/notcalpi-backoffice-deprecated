@@ -6,6 +6,7 @@ import {
   fetchMadeAtsByProjectSuccess,
   fetchCodingLangsByProjectSuccess,
   fetchTagsByProjectSuccess,
+  clearMadeAts,
 } from '../../actions/categories';
 
 import { authHeader } from '../authHeader';
@@ -47,6 +48,7 @@ function fetchMadeAts() {
     return fetch(`${url}/madeatslist-projects`, requestOptions).then(
       (response) => {
         response.json().then((data) => {
+          dispatch(clearMadeAts());
           dispatch(fetchMadeAtsSuccess(data));
           return data;
         });
