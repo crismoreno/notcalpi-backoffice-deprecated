@@ -29,6 +29,10 @@ const MadeAts = ({
     }
   }, [madeAtsInProject]);
 
+  if (madeAtsInProject && madeAtsInProject[0]) {
+    console.log(madeAtsInProject[0].madeat.id);
+  }
+
   return (
     <Form.Item
       name="madeat"
