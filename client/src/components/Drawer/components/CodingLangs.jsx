@@ -1,19 +1,61 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import useDeepCompareEffect from 'use-deep-compare-effect';
 
-import { fetchCodingLangs } from '../../../helpers/GET/getCategories';
+import {
+  fetchCodingLangs,
+  fetchCodingLangsByProjectId,
+} from '../../../helpers/GET/getCategories';
 
 import { Form, Select } from 'antd';
+const { Option } = Select;
 
-import { getCodingLangs } from '../../../reducers/index';
+import {
+  getCodingLangs,
+  getCodingLangsByProjectId,
+} from '../../../reducers/index';
 
-const CodingLangs = ({ codingLangs, dispatch, required }) => {
-  useDeepCompareEffect(() => {
-    if (!Array.isArray(codingLangs) || !Boolean(codingLangs.length)) {
-      dispatch(fetchCodingLangs());
+const CodingLangs = ({
+  codingLangs,
+  dispatch,
+  required,
+  codingLangsInProject,
+  projectId,
+}) => {
+  useEffect(() => {
+    dispatch(fetchCodingLangsByProjectId(projectId));
+    if (!codingLangs.length) {
+      dispatch(fetchCodingLangs(projectId));
     }
-  }, [codingLangs]);
+  }, [projectId]);
+
+  const defaultChildren = [];
+  if (codingLangsInProject.length && codingLangsInProject[0].codinglang) {
+    for (let i = 0; i < codingLangsInProject.length; i++) {
+      defaultChildren.push(codingLangsInProject[i].codinglang.name);
+    }
+  }
+
+  const SelectorKind = () => {
+    return defaultChildren ? (
+      <Select mode="multiple" defaultValue={defaultChildren}>
+        {children}
+      </Select>
+    ) : (
+      <Select mode="multiple" defaultValue="Coding Languages">
+        {children}
+      </Select>
+    );
+  };
+
+  const children = [];
+  for (let i = 0; i < codingLangs.length; i++) {
+    children.push(
+      <Option key={codingLangs[i].id} value={codingLangs[i].id}>
+        {codingLangs[i].name}
+      </Option>
+    );
+  }
+
   return (
     <Form.Item
       name="codingLangs"
@@ -26,18 +68,13 @@ const CodingLangs = ({ codingLangs, dispatch, required }) => {
         },
       ]}
     >
-      <Select mode="multiple" placeholder="Coding Langs">
-        {codingLangs.map((codingLang, index) => (
-          <Select.Option key={index} value={codingLang.id}>
-            {codingLang.name}
-          </Select.Option>
-        ))}
-      </Select>
+      <SelectorKind />
     </Form.Item>
   );
 };
 const mapStateToProps = (state) => ({
   codingLangs: getCodingLangs(state),
+  codingLangsInProject: getCodingLangsByProjectId(state),
 });
 
 export default connect(mapStateToProps)(CodingLangs);

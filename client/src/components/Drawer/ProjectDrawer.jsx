@@ -196,7 +196,10 @@ const ProjectDrawer = ({ visibility, onClose, project }) => {
             />
           </Col>
           <Col span={12}>
-            <CodingLangs required={isCreateForm === true ? true : false} />
+            <CodingLangs
+              required={isCreateForm === true ? true : false}
+              projectId={isCreateForm === true ? false : project.id}
+            />
           </Col>
         </Row>
 

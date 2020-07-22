@@ -7,6 +7,7 @@ import {
 } from '../../../helpers/GET/getCategories';
 
 import { Form, Select } from 'antd';
+const { Option } = Select;
 
 import { getTags, getTagsByProjectId } from '../../../reducers/index';
 
@@ -24,7 +25,6 @@ const Tags = ({ tags, dispatch, required, projectId, tagsInProject }) => {
       defaultChildren.push(tagsInProject[i].tag.name);
     }
   }
-  console.log(defaultChildren, tagsInProject);
 
   const SelectorKind = () => {
     return defaultChildren ? (
@@ -60,13 +60,6 @@ const Tags = ({ tags, dispatch, required, projectId, tagsInProject }) => {
       ]}
     >
       <SelectorKind />
-      {/* <Select mode="multiple" placeholder="Tags">
-        {tags.map((tag, index) => (
-          <Select.Option key={index} value={tag.id}>
-            {tag.name}
-          </Select.Option>
-        ))}
-      </Select> */}
     </Form.Item>
   );
 };

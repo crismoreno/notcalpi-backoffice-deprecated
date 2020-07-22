@@ -24,5 +24,7 @@ export const getUsers = (state) => state.users.users.users;
 export const getAuth = (state) => state.users.login;
 export const getTagsByProjectId = (state) =>
   get(state, 'categories.tagsByProject.tags', null);
+export const getCodingLangsByProjectId = (state) =>
+  get(state, 'categories.codingLangsByProject.codingLangs', null);
 export const getMadeAtsByProjectId = (state) =>
   get(state, 'categories.madeAtsByProject.madeAts', null);
