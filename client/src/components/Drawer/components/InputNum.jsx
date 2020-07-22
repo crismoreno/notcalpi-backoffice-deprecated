@@ -3,7 +3,7 @@ import { Form, InputNumber } from 'antd';
 const InputNum = ({ inputLabel, inputName, required, inputPlaceholder }) => {
   return (
     <Form.Item
-      name={typeof inputName === 'string' ? inputName.toLowerCase() : inputName}
+      // name={typeof inputName === 'string' ? inputName.toLowerCase() : inputName}
       label={inputLabel}
       hasFeedback
       rules={[
@@ -13,7 +13,7 @@ const InputNum = ({ inputLabel, inputName, required, inputPlaceholder }) => {
         },
       ]}
     >
-      <InputNumber placeholder={inputPlaceholder} style={{ width: '100%' }} />
+      <InputNumber defaultValue={inputPlaceholder} style={{ width: '100%' }} />
     </Form.Item>
   );
 };
