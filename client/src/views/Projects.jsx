@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { getProjects } from '../reducers/index';
 
 import { ProjectCard } from '../components/ProjectCard.jsx';
-import ProjectDrawer from '../components/Drawer/ProjectDrawer.jsx';
+import ProjectCreateDrawer from '../components/Drawer/ProjectDrawer-create.jsx';
+import ProjectEditDrawer from '../components/Drawer/ProjectDrawer-edit.jsx';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
@@ -18,27 +19,37 @@ const Projects = ({ dispatch, projects }) => {
     }
   }, [projects]);
 
-  const [showDrawer, setShowDrawer] = useState(false);
+  const [showEditDrawer, setShowEditDrawer] = useState(false);
+  const [showCreateDrawer, setShowCreateDrawer] = useState(false);
   const [drawerProps, setDrawerProps] = useState(null);
 
-  useEffect(() => {
-    if (drawerProps != null) {
-      setShowDrawer(true);
-    }
-  }, [drawerProps]);
+  // useEffect(() => {
+  //   if (drawerProps != null) {
+  //     setShowEditDrawer(true);
+  //   }
+  // }, [drawerProps]);
 
-  const handleShowDrawer = (event, project = null) => {
-    event.persist();
-    if (project == null) {
-      setDrawerProps({});
-    } else {
-      setDrawerProps(project);
-    }
+  // const handleShowDrawer = (event, project = null) => {
+  //   event.persist();
+  //   if (project == null) {
+  //     setDrawerProps({});
+  //   } else {
+  //     setDrawerProps(project);
+  //   }
+  // };
+
+  const handleShowCreateDrawer = () => {
+    setDrawerProps(null);
+    setShowCreateDrawer(true);
   };
-
+  const handleShowEditDrawer = (project) => {
+    setDrawerProps(project);
+    setShowEditDrawer(true);
+  };
   const handleHideDrawer = () => {
     setDrawerProps(null);
-    setShowDrawer(false);
+    setShowEditDrawer(false);
+    setShowCreateDrawer(false);
   };
 
   return (
@@ -53,18 +64,24 @@ const Projects = ({ dispatch, projects }) => {
         type="primary"
         style={{ marginTop: '15px' }}
         onClick={(event) => {
-          handleShowDrawer(event, null);
+          handleShowCreateDrawer();
         }}
       >
         <PlusOutlined />
         Add new project
       </Button>
-      <ProjectDrawer
-        visibility={showDrawer}
-        onClose={handleHideDrawer}
-        id={projects}
-        project={drawerProps}
-      />
+      {drawerProps ? (
+        <ProjectEditDrawer
+          visibility={showEditDrawer}
+          onClose={handleHideDrawer}
+          project={drawerProps}
+        />
+      ) : (
+        <ProjectCreateDrawer
+          visibility={showCreateDrawer}
+          onClose={handleHideDrawer}
+        />
+      )}
       <div className="project-cards-container">
         {projects.map((project, index) => (
           <ProjectCard
@@ -72,7 +89,7 @@ const Projects = ({ dispatch, projects }) => {
             key={index}
             dispatch={dispatch}
             onClickEdit={(event) => {
-              handleShowDrawer(event, project);
+              handleShowEditDrawer(project);
             }}
           />
         ))}
