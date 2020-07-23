@@ -19,10 +19,35 @@ function createProject(body, callback) {
       tags,
       codingLangs,
       madeats,
-      show,
-      is_featured,
       description,
     } = body;
+
+    let { show, is_featured } = body;
+
+    if (is_featured === true) {
+      is_featured = 1;
+    } else {
+      is_featured = 0;
+    }
+    if (show === true) {
+      show = 1;
+    } else {
+      show = 0;
+    }
+
+    // console.log(
+    //   'is_featured: ' +
+    //     is_featured +
+    //     'show: ' +
+    //     show +
+    //     'tags: ' +
+    //     tags +
+    //     'codingLangs' +
+    //     codingLangs +
+    //     'madeats: ' +
+    //     madeats
+    // );
+
     axios({
       method: 'post',
       url: `${url}/createproject`,

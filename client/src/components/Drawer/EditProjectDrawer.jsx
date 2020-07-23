@@ -397,7 +397,7 @@ const ProjectEditDrawer = ({
         <Row gutter={16}>
           <Col span={6}>
             <Item
-              name="visible"
+              name="show"
               label="Visible"
               valuePropName="checked"
               hasFeedback
@@ -413,7 +413,7 @@ const ProjectEditDrawer = ({
           </Col>
           <Col span={6}>
             <Item
-              name="featured"
+              name="is_featured"
               label="Featured"
               valuePropName="checked"
               hasFeedback
