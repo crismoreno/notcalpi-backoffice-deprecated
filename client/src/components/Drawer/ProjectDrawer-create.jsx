@@ -1,9 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchMadeAts } from '../../helpers/GET/getCategories';
-
-import { getMadeAts } from '../../reducers/index';
+import { createProject } from '../../helpers/CREATE/createProject';
 
 import {
   Drawer,
@@ -16,6 +14,7 @@ import {
   InputNumber,
   Select,
   Upload,
+  message,
 } from 'antd';
 const { Item } = Form;
 const { TextArea } = Input;
@@ -23,21 +22,46 @@ const { Option } = Select;
 
 import { UploadOutlined } from '@ant-design/icons';
 
-const ProjectCreateDrawer = ({ visibility, onClose, dispatch, madeats }) => {
-  // const formRef = useRef(null);
+import {
+  fetchMadeAts,
+  fetchTags,
+  fetchCodingLangs,
+} from '../../helpers/GET/getCategories';
+
+import { getMadeAts, getTags, getCodingLangs } from '../../reducers/index';
+
+const ProjectCreateDrawer = ({
+  visibility,
+  onClose,
+  madeats,
+  tags,
+  codingLangs,
+  fetchMadeAtsDispatcher,
+  fetchTagsDispatcher,
+  fetchCodingLangsDispatcher,
+  createProject,
+}) => {
+  const formRef = useRef(null);
 
   useEffect(() => {
     if (!madeats.length) {
-      dispatch(fetchMadeAts());
+      fetchMadeAtsDispatcher();
+    }
+    if (!tags.length) {
+      fetchTagsDispatcher();
+    }
+    if (!codingLangs.length) {
+      fetchCodingLangsDispatcher();
     }
   }, []);
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
-    formRef.current.resetFields();
+    // formRef.current.resetFields();
   };
   const onFinish = (values) => {
     console.log(values, 'values');
+    createProject(values);
     formRef.current.resetFields();
   };
 
@@ -53,6 +77,23 @@ const ProjectCreateDrawer = ({ visibility, onClose, dispatch, madeats }) => {
     madeAtsChildren.push(
       <Option key={madeats[i].id} value={madeats[i].id}>
         {madeats[i].short_name}
+      </Option>
+    );
+  }
+
+  const tagsChildren = [];
+  for (let i = 0; i < tags.length; i++) {
+    tagsChildren.push(
+      <Option key={tags[i].id} value={tags[i].id}>
+        {tags[i].name}
+      </Option>
+    );
+  }
+  const codingLangChildren = [];
+  for (let i = 0; i < codingLangs.length; i++) {
+    codingLangChildren.push(
+      <Option key={codingLangs[i].id} value={codingLangs[i].id}>
+        {codingLangs[i].name}
       </Option>
     );
   }
@@ -81,7 +122,7 @@ const ProjectCreateDrawer = ({ visibility, onClose, dispatch, madeats }) => {
     >
       <Form
         layout="vertical"
-        // ref={formRef}
+        ref={formRef}
         name="create-project-form"
         className="create-project-form"
         onFinish={onFinish}
@@ -234,25 +275,47 @@ const ProjectCreateDrawer = ({ visibility, onClose, dispatch, madeats }) => {
           </Col>
         </Row>
 
-        {/* <Row gutter={16}>
+        <Row gutter={16}>
           <Col span={12}>
-            <Tags
-              required={isCreateForm === true ? true : false}
-              projectId={isCreateForm === true ? false : project.id}
-            />
+            <Item
+              name="tags"
+              label="Tags"
+              hasFeedback
+              rules={[
+                {
+                  required: false,
+                  type: 'array',
+                },
+              ]}
+            >
+              <Select mode="multiple" placeholder="Tags">
+                {tagsChildren}
+              </Select>
+            </Item>
           </Col>
           <Col span={12}>
-            <CodingLangs
-              required={isCreateForm === true ? true : false}
-              projectId={isCreateForm === true ? false : project.id}
-            />
+            <Item
+              name="codingLangs"
+              label="CodingLangs"
+              hasFeedback
+              rules={[
+                {
+                  required: false,
+                  type: 'array',
+                },
+              ]}
+            >
+              <Select mode="multiple" placeholder="CodingLanguages">
+                {codingLangChildren}
+              </Select>
+            </Item>
           </Col>
-        </Row> */}
+        </Row>
 
         <Row gutter={16}>
           <Col span={6}>
             <Item
-              name="visible"
+              name="show"
               label="Visible"
               valuePropName="checked"
               hasFeedback
@@ -268,7 +331,7 @@ const ProjectCreateDrawer = ({ visibility, onClose, dispatch, madeats }) => {
           </Col>
           <Col span={6}>
             <Item
-              name="featured"
+              name="is_featured"
               label="Featured"
               valuePropName="checked"
               hasFeedback
@@ -284,7 +347,7 @@ const ProjectCreateDrawer = ({ visibility, onClose, dispatch, madeats }) => {
           </Col>
           <Col span={12}>
             <Item
-              name="madeatsInput"
+              name="madeats"
               label="Made At"
               hasFeedback
               rules={[
@@ -334,8 +397,30 @@ const ProjectCreateDrawer = ({ visibility, onClose, dispatch, madeats }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  madeats: getMadeAts(state),
+const mapDispatchToProps = (dispatch) => ({
+  fetchMadeAtsDispatcher: () => dispatch(fetchMadeAts()),
+  fetchTagsDispatcher: () => dispatch(fetchTags()),
+  fetchCodingLangsDispatcher: () => dispatch(fetchCodingLangs()),
+  createProject: (values) =>
+    dispatch(
+      createProject(values, (err, result) => {
+        if (result) {
+          message.success(`Project ${values.title} created successfully!`);
+          // onClose();
+        } else {
+          console.log(err, 'err');
+        }
+      })
+    ),
 });
 
-export default connect(mapStateToProps)(ProjectCreateDrawer);
+const mapStateToProps = (state) => ({
+  tags: getTags(state),
+  madeats: getMadeAts(state),
+  codingLangs: getCodingLangs(state),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectCreateDrawer);

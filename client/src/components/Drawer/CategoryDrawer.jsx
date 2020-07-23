@@ -1,8 +1,17 @@
 import React, { useRef } from 'react';
-import { Drawer, Form, Button, Col, Row, message } from 'antd';
+import {
+  Drawer,
+  Form,
+  Button,
+  Col,
+  Row,
+  message,
+  Input,
+  InputNumber,
+} from 'antd';
 
-import InputText from './components/InputText.jsx';
-import InputNum from './components/InputNum.jsx';
+const { Item } = Form;
+
 import { createTag } from '../../helpers/CREATE/createTag';
 import { createMadeAt } from '../../helpers/CREATE/createMadeAt';
 import { createCodingLang } from '../../helpers/CREATE/createCodingLang';
@@ -27,17 +36,24 @@ const CategoryDrawer = ({
       <>
         <Row gutter={16}>
           <Col span={24}>
-            <InputText
-              required={entityId !== null ? false : true}
-              inputName={`title`}
-              inputLabel={'Title'}
-              inputPlaceholder={entityName || `Title`}
-            />
+            <Item
+              name="title"
+              label="Title"
+              hasFeedback
+              rules={[
+                {
+                  required: entityId !== null ? false : true,
+                  message: `Add a valid title`,
+                },
+              ]}
+            >
+              <Input placeholder={entityName || `Title`} />
+            </Item>
           </Col>
         </Row>
         <Row gutter={16}>
           <Col span={24}>
-            <Form.Item>
+            <Item>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -45,7 +61,7 @@ const CategoryDrawer = ({
               >
                 Submit
               </Button>
-            </Form.Item>
+            </Item>
           </Col>
         </Row>
       </>
@@ -56,25 +72,39 @@ const CategoryDrawer = ({
       <>
         <Row gutter={16}>
           <Col span={12}>
-            <InputText
-              required={entityId !== null ? false : true}
-              inputName={`Title`}
-              inputLabel={'Title'}
-              inputPlaceholder={entityName || `Title`}
-            />
+            <Item
+              name="title"
+              label="Title"
+              hasFeedback
+              rules={[
+                {
+                  required: entityId !== null ? false : true,
+                  message: `Add a valid title`,
+                },
+              ]}
+            >
+              <Input placeholder={entityName || `Title`} />
+            </Item>
           </Col>
           <Col span={12}>
-            <InputNum
-              required={entityId !== null ? false : true}
-              inputName={`Priority`}
-              inputLabel={`Priority`}
-              inputPlaceholder={priority || `Priority`}
-            />
+            <Item
+              name="orderby"
+              label="Priority"
+              hasFeedback
+              rules={[
+                {
+                  required: entityId !== null ? false : true,
+                  message: `Add a valid Priority value`,
+                },
+              ]}
+            >
+              <InputNumber placeholder="Priority" style={{ width: '100%' }} />
+            </Item>
           </Col>
         </Row>
         <Row gutter={16}>
           <Col span={24}>
-            <Form.Item>
+            <Item>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -82,7 +112,7 @@ const CategoryDrawer = ({
               >
                 Submit
               </Button>
-            </Form.Item>
+            </Item>
           </Col>
         </Row>
       </>
@@ -93,20 +123,34 @@ const CategoryDrawer = ({
       <>
         <Row gutter={16}>
           <Col span={12}>
-            <InputText
-              required={entityId !== null ? false : true}
-              inputName={`ShortName`}
-              inputLabel={'Short Name'}
-              inputPlaceholder={entityName || `ShortName`}
-            />
+            <Item
+              name="shortname"
+              label="Short Name"
+              hasFeedback
+              rules={[
+                {
+                  required: entityId !== null ? false : true,
+                  message: `Add a valid short name`,
+                },
+              ]}
+            >
+              <Input placeholder={entityName || `Short Name`} />
+            </Item>
           </Col>
           <Col span={12}>
-            <InputText
-              required={entityId !== null ? false : true}
-              inputName={`FullName`}
-              inputLabel={'Full Name'}
-              inputPlaceholder={entityFullName || `FullName`}
-            />
+            <Item
+              name="fullname"
+              label="FullName"
+              hasFeedback
+              rules={[
+                {
+                  required: entityId !== null ? false : true,
+                  message: `Add a valid full name`,
+                },
+              ]}
+            >
+              <Input placeholder={entityName || `FullName`} />
+            </Item>
           </Col>
         </Row>
         <Row gutter={16}>
