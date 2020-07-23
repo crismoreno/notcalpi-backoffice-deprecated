@@ -61,7 +61,7 @@ const ProjectCreateDrawer = ({
   };
   const onFinish = (values) => {
     console.log(values, 'values');
-    createProjectDispatcher(values);
+    createProjectDispatcher(values, handleClose);
     formRef.current.resetFields();
   };
 
@@ -352,7 +352,7 @@ const ProjectCreateDrawer = ({
               hasFeedback
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: 'Please select a MadeAt!',
                 },
               ]}
@@ -401,12 +401,12 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMadeAtsDispatcher: () => dispatch(fetchMadeAts()),
   fetchTagsDispatcher: () => dispatch(fetchTags()),
   fetchCodingLangsDispatcher: () => dispatch(fetchCodingLangs()),
-  createProjectDispatcher: (values) =>
+  createProjectDispatcher: (values, onFinish) =>
     dispatch(
       createProject(values, (err, result) => {
         if (result) {
           message.success(`Project ${values.title} created successfully!`);
-          handleClose();
+          onFinish();
         } else {
           console.log(err, 'err');
         }

@@ -96,7 +96,7 @@ const ProjectEditDrawer = ({
   };
   const onFinish = (values) => {
     console.log(values, 'values');
-    updateProjectDispatcher(values, id);
+    updateProjectDispatcher(values, id, handleClose);
     formRef.current.resetFields();
   };
 
@@ -489,12 +489,12 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCodingLangsDispatcher: () => dispatch(fetchCodingLangs()),
   fetchCodingLangsByProjectIdDispatcher: (id) =>
     dispatch(fetchCodingLangsByProjectId(id)),
-  updateProjectDispatcher: (values, idToUpdate) =>
+  updateProjectDispatcher: (values, idToUpdate, onFinish) =>
     dispatch(
       updateProject(values, idToUpdate, (err, result) => {
         if (result) {
           message.success(`Project ${values.title} was updated successfully!`);
-          handleClose();
+          onFinish();
         } else {
           console.log(err, 'err');
         }
