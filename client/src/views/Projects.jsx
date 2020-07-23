@@ -73,13 +73,13 @@ const Projects = ({ dispatch, projects }) => {
       {drawerProps ? (
         <ProjectEditDrawer
           visibility={showEditDrawer}
-          onClose={handleHideDrawer}
+          handleClose={handleHideDrawer}
           project={drawerProps}
         />
       ) : (
         <ProjectCreateDrawer
           visibility={showCreateDrawer}
-          onClose={handleHideDrawer}
+          handleClose={handleHideDrawer}
         />
       )}
       <div className="project-cards-container">

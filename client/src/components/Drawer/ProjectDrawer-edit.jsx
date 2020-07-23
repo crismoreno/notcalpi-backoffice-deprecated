@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { clearMadeAtsByProject } from '../../actions/categories';
+// import { clearMadeAtsByProject } from '../../actions/categories';
+import { updateProject } from '../../helpers/UPDATE/updateProject';
 
 import {
   fetchMadeAts,
@@ -32,6 +33,7 @@ import {
   InputNumber,
   Select,
   Upload,
+  message,
 } from 'antd';
 const { Item } = Form;
 const { TextArea } = Input;
@@ -41,7 +43,7 @@ import { UploadOutlined } from '@ant-design/icons';
 
 const ProjectEditDrawer = ({
   visibility,
-  onClose,
+  handleClose,
   project: {
     id,
     orderby,
@@ -69,6 +71,7 @@ const ProjectEditDrawer = ({
   fetchMadeAtsDispatcher,
   fetchTagsDispatcher,
   tagsInProject,
+  updateProjectDispatcher,
 }) => {
   useEffect(() => {
     fetchMadeAtsByProjectIdDispatcher(id);
@@ -93,6 +96,7 @@ const ProjectEditDrawer = ({
   };
   const onFinish = (values) => {
     console.log(values, 'values');
+    updateProjectDispatcher(values, id);
     formRef.current.resetFields();
   };
 
@@ -163,7 +167,7 @@ const ProjectEditDrawer = ({
     <Drawer
       title={`Edit project: ${title}`}
       width={900}
-      onClose={onClose}
+      onClose={handleClose}
       visible={visibility}
       bodyStyle={{ paddingBottom: 80 }}
       footer={
@@ -172,10 +176,10 @@ const ProjectEditDrawer = ({
             textAlign: 'right',
           }}
         >
-          <Button onClick={onClose} style={{ marginRight: 8 }}>
+          <Button onClick={handleClose} style={{ marginRight: 8 }}>
             Cancel
           </Button>
-          {/* <Button onClick={onClose} type="primary">
+          {/* <Button onClick={handleClose} type="primary">
             Submit
           </Button> */}
         </div>
@@ -485,6 +489,17 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCodingLangsDispatcher: () => dispatch(fetchCodingLangs()),
   fetchCodingLangsByProjectIdDispatcher: (id) =>
     dispatch(fetchCodingLangsByProjectId(id)),
+  updateProjectDispatcher: (values, idToUpdate) =>
+    dispatch(
+      updateProject(values, idToUpdate, (err, result) => {
+        if (result) {
+          message.success(`Project ${values.title} was updated successfully!`);
+          handleClose();
+        } else {
+          console.log(err, 'err');
+        }
+      })
+    ),
 });
 
 const mapStateToProps = (state) => ({

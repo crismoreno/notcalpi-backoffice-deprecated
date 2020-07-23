@@ -4,7 +4,7 @@ import axios from 'axios';
 const url = '/api';
 import qs from 'qs';
 
-function createProject(body, callback) {
+function updateProject(body, idToUpdate, callback) {
   return (dispatch) => {
     const {
       title,
@@ -23,9 +23,10 @@ function createProject(body, callback) {
       is_featured,
       description,
     } = body;
+
     axios({
-      method: 'post',
-      url: `${url}/createproject`,
+      method: 'put',
+      url: `${url}/updateproject/${idToUpdate}`,
       data: qs.stringify({
         title,
         customer,
@@ -47,7 +48,7 @@ function createProject(body, callback) {
     })
       .then(function (response) {
         dispatch(fetchProjects(response.data));
-        callback(null, 'Project was created successfully');
+        callback(null, 'Project was updated successfully');
       })
       .catch(function (err) {
         callback(err, null);
@@ -55,4 +56,4 @@ function createProject(body, callback) {
   };
 }
 
-export { createProject };
+export { updateProject };

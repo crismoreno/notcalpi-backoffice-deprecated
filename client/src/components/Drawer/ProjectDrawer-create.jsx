@@ -32,14 +32,14 @@ import { getMadeAts, getTags, getCodingLangs } from '../../reducers/index';
 
 const ProjectCreateDrawer = ({
   visibility,
-  onClose,
+  handleClose,
   madeats,
   tags,
   codingLangs,
   fetchMadeAtsDispatcher,
   fetchTagsDispatcher,
   fetchCodingLangsDispatcher,
-  createProject,
+  createProjectDispatcher,
 }) => {
   const formRef = useRef(null);
 
@@ -61,7 +61,7 @@ const ProjectCreateDrawer = ({
   };
   const onFinish = (values) => {
     console.log(values, 'values');
-    createProject(values);
+    createProjectDispatcher(values);
     formRef.current.resetFields();
   };
 
@@ -102,7 +102,7 @@ const ProjectCreateDrawer = ({
     <Drawer
       title="Add new project"
       width={900}
-      onClose={onClose}
+      onClose={handleClose}
       visible={visibility}
       bodyStyle={{ paddingBottom: 80 }}
       footer={
@@ -111,10 +111,10 @@ const ProjectCreateDrawer = ({
             textAlign: 'right',
           }}
         >
-          <Button onClick={onClose} style={{ marginRight: 8 }}>
+          <Button onClick={handleClose} style={{ marginRight: 8 }}>
             Cancel
           </Button>
-          {/* <Button onClick={onClose} type="primary">
+          {/* <Button onClick={handleClose} type="primary">
             Submit
           </Button> */}
         </div>
@@ -401,12 +401,12 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMadeAtsDispatcher: () => dispatch(fetchMadeAts()),
   fetchTagsDispatcher: () => dispatch(fetchTags()),
   fetchCodingLangsDispatcher: () => dispatch(fetchCodingLangs()),
-  createProject: (values) =>
+  createProjectDispatcher: (values) =>
     dispatch(
       createProject(values, (err, result) => {
         if (result) {
           message.success(`Project ${values.title} created successfully!`);
-          // onClose();
+          handleClose();
         } else {
           console.log(err, 'err');
         }
