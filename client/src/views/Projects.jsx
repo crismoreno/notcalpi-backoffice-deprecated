@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { getProjects } from '../reducers/index';
 
 import { ProjectCard } from '../components/ProjectCard.jsx';
-import ProjectCreateDrawer from '../components/Drawer/ProjectDrawer-create.jsx';
-import ProjectEditDrawer from '../components/Drawer/ProjectDrawer-edit.jsx';
+import ProjectCreateDrawer from '../components/Drawer/CreateProjectDrawer.jsx';
+import ProjectEditDrawer from '../components/Drawer/EditProjectDrawer.jsx';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
