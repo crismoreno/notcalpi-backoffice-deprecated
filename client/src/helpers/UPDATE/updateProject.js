@@ -24,29 +24,52 @@ function updateProject(body, idToUpdate, callback) {
 
     let { show, is_featured } = body;
 
-    if (is_featured === true) {
-      is_featured = 1;
-    } else {
-      is_featured = 0;
-    }
-    if (show === true) {
-      show = 1;
-    } else {
-      show = 0;
+    switch (is_featured) {
+      case true:
+        is_featured = 1;
+        break;
+      case false:
+        is_featured = 0;
+        break;
+      case undefined:
+        is_featured = null;
+        break;
+      case undefined:
+        is_featured = null;
+      default:
+        is_featured = null;
+        break;
     }
 
-    // console.log(
-    //   'is_featured: ' +
-    //     is_featured +
-    //     'show: ' +
-    //     show +
-    //     'tags: ' +
-    //     tags +
-    //     'codingLangs' +
-    //     codingLangs +
-    //     'madeats: ' +
-    //     madeats
-    // );
+    switch (show) {
+      case true:
+        show = 1;
+        break;
+      case 'checked':
+        show = 1;
+        break;
+      case false:
+        show = 0;
+        break;
+      case undefined:
+        show = null;
+        break;
+      case undefined:
+        show = null;
+      default:
+        show = null;
+        break;
+    }
+
+    console.log(
+      ' is_featured: ' + is_featured + ' show: ' + show
+      // ' tags: ' +
+      // tags +
+      // ' codingLangs' +
+      // codingLangs +
+      // ' madeats: ' +
+      // madeats
+    );
 
     axios({
       method: 'put',
