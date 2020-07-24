@@ -28,14 +28,18 @@ function updateProject(body, idToUpdate, callback) {
       case true:
         is_featured = 1;
         break;
+      case 'checked':
+        is_featured = 1;
+        break;
       case false:
         is_featured = 0;
         break;
-      case undefined:
-        is_featured = null;
+      case null:
+        is_featured = 0;
         break;
-      case undefined:
-        is_featured = null;
+      case '':
+        is_featured = 0;
+        break;
       default:
         is_featured = null;
         break;
@@ -51,25 +55,16 @@ function updateProject(body, idToUpdate, callback) {
       case false:
         show = 0;
         break;
-      case undefined:
-        show = null;
+      case null:
+        show = 0;
         break;
-      case undefined:
-        show = null;
+      case '':
+        show = 0;
+        break;
       default:
         show = null;
         break;
     }
-
-    console.log(
-      ' is_featured: ' + is_featured + ' show: ' + show
-      // ' tags: ' +
-      // tags +
-      // ' codingLangs' +
-      // codingLangs +
-      // ' madeats: ' +
-      // madeats
-    );
 
     axios({
       method: 'put',
@@ -84,9 +79,9 @@ function updateProject(body, idToUpdate, callback) {
         link_to_repo,
         link_to_download,
         video,
-        tags,
-        codingLangs,
-        madeats,
+        // tags,
+        // codingLangs,
+        // madeats,
         show,
         is_featured,
         description,

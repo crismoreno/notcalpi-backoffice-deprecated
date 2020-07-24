@@ -106,6 +106,7 @@ const model = {
 	},
 	updateProject: async(data, resolve) => {
 		const {params: {id}, body: {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, tags, codinglangs, madeats, show, is_featured, description}} = data;
+		console.log({featured: is_featured, show: show});
 		try{
 		await Projects.update(
 			{title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, show, is_featured, description},
