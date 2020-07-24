@@ -205,7 +205,7 @@ const ProjectEditDrawer = ({
           is_featured: featuredInitialValue,
           show: visibleInitialValue,
           tags: tagsDefaultChildren,
-          codingLangs: codingLangsDefaultChildren,
+          codinglangs: codingLangsDefaultChildren,
           madeatsInput: madeAtsInitialValue,
           description: descriptionInitialValue,
         }}
@@ -377,7 +377,7 @@ const ProjectEditDrawer = ({
           </Col>
           <Col span={12}>
             <Item
-              name="codingLangs"
+              name="codinglangs"
               label="CodingLangs"
               hasFeedback
               rules={[

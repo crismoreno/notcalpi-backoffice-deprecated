@@ -16,13 +16,10 @@ function updateProject(body, idToUpdate, callback) {
       link_to_repo,
       link_to_download,
       video,
-      tags,
-      codingLangs,
-      madeats,
       description,
     } = body;
 
-    let { show, is_featured } = body;
+    let { show, is_featured, tags, codinglangs, madeats } = body;
 
     switch (is_featured) {
       case true:
@@ -66,6 +63,26 @@ function updateProject(body, idToUpdate, callback) {
         break;
     }
 
+    if (tags && Array.isArray(tags) && tags.length) {
+      tags = tags.toString();
+    } else {
+      tags = '';
+    }
+    if (codinglangs && Array.isArray(codinglangs) && codinglangs.length) {
+      codinglangs = codinglangs.toString();
+    } else {
+      codinglangs = '';
+    }
+    if (madeats && Array.isArray(madeats) && madeats.length) {
+      madeats = madeats.toString();
+    } else {
+      madeats = '';
+    }
+
+    console.log(
+      'tags: ' + tags + ' codinglangs: ' + codinglangs + ' madeats: ' + madeats
+    );
+
     axios({
       method: 'put',
       url: `${url}/updateproject/${idToUpdate}`,
@@ -79,9 +96,9 @@ function updateProject(body, idToUpdate, callback) {
         link_to_repo,
         link_to_download,
         video,
-        // tags,
-        // codingLangs,
-        // madeats,
+        tags,
+        codinglangs,
+        madeats,
         show,
         is_featured,
         description,

@@ -90,6 +90,7 @@ const model = {
 	},
 	createProject: async(data, resolve) =>{
 		const {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, tags, codinglangs, madeats, show, is_featured, description} = data;
+		console.log(tags, codinglangs, madeats);
 		try{
 			await Projects.create({title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, video, show, is_featured, description});
 			const createdProject = await Projects.max('id');

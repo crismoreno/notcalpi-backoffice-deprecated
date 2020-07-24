@@ -295,7 +295,7 @@ const ProjectCreateDrawer = ({
           </Col>
           <Col span={12}>
             <Item
-              name="codingLangs"
+              name="codinglangs"
               label="CodingLangs"
               hasFeedback
               rules={[

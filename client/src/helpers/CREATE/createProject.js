@@ -16,13 +16,10 @@ function createProject(body, callback) {
       link_to_repo,
       link_to_download,
       video,
-      tags,
-      codingLangs,
-      madeats,
       description,
     } = body;
 
-    let { show, is_featured } = body;
+    let { show, is_featured, tags, codinglangs, madeats } = body;
 
     if (is_featured === true) {
       is_featured = 1;
@@ -35,18 +32,15 @@ function createProject(body, callback) {
       show = 0;
     }
 
-    // console.log(
-    //   'is_featured: ' +
-    //     is_featured +
-    //     'show: ' +
-    //     show +
-    //     'tags: ' +
-    //     tags +
-    //     'codingLangs' +
-    //     codingLangs +
-    //     'madeats: ' +
-    //     madeats
-    // );
+    if (tags.length) {
+      tags = tags.toString();
+    }
+    if (codinglangs.length) {
+      codingLangs = codinglangs.toString();
+    }
+    if (madeats.length) {
+      madeats = madeats.toString();
+    }
 
     axios({
       method: 'post',
@@ -62,7 +56,7 @@ function createProject(body, callback) {
         link_to_download,
         video,
         tags,
-        codingLangs,
+        codinglangs,
         madeats,
         show,
         is_featured,
