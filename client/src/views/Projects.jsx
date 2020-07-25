@@ -46,6 +46,8 @@ const Projects = ({ dispatch, projects }) => {
     0
   );
 
+  const countTotalProjects = projects.length;
+
   return (
     <div
       style={{
@@ -83,7 +85,7 @@ const Projects = ({ dispatch, projects }) => {
             />
           ) : (
             <Alert
-              message={`${countFeaturedProjects} featured Projects in total`}
+              message={`${countFeaturedProjects} featured Projects in total try to make it back to 4`}
               type="warning"
               showIcon
               style={{ marginRight: '10px' }}
@@ -93,6 +95,13 @@ const Projects = ({ dispatch, projects }) => {
             message={`${countHiddenProjects} hidden projects in total`}
             type="info"
             showIcon
+            style={{ margin: '0 10px' }}
+          />
+          <Alert
+            message={`${countTotalProjects} projects in total`}
+            type="info"
+            showIcon
+            style={{ margin: '0 10px' }}
           />
         </div>
         <Button

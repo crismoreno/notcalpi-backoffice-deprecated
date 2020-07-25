@@ -163,6 +163,10 @@ const ProjectEditDrawer = ({
       : null;
   const descriptionInitialValue = description;
 
+  // console.log(
+  //   `madeats: ${madeAtsInitialValue}, codingLangs: ${codingLangsDefaultChildren}, tags: ${tagsDefaultChildren}`
+  // );
+
   return (
     <Drawer
       title={`Edit project: ${title}`}

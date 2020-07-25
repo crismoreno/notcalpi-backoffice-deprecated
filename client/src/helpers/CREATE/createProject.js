@@ -36,7 +36,7 @@ function createProject(body, callback) {
       tags = tags.toString();
     }
     if (codinglangs.length) {
-      codingLangs = codinglangs.toString();
+      codinglangs = codinglangs.toString();
     }
     if (madeats.length) {
       madeats = madeats.toString();
