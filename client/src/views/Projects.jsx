@@ -9,7 +9,7 @@ import { getProjects } from '../reducers/index';
 import { ProjectCard } from '../components/ProjectCard.jsx';
 import ProjectCreateDrawer from '../components/Drawer/CreateProjectDrawer.jsx';
 import ProjectEditDrawer from '../components/Drawer/EditProjectDrawer.jsx';
-import { Button } from 'antd';
+import { Button, Alert } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 const Projects = ({ dispatch, projects }) => {
@@ -22,21 +22,6 @@ const Projects = ({ dispatch, projects }) => {
   const [showEditDrawer, setShowEditDrawer] = useState(false);
   const [showCreateDrawer, setShowCreateDrawer] = useState(false);
   const [drawerProps, setDrawerProps] = useState(null);
-
-  // useEffect(() => {
-  //   if (drawerProps != null) {
-  //     setShowEditDrawer(true);
-  //   }
-  // }, [drawerProps]);
-
-  // const handleShowDrawer = (event, project = null) => {
-  //   event.persist();
-  //   if (project == null) {
-  //     setDrawerProps({});
-  //   } else {
-  //     setDrawerProps(project);
-  //   }
-  // };
 
   const handleShowCreateDrawer = () => {
     setDrawerProps(null);
@@ -52,6 +37,15 @@ const Projects = ({ dispatch, projects }) => {
     setShowCreateDrawer(false);
   };
 
+  const countFeaturedProjects = projects.reduce(
+    (acc, cur) => (cur.is_featured === true ? ++acc : acc),
+    0
+  );
+  const countHiddenProjects = projects.reduce(
+    (acc, cur) => (cur.show === false ? ++acc : acc),
+    0
+  );
+
   return (
     <div
       style={{
@@ -60,16 +54,57 @@ const Projects = ({ dispatch, projects }) => {
         alignItems: 'flex-end',
       }}
     >
-      <Button
-        type="primary"
-        style={{ marginTop: '15px' }}
-        onClick={(event) => {
-          handleShowCreateDrawer();
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          margin: '10px 0',
         }}
       >
-        <PlusOutlined />
-        Add new project
-      </Button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            // justifyContent: 'space-between',
+            width: '100%',
+            margin: '10px 0',
+          }}
+        >
+          {countFeaturedProjects === 4 ? (
+            <Alert
+              message="There are 4 featured Projects 👌"
+              type="success"
+              showIcon
+              style={{ marginRight: '10px' }}
+            />
+          ) : (
+            <Alert
+              message={`${countFeaturedProjects} featured Projects in total`}
+              type="warning"
+              showIcon
+              style={{ marginRight: '10px' }}
+            />
+          )}
+          <Alert
+            message={`${countHiddenProjects} hidden projects in total`}
+            type="info"
+            showIcon
+          />
+        </div>
+        <Button
+          type="primary"
+          onClick={(event) => {
+            handleShowCreateDrawer();
+          }}
+        >
+          <PlusOutlined />
+          Add new project
+        </Button>
+      </div>
       {drawerProps ? (
         <ProjectEditDrawer
           visibility={showEditDrawer}
