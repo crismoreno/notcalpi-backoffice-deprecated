@@ -123,14 +123,14 @@ const ProjectEditDrawer = ({
   const tagsDefaultChildren = [];
   if (getProjectTags) {
     for (let i = 0; i < getProjectTags.length; i++) {
-      tagsDefaultChildren.push(getProjectTags[i].tag.name);
+      tagsDefaultChildren.push(getProjectTags[i].tag.id);
     }
   }
 
   const codingLangsDefaultChildren = [];
   if (getProjectCodingLangs) {
     for (let i = 0; i < getProjectCodingLangs.length; i++) {
-      codingLangsDefaultChildren.push(getProjectCodingLangs[i].codinglang.name);
+      codingLangsDefaultChildren.push(getProjectCodingLangs[i].codinglang.id);
     }
   }
 
@@ -180,7 +180,7 @@ const ProjectEditDrawer = ({
           show: visibleInitialValue,
           tags: tagsDefaultChildren,
           codinglangs: codingLangsDefaultChildren,
-          madeatsInput: getProjectMadeAt ? getProjectMadeAt.short_name : null,
+          madeatsInput: getProjectMadeAt ? getProjectMadeAt.id : null,
           description: descriptionInitialValue,
         }}
       >

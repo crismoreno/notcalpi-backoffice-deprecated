@@ -19,7 +19,7 @@ function updateProject(body, idToUpdate, callback) {
       description,
     } = body;
 
-    let { show, is_featured, tags, codinglangs, madeats } = body;
+    let { show, is_featured, tags, codinglangs, madeatsInput } = body;
 
     switch (is_featured) {
       case true:
@@ -73,15 +73,6 @@ function updateProject(body, idToUpdate, callback) {
     } else {
       codinglangs = '';
     }
-    if (madeats && Array.isArray(madeats) && madeats.length) {
-      madeats = madeats.toString();
-    } else {
-      madeats = '';
-    }
-
-    console.log(
-      'tags: ' + tags + ' codinglangs: ' + codinglangs + ' madeats: ' + madeats
-    );
 
     axios({
       method: 'put',
@@ -98,7 +89,7 @@ function updateProject(body, idToUpdate, callback) {
         video,
         tags,
         codinglangs,
-        madeats,
+        madeats: madeatsInput,
         show,
         is_featured,
         description,
