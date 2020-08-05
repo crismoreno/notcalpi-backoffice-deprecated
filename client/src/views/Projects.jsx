@@ -92,7 +92,7 @@ const Projects = ({ dispatch, projects }) => {
             />
           )}
           <Alert
-            message={`${countHiddenProjects} hidden projects in total`}
+            message={`${countHiddenProjects} hidden projects`}
             type="info"
             showIcon
             style={{ margin: '0 10px' }}
