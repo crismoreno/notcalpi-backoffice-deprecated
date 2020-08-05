@@ -1,25 +1,25 @@
 import React, { useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-// import { clearMadeAtsByProject } from '../../actions/categories';
 import { updateProject } from '../../helpers/UPDATE/updateProject';
 
 import {
   fetchMadeAts,
   fetchTags,
-  fetchMadeAtsByProjectId,
-  fetchTagsByProjectId,
   fetchCodingLangs,
-  fetchCodingLangsByProjectId,
 } from '../../helpers/GET/getCategories';
+
+import fetchProject from '../../helpers/GET/getProject';
 
 import {
   getMadeAts,
-  getMadeAtsByProjectId,
   getTags,
-  getTagsByProjectId,
-  getCodingLangsByProjectId,
   getCodingLangs,
+  getProjectData,
+  getProjectMadeAt,
+  getProjectLoading,
+  getProjectCodingLangs,
+  getProjectTags,
 } from '../../reducers/index';
 
 import {
@@ -34,49 +34,34 @@ import {
   Select,
   Upload,
   message,
+  Spin,
 } from 'antd';
 const { Item } = Form;
 const { TextArea } = Input;
 const { Option } = Select;
 
-import { UploadOutlined } from '@ant-design/icons';
+import { UploadOutlined, LoadingOutlined } from '@ant-design/icons';
 
 const ProjectEditDrawer = ({
   visibility,
   handleClose,
-  project: {
-    id,
-    orderby,
-    title,
-    customer,
-    collaborators,
-    completion_date,
-    description,
-    link_to_repo,
-    link_to_prod,
-    link_to_download,
-    video,
-    is_featured,
-    show,
-  },
-  madeAtsInProject,
+  project: { id, title, is_featured, show },
   madeats,
   tags,
-  fetchMadeAtsByProjectIdDispatcher,
-  fetchTagsByProjectIdDispatcher,
+  fetchProjectDispatcher,
   fetchCodingLangsDispatcher,
-  fetchCodingLangsByProjectIdDispatcher,
-  codingLangsInProject,
   codingLangs,
   fetchMadeAtsDispatcher,
   fetchTagsDispatcher,
-  tagsInProject,
   updateProjectDispatcher,
+  getProject,
+  getProjectMadeAt,
+  getProjectLoading,
+  getProjectCodingLangs,
+  getProjectTags,
 }) => {
   useEffect(() => {
-    fetchMadeAtsByProjectIdDispatcher(id);
-    fetchTagsByProjectIdDispatcher(id);
-    fetchCodingLangsByProjectIdDispatcher(id);
+    fetchProjectDispatcher(id);
     if (!madeats.length) {
       fetchMadeAtsDispatcher();
     }
@@ -87,6 +72,8 @@ const ProjectEditDrawer = ({
       fetchCodingLangsDispatcher();
     }
   }, [id]);
+
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
   const formRef = useRef(null);
 
@@ -124,6 +111,7 @@ const ProjectEditDrawer = ({
       </Option>
     );
   }
+
   const codingLangChildren = [];
   for (let i = 0; i < codingLangs.length; i++) {
     codingLangChildren.push(
@@ -133,62 +121,44 @@ const ProjectEditDrawer = ({
     );
   }
   const tagsDefaultChildren = [];
-  if (tagsInProject.length && tagsInProject[0].tag) {
-    for (let i = 0; i < tagsInProject.length; i++) {
-      tagsDefaultChildren.push(tagsInProject[i].tag.name);
+  if (getProjectTags) {
+    for (let i = 0; i < getProjectTags.length; i++) {
+      tagsDefaultChildren.push(getProjectTags[i].tag.name);
     }
   }
 
   const codingLangsDefaultChildren = [];
-  if (codingLangsInProject.length && codingLangsInProject[0].codinglang) {
-    for (let i = 0; i < codingLangsInProject.length; i++) {
-      codingLangsDefaultChildren.push(codingLangsInProject[i].codinglang.name);
+  if (getProjectCodingLangs) {
+    for (let i = 0; i < getProjectCodingLangs.length; i++) {
+      codingLangsDefaultChildren.push(getProjectCodingLangs[i].codinglang.name);
     }
   }
 
-  const titleInitialValue = title;
-  const cutomerInitialValue = customer;
-  const collaboratorsInitialValue = collaborators;
-  const complation_dateInitialValue = completion_date;
-  const orderbyInitialValue = orderby;
-  const linkToProdInitialValue = link_to_prod;
-  const linkToRepoInitialValue = link_to_repo;
-  const linkToDownloadInitialValue = link_to_download;
-  const linkToVideoloadInitialValue = video;
+  const titleInitialValue = getProject ? getProject.title : null;
+  const cutomerInitialValue = getProject ? getProject.customer : null;
+  const collaboratorsInitialValue = getProject
+    ? getProject.collaborators
+    : null;
+  const complation_dateInitialValue = getProject
+    ? getProject.completion_date
+    : null;
+  const orderbyInitialValue = getProject ? getProject.orderby : null;
+  const linkToProdInitialValue = getProject ? getProject.link_to_prod : null;
+  const linkToRepoInitialValue = getProject ? getProject.link_to_repo : null;
+  const linkToDownloadInitialValue = getProject
+    ? getProject.link_to_download
+    : null;
+  const linkToVideoloadInitialValue = getProject ? getProject.video : null;
   const featuredInitialValue = is_featured ? 'checked' : null;
   const visibleInitialValue = show ? 'checked' : null;
-  const madeAtsInitialValue =
-    madeAtsInProject && madeAtsInProject[0]
-      ? madeAtsInProject[0].madeat.short_name
-      : null;
-  const descriptionInitialValue = description;
+  const descriptionInitialValue = getProject ? getProject.description : null;
 
-  // console.log(
-  //   `madeats: ${madeAtsInitialValue}, codingLangs: ${codingLangsDefaultChildren}, tags: ${tagsDefaultChildren}`
-  // );
+  const Spinner = () => {
+    return <Spin indicator={antIcon} />;
+  };
 
-  return (
-    <Drawer
-      title={`Edit project: ${title}`}
-      width={900}
-      onClose={handleClose}
-      visible={visibility}
-      bodyStyle={{ paddingBottom: 80 }}
-      footer={
-        <div
-          style={{
-            textAlign: 'right',
-          }}
-        >
-          <Button onClick={handleClose} style={{ marginRight: 8 }}>
-            Cancel
-          </Button>
-          {/* <Button onClick={handleClose} type="primary">
-            Submit
-          </Button> */}
-        </div>
-      }
-    >
+  const EditForm = () => {
+    return (
       <Form
         layout="vertical"
         ref={formRef}
@@ -210,7 +180,7 @@ const ProjectEditDrawer = ({
           show: visibleInitialValue,
           tags: tagsDefaultChildren,
           codinglangs: codingLangsDefaultChildren,
-          madeatsInput: madeAtsInitialValue,
+          madeatsInput: getProjectMadeAt ? getProjectMadeAt.short_name : null,
           description: descriptionInitialValue,
         }}
       >
@@ -479,20 +449,41 @@ const ProjectEditDrawer = ({
           </Col>
         </Row>
       </Form>
+    );
+  };
+
+  return (
+    <Drawer
+      title={`Edit project: ${title}`}
+      width={900}
+      onClose={handleClose}
+      visible={visibility}
+      bodyStyle={{ paddingBottom: 80 }}
+      footer={
+        <div
+          style={{
+            textAlign: 'right',
+          }}
+        >
+          <Button onClick={handleClose} style={{ marginRight: 8 }}>
+            Cancel
+          </Button>
+          {/* <Button onClick={handleClose} type="primary">
+            Submit
+          </Button> */}
+        </div>
+      }
+    >
+      {getProjectLoading ? <Spinner /> : <EditForm />}
     </Drawer>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  // clearMadeAtsByProjectDispatcher: () => dispatch(clearMadeAtsByProject()),
-  fetchMadeAtsByProjectIdDispatcher: (id) =>
-    dispatch(fetchMadeAtsByProjectId(id)),
   fetchMadeAtsDispatcher: () => dispatch(fetchMadeAts()),
-  fetchTagsByProjectIdDispatcher: (id) => dispatch(fetchTagsByProjectId(id)),
+  fetchProjectDispatcher: (id) => dispatch(fetchProject(id)),
   fetchTagsDispatcher: () => dispatch(fetchTags()),
   fetchCodingLangsDispatcher: () => dispatch(fetchCodingLangs()),
-  fetchCodingLangsByProjectIdDispatcher: (id) =>
-    dispatch(fetchCodingLangsByProjectId(id)),
   updateProjectDispatcher: (values, idToUpdate, onFinish) =>
     dispatch(
       updateProject(values, idToUpdate, (err, result) => {
@@ -509,10 +500,12 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   tags: getTags(state),
   madeats: getMadeAts(state),
-  madeAtsInProject: getMadeAtsByProjectId(state),
-  tagsInProject: getTagsByProjectId(state),
-  codingLangsInProject: getCodingLangsByProjectId(state),
   codingLangs: getCodingLangs(state),
+  getProject: getProjectData(state),
+  getProjectMadeAt: getProjectMadeAt(state),
+  getProjectCodingLangs: getProjectCodingLangs(state),
+  getProjectLoading: getProjectLoading(state),
+  getProjectTags: getProjectTags(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectEditDrawer);

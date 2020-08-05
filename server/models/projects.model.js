@@ -16,7 +16,8 @@ const model = {
 	getAllProjects: async (response) =>{
 		try{
 			const projects = await Projects.findAll({
-				order: [['orderby', 'ASC']]
+				order: [['orderby', 'ASC']],
+				attributes: ['id', 'title', 'orderby', 'customer', 'link_to_prod', 'is_featured', 'show']
 			})
 			response(null, projects)
 		}catch(err){

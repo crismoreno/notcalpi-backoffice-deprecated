@@ -19,7 +19,7 @@ router.get("/", passport.authenticate('jwt', { session: false }), projectsContro
 // router.get("/featured", passport.authenticate('jwt', { session: false }), projectsController.getAllFeaturedProjects);
 
 // Find a single project by ID
-// router.get("/project/:id", passport.authenticate('jwt', { session: false }), projectController.getProjectById);
+router.get("/project/:id", passport.authenticate('jwt', { session: false }), projectController.getProjectById);
 
 // Get all tags related to single Project
 router.get("/projecttags/:id", passport.authenticate('jwt', { session: false }),projectController.getTagsByProjectId);
