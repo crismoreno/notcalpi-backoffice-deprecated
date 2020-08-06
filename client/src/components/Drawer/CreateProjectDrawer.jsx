@@ -233,7 +233,7 @@ const ProjectCreateDrawer = ({
           <Col span={12}>
             <Item
               name="link_to_prod"
-              label="Link to production"
+              label="👀 Link to production"
               hasFeedback
               rules={[{ required: false, message: 'Add a valir prod URL' }]}
             >
@@ -243,7 +243,7 @@ const ProjectCreateDrawer = ({
           <Col span={12}>
             <Item
               name="link_to_repo"
-              label="Link to repo"
+              label="📁 Link to repo"
               hasFeedback
               rules={[{ required: false, message: 'Add a valir repo URL' }]}
             >
@@ -256,7 +256,7 @@ const ProjectCreateDrawer = ({
           <Col span={12}>
             <Item
               name="link_to_download"
-              label="Link to download"
+              label="📦 Link to download"
               hasFeedback
               rules={[{ required: false, message: 'Add a valir download URL' }]}
             >
@@ -266,9 +266,22 @@ const ProjectCreateDrawer = ({
           <Col span={12}>
             <Item
               name="video"
-              label="Link to Iframe"
+              label="📹 Link to Iframe"
               hasFeedback
               rules={[{ required: false, message: 'Add a valir iframe URL' }]}
+            >
+              <Input style={{ width: '100%' }} addonBefore={selectURLBefore} />
+            </Item>
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+          <Col span={24}>
+            <Item
+              name="link_to_post"
+              label="📎 Link to post"
+              hasFeedback
+              rules={[{ required: false, message: 'Add a valir download URL' }]}
             >
               <Input style={{ width: '100%' }} addonBefore={selectURLBefore} />
             </Item>

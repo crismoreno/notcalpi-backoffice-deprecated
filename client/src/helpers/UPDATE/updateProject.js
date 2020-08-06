@@ -15,6 +15,7 @@ function updateProject(body, idToUpdate, callback) {
       link_to_prod,
       link_to_repo,
       link_to_download,
+      link_to_post,
       video,
       description,
     } = body;
@@ -86,6 +87,7 @@ function updateProject(body, idToUpdate, callback) {
         link_to_prod,
         link_to_repo,
         link_to_download,
+        link_to_post,
         video,
         tags,
         codinglangs,
