@@ -6,13 +6,13 @@ import qs from 'qs';
 
 function createCodingLang(body, callback) {
   return (dispatch) => {
-    const { title, orderby } = body;
+    const { codinglangtitle, codinglangorderby } = body;
     axios({
       method: 'post',
       url: `${url}/createcodinglang`,
       data: qs.stringify({
-        name: title,
-        priority: orderby,
+        name: codinglangtitle,
+        priority: codinglangorderby,
       }),
       headers: authHeader(),
     })

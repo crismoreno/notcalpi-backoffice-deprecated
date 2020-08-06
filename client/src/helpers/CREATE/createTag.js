@@ -6,12 +6,12 @@ import qs from 'qs';
 
 function createTag(body, callback) {
   return (dispatch) => {
-    const { title } = body;
+    const { tagtitle } = body;
     axios({
       method: 'post',
       url: `${url}/createtag`,
       data: qs.stringify({
-        name: title,
+        name: tagtitle,
       }),
       headers: authHeader(),
     })

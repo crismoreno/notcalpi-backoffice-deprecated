@@ -37,7 +37,7 @@ const CategoryDrawer = ({
         <Row gutter={16}>
           <Col span={24}>
             <Item
-              name="title"
+              name="tagtitle"
               label="Title"
               hasFeedback
               rules={[
@@ -73,7 +73,7 @@ const CategoryDrawer = ({
         <Row gutter={16}>
           <Col span={12}>
             <Item
-              name="title"
+              name="codinglangtitle"
               label="Title"
               hasFeedback
               rules={[
@@ -88,7 +88,7 @@ const CategoryDrawer = ({
           </Col>
           <Col span={12}>
             <Item
-              name="orderby"
+              name="codinglangorderby"
               label="Priority"
               hasFeedback
               rules={[
@@ -124,7 +124,7 @@ const CategoryDrawer = ({
         <Row gutter={16}>
           <Col span={12}>
             <Item
-              name="shortname"
+              name="madeathortname"
               label="Short Name"
               hasFeedback
               rules={[
@@ -139,7 +139,7 @@ const CategoryDrawer = ({
           </Col>
           <Col span={12}>
             <Item
-              name="fullname"
+              name="madeatfullname"
               label="FullName"
               hasFeedback
               rules={[
