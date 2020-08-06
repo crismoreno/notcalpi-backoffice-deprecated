@@ -32,13 +32,13 @@ function createProject(body, callback) {
       show = 0;
     }
 
-    if (tags.length) {
+    if (tags && tags.length) {
       tags = tags.toString();
     }
-    if (codinglangs.length) {
+    if (codinglangs && codinglangs.length) {
       codinglangs = codinglangs.toString();
     }
-    if (madeats.length) {
+    if (madeats && madeats.length) {
       madeats = madeats.toString();
     }
 
