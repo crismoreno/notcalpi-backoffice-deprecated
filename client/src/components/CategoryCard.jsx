@@ -89,6 +89,9 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
         ]}
       >
         <Meta title={`catId: ${entity.id}`} description={'0 projects'} />
+        {entityType === 'codingLang' ? (
+          <Meta description={`Priority: ${entity.orderby}`} />
+        ) : null}
       </Card>
     );
   };
@@ -123,6 +126,9 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
             )
           }
         />
+        {entityType === 'codingLang' ? (
+          <Meta description={`Priority: ${entity.orderby}`} />
+        ) : null}
       </Card>
     );
   };

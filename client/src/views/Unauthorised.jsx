@@ -10,7 +10,7 @@ const Unauthorized = () => {
       <FrownOutlined style={{ fontSize: '64px', color: 'black' }} />
       <PageHeader
         className="contact-forms-page-header"
-        title="403 This is a forbidden route"
+        title="403 Forbidden route"
         // subTitle="This is a subtitle"
       />
       <Button type="primary">
