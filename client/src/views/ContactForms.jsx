@@ -9,13 +9,34 @@ import { getContactForms } from '../reducers/index';
 
 import { ContactsTable } from '../components/ContactsTable.jsx';
 
-import { PageHeader } from 'antd';
+import { PageHeader, Space, Tag } from 'antd';
 
 const columns = [
   {
     title: 'id',
     dataIndex: 'id',
     key: 'id',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+    render: () => <Tag color="volcano">Unanswered</Tag>,
+    // render: tags => (
+    //   <>
+    //     {tags.map(tag => {
+    //       let color = tag.length > 5 ? 'geekblue' : 'green';
+    //       if (tag === 'loser') {
+    //         color = 'volcano';
+    //       }
+    //       return (
+    //         <Tag color={color} key={tag}>
+    //           {tag.toUpperCase()}
+    //         </Tag>
+    //       );
+    //     })}
+    //   </>
+    // ),
   },
   {
     title: 'Name',
@@ -47,6 +68,16 @@ const columns = [
     dataIndex: 'createdAt',
     key: 'createdAt',
   },
+  {
+    title: 'Answer',
+    dataIndex: 'createdAt',
+    key: 'action',
+    render: (text, record) => (
+      <Space size="middle">
+        <a href={`mailto:${record.email}`}>Answer Contact Form</a>
+      </Space>
+    ),
+  },
 ];
 
 const ContactForms = ({ dispatch, contactForms }) => {
@@ -69,7 +100,6 @@ const ContactForms = ({ dispatch, contactForms }) => {
         title="Contact Froms"
         // subTitle="This is a subtitle"
       />
-      ,
       <ContactsTable data={contactForms} columns={columns} />
     </>
   );
