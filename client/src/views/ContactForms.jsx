@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import useDeepCompareEffect from 'use-deep-compare-effect';
 import moment from 'moment';
 
 import fetchContactForms from '../helpers/GET/getContactForms';
+import { updateContactForm } from '../helpers/UPDATE/updateContactForm';
 import { connect } from 'react-redux';
 
 import { getContactForms } from '../reducers/index';
 
 import { ContactsTable } from '../components/ContactsTable.jsx';
 
-import { PageHeader, Modal, Button } from 'antd';
+import { PageHeader, Modal, Button, message } from 'antd';
 const { info } = Modal;
 
 import { green } from '@ant-design/colors';
@@ -22,10 +23,14 @@ import {
   LikeOutlined,
 } from '@ant-design/icons';
 
-const ContactForms = ({ dispatch, contactForms }) => {
-  useDeepCompareEffect(() => {
+const ContactForms = ({
+  contactForms,
+  updateContactFormDispatcher,
+  fetchContactFormsDispacher,
+}) => {
+  useEffect(() => {
     if (!Array.isArray(contactForms) || !Boolean(contactForms.length)) {
-      dispatch(fetchContactForms());
+      fetchContactFormsDispacher();
     }
   }, [contactForms]);
 
@@ -57,6 +62,11 @@ const ContactForms = ({ dispatch, contactForms }) => {
     });
   };
 
+  const toggleState = (e, contactFormId) => {
+    const newState = { state: e.target.innerHTML == 'Answered' ? 0 : 1 };
+    updateContactFormDispatcher(newState, contactFormId);
+  };
+
   const columns = [
     {
       title: 'id',
@@ -70,7 +80,14 @@ const ContactForms = ({ dispatch, contactForms }) => {
       render: (text, record) => {
         if (record.state == false) {
           return (
-            <Button type="primary" danger icon={<FrownOutlined />}>
+            <Button
+              type="primary"
+              danger
+              icon={<FrownOutlined />}
+              onClick={(e) => {
+                toggleState(e, record.id);
+              }}
+            >
               Unanswered
             </Button>
           );
@@ -83,6 +100,9 @@ const ContactForms = ({ dispatch, contactForms }) => {
                 color: 'white',
               }}
               icon={<SmileOutlined />}
+              onClick={(e) => {
+                toggleState(e, record.id);
+              }}
             >
               Answered
             </Button>
@@ -170,8 +190,24 @@ const ContactForms = ({ dispatch, contactForms }) => {
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  fetchContactFormsDispacher: () => dispatch(fetchContactForms()),
+  updateContactFormDispatcher: (values, idToUpdate) =>
+    dispatch(
+      updateContactForm(values, idToUpdate, (err, result) => {
+        if (result) {
+          message.success(
+            `ContactForm ${idToUpdate} was updated successfully!`
+          );
+        } else {
+          console.log(err, 'err');
+        }
+      })
+    ),
+});
+
 const mapStateToProps = (state) => ({
   contactForms: getContactForms(state),
 });
 
-export default connect(mapStateToProps)(ContactForms);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForms);

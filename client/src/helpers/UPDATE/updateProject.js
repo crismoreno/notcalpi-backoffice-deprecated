@@ -99,6 +99,7 @@ function updateProject(body, idToUpdate, callback) {
       headers: authHeader(),
     })
       .then(function (response) {
+        console.log(response, response.data);
         dispatch(fetchProjects(response.data));
         callback(null, 'Project was updated successfully');
       })
