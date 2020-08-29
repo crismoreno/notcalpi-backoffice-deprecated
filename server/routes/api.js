@@ -92,6 +92,9 @@ router.delete("/deletecodinglang/:id", passport.authenticate('jwt', { session: f
 //delete madeat by tag id
 router.delete("/deletemadeat/:id", passport.authenticate('jwt', { session: false }), filteringMadeAts.deleteMadeAtbyId)
 
+//delete contact form
+router.delete("/deletecontactform/:id", passport.authenticate('jwt', { session: false }), contactFormController.deleteContactForm)
+
 //INFO CREATES
 //create project
 router.post("/createproject", passport.authenticate('jwt', { session: false }), projectController.createProject)

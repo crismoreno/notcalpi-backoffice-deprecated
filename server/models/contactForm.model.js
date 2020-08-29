@@ -27,5 +27,16 @@ const model = {
 			resolve(err, null);
 		}
 	},
+	//delete contact form
+	deleteContactForm: async(idToDelete, resolve) => {
+		try{
+			await ContactForms.destroy(
+				{ where: { id: idToDelete }}
+			)
+			resolve(null, 'Contact form deleted successfully')
+		}catch(err){
+			resolve(err, null);
+		}
+	}
 };
 module.exports = model;

@@ -18,6 +18,16 @@ const controller = {
 				res.send(resolve)
 			}
 		})
+	},
+	deleteContactForm: (req, res) => {
+		const idToDelete = req.params.id
+		contactFormModel.deleteContactForm(idToDelete, (err, resolve) => {
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
 	}
 };
 module.exports = controller;

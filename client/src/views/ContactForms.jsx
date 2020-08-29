@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import fetchContactForms from '../helpers/GET/getContactForms';
 import { updateContactForm } from '../helpers/UPDATE/updateContactForm';
+import deleteContactForm from '../helpers/DELETE/deleteContactForm';
 import { connect } from 'react-redux';
 
 import { getContactForms } from '../reducers/index';
@@ -21,12 +22,14 @@ import {
   MessageOutlined,
   EditOutlined,
   LikeOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons';
 
 const ContactForms = ({
   contactForms,
   updateContactFormDispatcher,
   fetchContactFormsDispacher,
+  deleteContactFormDispacher,
 }) => {
   useEffect(() => {
     if (!Array.isArray(contactForms) || !Boolean(contactForms.length)) {
@@ -67,11 +70,55 @@ const ContactForms = ({
     updateContactFormDispatcher(newState, contactFormId);
   };
 
+  const deleteMessage = (contactFormId) => {
+    deleteContactFormDispacher(contactFormId);
+  };
+
   const columns = [
     {
       title: 'id',
       dataIndex: 'id',
       key: 'id',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'TelNum',
+      dataIndex: 'tel',
+      key: 'tel',
+    },
+    {
+      title: 'Company',
+      dataIndex: 'company',
+      key: 'company',
+    },
+    {
+      title: 'Timestamp',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+    },
+    {
+      title: 'Message',
+      dataIndex: 'message',
+      key: 'show',
+      render: (text, record) => (
+        <Button
+          type="primary"
+          onClick={() => {
+            modal(record.id);
+          }}
+        >
+          <MessageOutlined /> Show message
+        </Button>
+      ),
     },
     {
       title: 'Status',
@@ -111,46 +158,6 @@ const ContactForms = ({
       },
     },
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
-      title: 'TelNum',
-      dataIndex: 'tel',
-      key: 'tel',
-    },
-    {
-      title: 'Company',
-      dataIndex: 'company',
-      key: 'company',
-    },
-    {
-      title: 'Message',
-      dataIndex: 'message',
-      key: 'show',
-      render: (text, record) => (
-        <Button
-          type="primary"
-          onClick={() => {
-            modal(record.id);
-          }}
-        >
-          <MessageOutlined /> Show message
-        </Button>
-      ),
-    },
-    {
-      title: 'Timestamp',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-    },
-    {
       title: 'Answer',
       dataIndex: 'createdAt',
       key: 'answer',
@@ -176,6 +183,22 @@ const ContactForms = ({
         }
       },
     },
+    {
+      title: 'Delete',
+      dataIndex: 'delete',
+      key: 'delete',
+      render: (text, record) => (
+        <Button
+          type="primary"
+          danger
+          onClick={() => {
+            deleteMessage(record.id);
+          }}
+        >
+          <DeleteOutlined />
+        </Button>
+      ),
+    },
   ];
 
   return (
@@ -192,6 +215,8 @@ const ContactForms = ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchContactFormsDispacher: () => dispatch(fetchContactForms()),
+  deleteContactFormDispacher: (idToDelete) =>
+    dispatch(deleteContactForm(idToDelete)),
   updateContactFormDispatcher: (values, idToUpdate) =>
     dispatch(
       updateContactForm(values, idToUpdate, (err, result) => {
