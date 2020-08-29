@@ -205,7 +205,7 @@ const ContactForms = ({
     <>
       <PageHeader
         className="contact-forms-page-header"
-        title="Contact Froms"
+        title="Messages"
         // subTitle="This is a subtitle"
       />
       <ContactsTable data={contactForms} columns={columns} />

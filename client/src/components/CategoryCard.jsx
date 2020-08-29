@@ -111,7 +111,7 @@ export const CategoryCard = ({ entity, entityType, dispatch, onClickEdit }) => {
                 : `https://www.cristinamoreno.dev/#/portfolio?${entityType}=${entity.id}`
             }
           >
-            <EyeOutlined key="see" />,
+            <EyeOutlined key="see" />
           </a>,
           <LinkOutlined key="see" onClick={warningProjects} />,
         ]}
