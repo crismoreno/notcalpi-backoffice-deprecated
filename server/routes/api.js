@@ -119,5 +119,8 @@ router.put("/updatecodinglang/:id", passport.authenticate('jwt', { session: fals
 //update madeat by id
 router.put("/updatemadeat/:id", passport.authenticate('jwt', { session: false }), filteringMadeAts.updateMadeAt)
 
+//update madeat by id
+router.put("/updatecontactform/:id", passport.authenticate('jwt', { session: false }), contactFormController.updateContactForm)
+
 
 module.exports = router;
