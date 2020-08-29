@@ -20,6 +20,9 @@ module.exports = (sequelize, Sequelize) => {
     message: {
       type: Sequelize.STRING,
     },
+    state: {
+      type: Sequelize.BOOLEAN,
+    },
   });
   return ContactForms;
 };
