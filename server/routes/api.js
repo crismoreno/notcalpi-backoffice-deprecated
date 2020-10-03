@@ -78,6 +78,9 @@ router.post("/login", usersController.loginUser);
 //Get all users
 router.get("/users", passport.authenticate('jwt', { session: false }), usersController.getAllUsers);
 
+//Delete user by id
+router.delete("/deleteuser/:id", passport.authenticate('jwt', { session: false }), usersController.deleteUserbyId)
+
 //INFO DELETES
 
 //delete project by project id

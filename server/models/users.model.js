@@ -18,5 +18,14 @@ const model = {
 		where: obj,
 	})
 	},
+	deleteUserbyId: async (idToDelete, resolve) => {
+		try{
+			await Users.destroy({ where: { id: idToDelete }});
+			resolve(null, 'User deleted successfully')
+		}
+		catch(err){
+			resolve(err, null)
+		}
+	}
 }
 module.exports = model;

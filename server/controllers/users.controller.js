@@ -62,6 +62,16 @@ const controller = {
 	getAllUsers: (req, res) => {
 		usersModel.getAllUsers().then(user => res.json(user));
 	},
+	deleteUserbyId: (req, res) => {
+		const idToDelete = req.params.id;
+		usersModel.deleteUserbyId(idToDelete, (err, resolve) => {
+			if(err){
+				res.send(err)
+			}else{
+				res.send(resolve)
+			}
+		})
+	}
 }
 
 module.exports = controller;
