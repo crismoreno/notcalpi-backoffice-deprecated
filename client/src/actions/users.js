@@ -1,4 +1,5 @@
 import {
+  CLEAR_USERS,
   FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
@@ -7,7 +8,12 @@ import {
   LOGIN_FAILURE,
   LOGOUT,
 } from './actionTypes';
+
 //FETCH USERS
+export const clearUsers = () => ({
+  type: CLEAR_USERS,
+});
+
 export const fetchUsersBegin = () => ({
   type: FETCH_USERS_REQUEST,
 });

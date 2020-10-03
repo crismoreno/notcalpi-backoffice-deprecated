@@ -2,6 +2,7 @@ import {
   FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
+  CLEAR_USERS,
 } from '../../actions/actionTypes';
 
 const initialState = {
@@ -12,6 +13,12 @@ const initialState = {
 
 const users = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_USERS:
+      return {
+        ...state,
+        loading: false,
+        users: [],
+      };
     case FETCH_USERS_REQUEST:
       return {
         ...state,
