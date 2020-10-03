@@ -47,19 +47,50 @@ const ContactForms = ({
   }
 
   const modal = (contactFormId) => {
-    const modalMessage = contactForms.find(
+    const contactId = contactForms.find(
+      (contact) => contactFormId === contact.id
+    )?.id;
+    const contactMessage = contactForms.find(
       (contact) => contactFormId === contact.id
     )?.message;
-    const modalTitle = contactForms.find(
+    const contactName = contactForms.find(
       (contact) => contactFormId === contact.id
     )?.name;
+    const contactEmail = contactForms.find(
+      (contact) => contactFormId === contact.id
+    )?.email;
+    const contactTel = contactForms.find(
+      (contact) => contactFormId === contact.id
+    )?.tel;
+    const contactCompany = contactForms.find(
+      (contact) => contactFormId === contact.id
+    )?.company;
 
     info({
-      title: `Message from: ${modalTitle}`,
+      title: `${contactId}`,
       content: (
-        <div>
-          <p>{modalMessage}</p>
-        </div>
+        <>
+          <div>
+            <b>Name:</b>
+            <p>{contactName}</p>
+          </div>
+          <div>
+            <b>Telephone number:</b>
+            <p>{contactTel}</p>
+          </div>
+          <div>
+            <b>Email:</b>
+            <p>{contactEmail}</p>
+          </div>
+          <div>
+            <b>Company:</b>
+            <p>{contactCompany}</p>
+          </div>
+          <div>
+            <b>Message:</b>
+            <p>{contactMessage}</p>
+          </div>
+        </>
       ),
       onOk() {},
     });
@@ -85,21 +116,21 @@ const ContactForms = ({
       dataIndex: 'name',
       key: 'name',
     },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
-      title: 'TelNum',
-      dataIndex: 'tel',
-      key: 'tel',
-    },
-    {
-      title: 'Company',
-      dataIndex: 'company',
-      key: 'company',
-    },
+    // {
+    //   title: 'Email',
+    //   dataIndex: 'email',
+    //   key: 'email',
+    // },
+    // {
+    //   title: 'TelNum',
+    //   dataIndex: 'tel',
+    //   key: 'tel',
+    // },
+    // {
+    //   title: 'Company',
+    //   dataIndex: 'company',
+    //   key: 'company',
+    // },
     {
       title: 'Timestamp',
       dataIndex: 'createdAt',
