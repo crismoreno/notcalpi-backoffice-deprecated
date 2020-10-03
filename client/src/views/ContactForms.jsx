@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useDeepCompareEffect from 'use-deep-compare-effect';
+// import useDeepCompareEffect from 'use-deep-compare-effect';
 import moment from 'moment';
 
 import fetchContactForms from '../helpers/GET/getContactForms';

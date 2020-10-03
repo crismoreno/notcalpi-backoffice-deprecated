@@ -5,6 +5,7 @@ import moment from 'moment';
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 
 import fetchUsers from '../helpers/GET/getUsers';
+import deleteUser from '../helpers/DELETE/deleteUser';
 import { createUser } from '../helpers/CREATE/createUser';
 import { connect } from 'react-redux';
 
@@ -15,35 +16,14 @@ import { ContactsTable } from '../components/ContactsTable.jsx';
 import { PageHeader, Button, Modal, Form, Input, message } from 'antd';
 const { Item } = Form;
 
-const columns = [
-  {
-    title: 'id',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: 'Username',
-    dataIndex: 'username',
-    key: 'username',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-    key: 'email',
-  },
-  {
-    title: 'Hash',
-    dataIndex: 'password',
-    key: 'password',
-  },
-  {
-    title: 'Creation Date',
-    dataIndex: 'createdAt',
-    key: 'createdAt',
-  },
-];
+import { DeleteOutlined } from '@ant-design/icons';
 
-const Users = ({ fetchUsersDispatcher, users, createUserDispatcher }) => {
+const Users = ({
+  fetchUsersDispatcher,
+  users,
+  createUserDispatcher,
+  deleteUserDispatcher,
+}) => {
   useDeepCompareEffect(() => {
     if (!Array.isArray(users) || !Boolean(users.length)) {
       fetchUsersDispatcher();
@@ -55,6 +35,55 @@ const Users = ({ fetchUsersDispatcher, users, createUserDispatcher }) => {
       i.createdAt = moment(i.createdAt).utc().format('DD.MM.YYYY');
     });
   }
+
+  const deleteUser = (userId) => {
+    console.log(userId, 'userId');
+    deleteUserDispatcher(userId);
+  };
+
+  const columns = [
+    {
+      title: 'id',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
+      title: 'Username',
+      dataIndex: 'username',
+      key: 'username',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    // {
+    //   title: 'Hash',
+    //   dataIndex: 'password',
+    //   key: 'password',
+    // },
+    {
+      title: 'Creation Date',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+    },
+    {
+      title: 'Delete',
+      dataIndex: 'delete',
+      key: 'delete',
+      render: (text, record) => (
+        <Button
+          type="primary"
+          danger
+          onClick={() => {
+            deleteUser(record.id);
+          }}
+        >
+          <DeleteOutlined />
+        </Button>
+      ),
+    },
+  ];
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -154,6 +183,7 @@ const Users = ({ fetchUsersDispatcher, users, createUserDispatcher }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUsersDispatcher: () => dispatch(fetchUsers()),
+  deleteUserDispatcher: (idToDelete) => dispatch(deleteUser(idToDelete)),
   createUserDispatcher: (values, onFinish) =>
     dispatch(
       createUser(values, (err, result) => {
