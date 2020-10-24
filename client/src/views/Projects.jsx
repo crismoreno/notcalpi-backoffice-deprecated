@@ -76,16 +76,16 @@ const Projects = ({ dispatch, projects }) => {
             margin: '10px 0',
           }}
         >
-          {countFeaturedProjects === 4 ? (
+          {countFeaturedProjects === 3 ? (
             <Alert
-              message="There are 4 featured Projects 👌"
+              message="There are 3 featured Projects 👌"
               type="success"
               showIcon
               style={{ marginRight: '10px' }}
             />
           ) : (
             <Alert
-              message={`${countFeaturedProjects} featured Projects in total try to make it back to 4`}
+              message={`${countFeaturedProjects} featured Projects in total try to make it back to 3`}
               type="warning"
               showIcon
               style={{ marginRight: '10px' }}

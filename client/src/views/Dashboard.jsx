@@ -40,7 +40,7 @@ const Dashboard = ({ auth, logoutDispacher }, store) => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} >
         <div className="logo">
           <Link to="/admin" style={{ display: 'flex' }}>
             <img
