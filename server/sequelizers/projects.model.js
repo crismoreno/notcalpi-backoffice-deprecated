@@ -52,6 +52,12 @@ module.exports = (sequelize, Sequelize) => {
     is_featured: {
       type: Sequelize.BOOLEAN,
       allowNull: false,
+		},
+		related_by: {
+      type: Sequelize.STRING,
+    },
+    related_by_id: {
+      type: Sequelize.INTEGER,
     },
     show: {
       type: Sequelize.BOOLEAN,
