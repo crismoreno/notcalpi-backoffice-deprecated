@@ -17,7 +17,9 @@ function createProject(body, callback) {
       link_to_download,
       link_to_post,
       video,
-      description,
+			description,
+			related_by,
+			related_by_id,
     } = body;
 
     let { show, is_featured, tags, codinglangs, madeats } = body;
@@ -62,7 +64,9 @@ function createProject(body, callback) {
         madeats,
         show,
         is_featured,
-        description,
+				description,
+				related_by,
+				related_by_id,
       }),
       headers: authHeader(),
     })

@@ -1,7 +1,7 @@
 import {
   FETCH_PROJECTS_REQUEST,
   FETCH_PROJECTS_SUCCESS,
-  FETCH_PROJECTS_FAILURE,
+	FETCH_PROJECTS_FAILURE,
 } from '../../actions/actionTypes';
 
 const initialState = {
@@ -29,7 +29,7 @@ const projects = (state = initialState, action) => {
         loading: false,
         error: action.payload.error,
         projects: [],
-      };
+			};
     default:
       // ALWAYS have a default case in a reducer
       return state;

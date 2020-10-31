@@ -21,12 +21,18 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 import { UploadOutlined } from '@ant-design/icons';
+import {setProjectRelatedByKind} from '../../actions/projects'
 
 import {
   fetchMadeAts,
   fetchTags,
   fetchCodingLangs,
 } from '../../helpers/GET/getCategories';
+
+import{
+getProjectRelatedBy,
+getProjectRelatedById,
+} from '../../reducers/index';
 
 import { getMadeAts, getTags, getCodingLangs } from '../../reducers/index';
 
@@ -39,7 +45,9 @@ const ProjectCreateDrawer = ({
   fetchMadeAtsDispatcher,
   fetchTagsDispatcher,
   fetchCodingLangsDispatcher,
-  createProjectDispatcher,
+	createProjectDispatcher,
+	setProjectRelatedByKindDispatcher,
+	getProjectRelatedBy
 }) => {
   const formRef = useRef(null);
 
@@ -96,7 +104,7 @@ const ProjectCreateDrawer = ({
         {codingLangs[i].name}
       </Option>
     );
-  }
+	}
 
   return (
     <Drawer
@@ -375,6 +383,43 @@ const ProjectCreateDrawer = ({
           </Col>
         </Row>
 
+				<Row gutter={16}>
+					<Col span={12}>
+            <Item
+              name="related_by"
+              label="Related By Kind"
+              rules={[
+                {
+                  required: false
+                },
+              ]}
+            >
+              <Select placeholder="Related By Kind" allowClear onChange={(value)=>setProjectRelatedByKindDispatcher(value)}>
+								<Option key="relatedByKind-1" value='tags'>Tag</Option>,
+								<Option key="relatedByKind-2" value='codinglangs'>Coding Language</Option>,
+								<Option key="relatedByKind-3" value='madeat'>Made At</Option>
+							</Select>
+            </Item>
+          </Col>
+					<Col span={12}>
+					<Item
+              name="related_by_id"
+              label="Related By"
+              rules={[
+                {
+                  required: false
+                },
+              ]}
+            >
+              <Select placeholder="Related By" allowClear disabled={getProjectRelatedBy == null}>
+								{getProjectRelatedBy == 'tags' && tagsChildren}
+								{getProjectRelatedBy == 'codinglangs' && codingLangChildren}
+								{getProjectRelatedBy == 'madeat' && madeAtsChildren}
+              </Select>
+            </Item>
+          </Col>
+				</Row>
+
         <Row gutter={16}>
           <Col span={24}>
             <Item
@@ -424,13 +469,15 @@ const mapDispatchToProps = (dispatch) => ({
           console.log(err, 'err');
         }
       })
-    ),
+		),
+		setProjectRelatedByKindDispatcher: (kind) => dispatch(setProjectRelatedByKind(kind))
 });
 
 const mapStateToProps = (state) => ({
   tags: getTags(state),
   madeats: getMadeAts(state),
-  codingLangs: getCodingLangs(state),
+	codingLangs: getCodingLangs(state),
+	getProjectRelatedBy: getProjectRelatedBy(state),
 });
 
 export default connect(

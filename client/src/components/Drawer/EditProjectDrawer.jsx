@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { updateProject } from '../../helpers/UPDATE/updateProject';
@@ -11,6 +11,8 @@ import {
 
 import fetchProject from '../../helpers/GET/getProject';
 
+import {setProjectRelatedByKind} from '../../actions/projects'
+
 import {
   getMadeAts,
   getTags,
@@ -19,14 +21,17 @@ import {
   getProjectMadeAt,
   getProjectLoading,
   getProjectCodingLangs,
-  getProjectTags,
+	getProjectTags,
+	getProjectRelatedBy,
+	getProjectRelatedById,
 } from '../../reducers/index';
 
 import {
   Drawer,
   Form,
   Button,
-  Col,
+	Col,
+	Empty,
   Row,
   Input,
   Switch,
@@ -58,7 +63,10 @@ const ProjectEditDrawer = ({
   getProjectMadeAt,
   getProjectLoading,
   getProjectCodingLangs,
-  getProjectTags,
+	getProjectTags,
+	getProjectRelatedBy,
+	getProjectRelatedById,
+	setProjectRelatedByKindDispatcher,
 }) => {
   useEffect(() => {
     fetchProjectDispatcher(id);
@@ -75,7 +83,7 @@ const ProjectEditDrawer = ({
 
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
-  const formRef = useRef(null);
+	const formRef = useRef(null);
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -92,47 +100,48 @@ const ProjectEditDrawer = ({
       <Option value="https://">https://</Option>
       <Option value="http://">http://</Option>
     </Select>
-  );
+	);
 
   const madeAtsChildren = [];
   for (let i = 0; i < madeats.length; i++) {
-    madeAtsChildren.push(
-      <Option key={madeats[i].id} value={madeats[i].id}>
+		madeAtsChildren.push(
+			<Option key={madeats[i].id} value={madeats[i].id}>
         {madeats[i].short_name}
       </Option>
     );
-  }
+	}
 
   const tagsChildren = [];
   for (let i = 0; i < tags.length; i++) {
-    tagsChildren.push(
-      <Option key={tags[i].id} value={tags[i].id}>
+		tagsChildren.push(
+			<Option key={tags[i].id} value={tags[i].id}>
         {tags[i].name}
       </Option>
     );
   }
-
+	
   const codingLangChildren = [];
   for (let i = 0; i < codingLangs.length; i++) {
-    codingLangChildren.push(
-      <Option key={codingLangs[i].id} value={codingLangs[i].id}>
+		codingLangChildren.push(
+			<Option key={codingLangs[i].id} value={codingLangs[i].id}>
         {codingLangs[i].name}
       </Option>
     );
-  }
+	}
+	
   const tagsDefaultChildren = [];
   if (getProjectTags) {
-    for (let i = 0; i < getProjectTags.length; i++) {
-      tagsDefaultChildren.push(getProjectTags[i].tag.id);
+		for (let i = 0; i < getProjectTags.length; i++) {
+			tagsDefaultChildren.push(getProjectTags[i].tag.id);
     }
   }
-
+	
   const codingLangsDefaultChildren = [];
   if (getProjectCodingLangs) {
-    for (let i = 0; i < getProjectCodingLangs.length; i++) {
-      codingLangsDefaultChildren.push(getProjectCodingLangs[i].codinglang.id);
+		for (let i = 0; i < getProjectCodingLangs.length; i++) {
+			codingLangsDefaultChildren.push(getProjectCodingLangs[i].codinglang.id);
     }
-  }
+	}
 
   const titleInitialValue = getProject ? getProject.title : null;
   const cutomerInitialValue = getProject ? getProject.customer : null;
@@ -151,8 +160,10 @@ const ProjectEditDrawer = ({
     : null;
   const linkToVideoloadInitialValue = getProject ? getProject.video : null;
   const featuredInitialValue = is_featured ? 'checked' : null;
-  const visibleInitialValue = show ? 'checked' : null;
-  const descriptionInitialValue = getProject ? getProject.description : null;
+	const visibleInitialValue = show ? 'checked' : null;
+	const relatedByIdInitialValue = getProjectRelatedById ? getProjectRelatedById : null;
+	const relatedByKindInitialValue = getProjectRelatedBy ? getProjectRelatedBy : null;
+	const descriptionInitialValue = getProject ? getProject.description : null;
 
   const Spinner = () => {
     return <Spin indicator={antIcon} />;
@@ -182,7 +193,9 @@ const ProjectEditDrawer = ({
           show: visibleInitialValue,
           tags: tagsDefaultChildren,
           codinglangs: codingLangsDefaultChildren,
-          madeatsInput: getProjectMadeAt ? getProjectMadeAt.id : null,
+					madeatsInput: getProjectMadeAt ? getProjectMadeAt.id : null,
+					related_by_id: relatedByIdInitialValue,
+					related_by: relatedByKindInitialValue,
           description: descriptionInitialValue,
         }}
       >
@@ -432,7 +445,42 @@ const ProjectEditDrawer = ({
             </Item>
           </Col>
         </Row>
-
+				<Row gutter={16}>
+					<Col span={12}>
+            <Item
+              name="related_by"
+							label="Related By Kind"
+              rules={[
+                {
+                  required: false
+                },
+              ]}
+            >
+              <Select placeholder="Related By Kind" onChange={(value)=>setProjectRelatedByKindDispatcher(value)} allowClear>
+								<Option key="relatedByKind-1" value='tags'>Tag</Option>,
+								<Option key="relatedByKind-2" value='codinglangs'>Coding Language</Option>,
+								<Option key="relatedByKind-3" value='madeat'>Made At</Option>
+							</Select>
+            </Item>
+          </Col>
+					<Col span={12}>
+					<Item
+              name="related_by_id"
+              label="Related By"
+              rules={[
+                {
+                  required: false
+                },
+              ]}
+            >
+              <Select placeholder="Related By" allowClear disabled={getProjectRelatedBy == null}>
+								{getProjectRelatedBy == 'tags' && tagsChildren}
+								{getProjectRelatedBy == 'codinglangs' && codingLangChildren}
+								{getProjectRelatedBy == 'madeat' && madeAtsChildren}
+              </Select>
+            </Item>
+          </Col>
+				</Row>
         <Row gutter={16}>
           <Col span={24}>
             <Item
@@ -499,7 +547,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchProjectDispatcher: (id) => dispatch(fetchProject(id)),
   fetchTagsDispatcher: () => dispatch(fetchTags()),
   fetchCodingLangsDispatcher: () => dispatch(fetchCodingLangs()),
-  updateProjectDispatcher: (values, idToUpdate, onFinish) =>
+	updateProjectDispatcher: (values, idToUpdate, onFinish) =>
     dispatch(
       updateProject(values, idToUpdate, (err, result) => {
         if (result) {
@@ -509,7 +557,8 @@ const mapDispatchToProps = (dispatch) => ({
           console.log(err, 'err');
         }
       })
-    ),
+		),
+	setProjectRelatedByKindDispatcher: (kind) => dispatch(setProjectRelatedByKind(kind))
 });
 
 const mapStateToProps = (state) => ({
@@ -521,6 +570,8 @@ const mapStateToProps = (state) => ({
   getProjectCodingLangs: getProjectCodingLangs(state),
   getProjectLoading: getProjectLoading(state),
   getProjectTags: getProjectTags(state),
+  getProjectRelatedBy: getProjectRelatedBy(state),
+  getProjectRelatedById: getProjectRelatedById(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectEditDrawer);

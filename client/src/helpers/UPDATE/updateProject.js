@@ -17,7 +17,9 @@ function updateProject(body, idToUpdate, callback) {
       link_to_download,
       link_to_post,
       video,
-      description,
+			description,
+			related_by,
+			related_by_id,
     } = body;
 
     let { show, is_featured, tags, codinglangs, madeatsInput } = body;
@@ -94,7 +96,9 @@ function updateProject(body, idToUpdate, callback) {
         madeats: madeatsInput,
         show,
         is_featured,
-        description,
+				description,
+				related_by,
+				related_by_id,
       }),
       headers: authHeader(),
     })

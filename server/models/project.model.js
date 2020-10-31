@@ -89,10 +89,10 @@ const model = {
 		}
 	},
 	createProject: async(data, resolve) =>{
-		const {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, link_to_post, video, tags, codinglangs, madeats, show, is_featured, description} = data;
+		const {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, link_to_post, video, tags, codinglangs, madeats, show, is_featured, description, related_by, related_by_id} = data;
 		console.log(tags, codinglangs, madeats);
 		try{
-			await Projects.create({title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_post, link_to_download, video, show, is_featured, description});
+			await Projects.create({title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_post, link_to_download, video, show, is_featured, description, related_by, related_by_id});
 			const createdProject = await Projects.max('id');
 			const tagsArray = JSON.parse("[" + tags + "]");
 			const codingLangsArray = JSON.parse("[" + codinglangs + "]");
@@ -106,10 +106,10 @@ const model = {
 		}
 	},
 	updateProject: async(data, resolve) => {
-		const {params: {id}, body: {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, link_to_post, video, tags, codinglangs, madeats, show, is_featured, description}} = data;
+		const {params: {id}, body: {title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_download, link_to_post, video, tags, codinglangs, madeats, show, is_featured, description, related_by, related_by_id}} = data;
 		try{
 		await Projects.update(
-			{title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_post, link_to_download, video, show, is_featured, description},
+			{title, customer, collaborators, completion_date, orderby, link_to_prod, link_to_repo, link_to_post, link_to_download, video, show, is_featured, description, related_by, related_by_id},
 			{ returning: true, where: { id: id } }
 		)
 		const tagsArray = JSON.parse("[" + tags + "]");

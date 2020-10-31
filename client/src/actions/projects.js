@@ -5,6 +5,7 @@ import {
   FETCH_PROJECT_REQUEST,
   FETCH_PROJECT_SUCCESS,
   FETCH_PROJECT_FAILURE,
+  SET_PROJECT_RELATEDBYKIND,
 } from './actionTypes';
 //FETCH PROJECTS
 export const fetchProjectsBegin = () => ({
@@ -14,7 +15,6 @@ export const fetchProjectsSuccess = (projects) => ({
   type: FETCH_PROJECTS_SUCCESS,
   payload: { projects },
 });
-
 export const fetchProjectsFailure = (error) => ({
   type: FETCH_PROJECTS_FAILURE,
   payload: { error },
@@ -28,8 +28,13 @@ export const fetchProjectSuccess = (project) => ({
   type: FETCH_PROJECT_SUCCESS,
   payload: { project },
 });
-
 export const fetchProjectFailure = (error) => ({
   type: FETCH_PROJECT_FAILURE,
   payload: { error },
+});
+
+//SET PROJECT RELATEDBYKIND
+export const setProjectRelatedByKind = (kind) => ({
+	type: SET_PROJECT_RELATEDBYKIND,
+	payload: { kind },
 });

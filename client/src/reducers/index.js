@@ -29,3 +29,5 @@ export const getProjectTags = (state) => state.project.project.tags[0];
 export const getProjectCodingLangs = (state) =>
   state.project.project.codingLangs[0];
 export const getProjectMadeAt = (state) => state.project.project.madeAt;
+export const getProjectRelatedBy = (state) => state.project.project.details.related_by;
+export const getProjectRelatedById = (state) => state.project.project.details.related_by_id;

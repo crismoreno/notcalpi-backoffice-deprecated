@@ -1,15 +1,18 @@
 import {
   FETCH_PROJECT_REQUEST,
   FETCH_PROJECT_SUCCESS,
-  FETCH_PROJECT_FAILURE,
+	FETCH_PROJECT_FAILURE,
+	SET_PROJECT_RELATEDBYKIND,
 } from '../../actions/actionTypes';
 
 const initialState = {
   project: {
-    details: {},
+    details: {
+			related_by: null,
+		},
     madeAt: {},
     codingLangs: [],
-    tags: [],
+		tags: [],
   },
   loading: false,
   error: null,
@@ -45,8 +48,19 @@ const project = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload.error,
-        project: [],
-      };
+        project: {},
+			};
+		case SET_PROJECT_RELATEDBYKIND:
+			return {
+				...state,
+        project: {
+					...state.project,
+					details:{
+						...state.project.details,
+						related_by: action.payload.kind
+					}
+				}
+			};
     default:
       // ALWAYS have a default case in a reducer
       return state;
