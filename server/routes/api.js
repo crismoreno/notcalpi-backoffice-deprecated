@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const projectsController = require("../controllers/projects.controller.js");
 const projectController = require("../controllers/project.controller.js");
+const downloadController = require("../controllers/download.controller.js");
 
 const filteringTags = require("../controllers/filteringTags.controller.js");
 const filteringMadeAts = require("../controllers/filteringMadeAts.controller.js");
@@ -127,6 +128,10 @@ router.put("/updatemadeat/:id", passport.authenticate('jwt', { session: false })
 
 //update madeat by id
 router.put("/updatecontactform/:id", passport.authenticate('jwt', { session: false }), contactFormController.updateContactForm)
+
+
+//INFO Download DB
+router.get("/download_db", passport.authenticate('jwt', { session: false }), downloadController.downloadDb)
 
 
 module.exports = router;

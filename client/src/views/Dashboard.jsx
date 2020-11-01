@@ -19,19 +19,35 @@ import {
   MailOutlined,
   SmileOutlined,
   DesktopOutlined,
-  LogoutOutlined,
+	LogoutOutlined,
+	DeploymentUnitOutlined,
+	CloudServerOutlined,
+	DatabaseOutlined
 } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, message } from 'antd';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+
+import { authHeader } from '../helpers/authHeader';
+
+const requestOptions = {
+	method: 'GET',
+	headers: authHeader(),
+};
 
 const Dashboard = ({ auth, logoutDispacher }, store) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const onCollapse = () => {
     collapsed === false ? setCollapsed(true) : setCollapsed(false);
-  };
+	};
+	
+	const handleDownloadDBOnClick = () => {
+    return fetch('/api/download_db', requestOptions).then((response) => {
+      message.success(`The DB Dump should be in your Downloads directory!`);
+		});
+	}
 
   const logoutHandler = () => {
     logoutUser();
@@ -79,7 +95,32 @@ const Dashboard = ({ auth, logoutDispacher }, store) => {
               Visit FrontOffice
             </a>
           </Menu.Item>
-          <Menu.Item key="9" icon={<LogoutOutlined />}>
+          <Menu.Item key="9" icon={<DesktopOutlined />}>
+            <a target="_blank" href="https://www.cristinamoreno.dev/">
+              Visit FrontOffice
+            </a>
+          </Menu.Item>
+          <Menu.Item key="10" icon={<DeploymentUnitOutlined />}>
+            <a target="_blank" href="https://dashboard.heroku.com/apps/notcalpi40">
+              Heroku FrontOffice
+            </a>
+          </Menu.Item>
+          <Menu.Item key="11" icon={<DeploymentUnitOutlined />}>
+            <a target="_blank" href="https://dashboard.heroku.com/apps/notcalpi40-backoffice">
+              Heroku Backoffice
+            </a>
+          </Menu.Item>
+          <Menu.Item key="12" icon={<CloudServerOutlined />}>
+            <a target="_blank" href="DatabaseOutlined">
+              Cloudinary
+            </a>
+          </Menu.Item>
+          <Menu.Item key="13" icon={<DatabaseOutlined />}>
+            <a onClick={handleDownloadDBOnClick} download>
+              Download DB
+            </a>
+          </Menu.Item>
+          <Menu.Item key="14" icon={<LogoutOutlined />}>
             <Link to="/" onClick={logoutHandler}>
               Logout
             </Link>
