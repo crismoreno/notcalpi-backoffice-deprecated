@@ -95,32 +95,27 @@ const Dashboard = ({ auth, logoutDispacher }, store) => {
               Visit FrontOffice
             </a>
           </Menu.Item>
-          <Menu.Item key="9" icon={<DesktopOutlined />}>
-            <a target="_blank" href="https://www.cristinamoreno.dev/">
-              Visit FrontOffice
-            </a>
-          </Menu.Item>
-          <Menu.Item key="10" icon={<DeploymentUnitOutlined />}>
+          <Menu.Item key="9" icon={<DeploymentUnitOutlined />}>
             <a target="_blank" href="https://dashboard.heroku.com/apps/notcalpi40">
               Heroku FrontOffice
             </a>
           </Menu.Item>
-          <Menu.Item key="11" icon={<DeploymentUnitOutlined />}>
+          <Menu.Item key="10" icon={<DeploymentUnitOutlined />}>
             <a target="_blank" href="https://dashboard.heroku.com/apps/notcalpi40-backoffice">
               Heroku Backoffice
             </a>
           </Menu.Item>
-          <Menu.Item key="12" icon={<CloudServerOutlined />}>
+          <Menu.Item key="11" icon={<CloudServerOutlined />}>
             <a target="_blank" href="DatabaseOutlined">
               Cloudinary
             </a>
           </Menu.Item>
-          {/* <Menu.Item key="13" icon={<DatabaseOutlined />}>
+          {/* <Menu.Item key="12" icon={<DatabaseOutlined />}>
             <a onClick={handleDownloadDBOnClick} download>
               Download DB
             </a>
           </Menu.Item> */}
-          <Menu.Item key="14" icon={<LogoutOutlined />}>
+          <Menu.Item key="12" icon={<LogoutOutlined />}>
             <Link to="/" onClick={logoutHandler}>
               Logout
             </Link>
