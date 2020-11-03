@@ -1,0 +1,81 @@
+@import '~antd/dist/antd.css';
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.unauthorised-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  height: 316px;
+  left: 0;
+  right: 0;
+  width: 250px;
+}
+.login-form-container {
+  height: 316px;
+  padding: 0 70px;
+  flex-direction: column;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+}
+.login-form-container .login-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.project-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.project-cards-container .notcalpi-card {
+  margin: 10px;
+}
+.contact-forms-page-header {
+  padding-left: 0;
+}
+.welcome-screen {
+  display: flex;
+  justify-content: space-between;
+}
+.ant-layout-sider,
+.ant-menu.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  background: #19222c;
+}
+.ant-layout-sider-trigger,
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected,
+.ant-btn-primary,
+.ant-switch-checked {
+  background: #10171e;
+}
+.ant-card-actions > li > span a:not(.ant-btn):hover,
+.ant-card-actions > li > span > .anticon:hover {
+  color: #10171e;
+}
+.ant-btn-primary {
+  border-color: #10171e;
+}
+.ant-btn-primary:active,
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background: #19222c;
+  border-color: #19222c;
+}
+.ant-layout-sider-children {
+  position: fixed;
+  width: inherit;
+}
