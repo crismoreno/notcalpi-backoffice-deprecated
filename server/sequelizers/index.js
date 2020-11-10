@@ -35,6 +35,7 @@ db.projectCodingLangs = require("./projectCodingLangs.model")(
 db.madeAt = require("./madeAt.model")(sequelize, Sequelize);
 db.projectMadeAt = require("./projectMadeAt.model")(sequelize, Sequelize);
 db.user = require("./user.model")(sequelize, Sequelize);
+db.setup = require("./setup.model")(sequelize, Sequelize);
 
 //RELATIONS
 db.projects.hasMany(db.projectTags);
