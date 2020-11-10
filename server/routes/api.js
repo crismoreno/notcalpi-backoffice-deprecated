@@ -2,11 +2,11 @@ const express = require("express");
 const passport = require("passport");
 const projectsController = require("../controllers/projects.controller.js");
 const projectController = require("../controllers/project.controller.js");
-const downloadController = require("../controllers/download.controller.js");
 
 const filteringTags = require("../controllers/filteringTags.controller.js");
 const filteringMadeAts = require("../controllers/filteringMadeAts.controller.js");
 const filteringCodingLang = require("../controllers/filteringCodingLang.controller.js");
+const setupController = require("../controllers/setup.controller.js");
 
 const contactFormController = require("../controllers/contactForm.controller.js");
 const usersController = require("../controllers/users.controller.js");
@@ -129,9 +129,10 @@ router.put("/updatemadeat/:id", passport.authenticate('jwt', { session: false })
 //update madeat by id
 router.put("/updatecontactform/:id", passport.authenticate('jwt', { session: false }), contactFormController.updateContactForm)
 
-
-//INFO Download DB
-router.get("/download_db", passport.authenticate('jwt', { session: false }), downloadController.downloadDb)
+//INFO APP SETUP
+//update madeat by id
+router.get("/getsetup", passport.authenticate('jwt', { session: false }), setupController.getSetup)
+// router.put("/updatesetup", passport.authenticate('jwt', { session: false }), setupController.updateSetup)
 
 
 module.exports = router;

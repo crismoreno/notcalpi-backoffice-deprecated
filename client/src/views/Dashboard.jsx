@@ -42,12 +42,6 @@ const Dashboard = ({ auth, logoutDispacher }, store) => {
   const onCollapse = () => {
     collapsed === false ? setCollapsed(true) : setCollapsed(false);
 	};
-	
-	// const handleDownloadDBOnClick = () => {
-  //   return fetch('/api/download_db', requestOptions).then((response) => {
-  //     message.success(`The DB Dump should be in your Downloads directory!`);
-	// 	});
-	// }
 
   const logoutHandler = () => {
     logoutUser();
@@ -110,11 +104,6 @@ const Dashboard = ({ auth, logoutDispacher }, store) => {
               Cloudinary
             </a>
           </Menu.Item>
-          {/* <Menu.Item key="12" icon={<DatabaseOutlined />}>
-            <a onClick={handleDownloadDBOnClick} download>
-              Download DB
-            </a>
-          </Menu.Item> */}
           <Menu.Item key="12" icon={<LogoutOutlined />}>
             <Link to="/" onClick={logoutHandler}>
               Logout

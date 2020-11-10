@@ -39,7 +39,7 @@ const Welcome = ({ username: { username }, logoutHandler }) => {
 		// onFinishFailed={onFinishFailed}
 		// initialValues={{
 		// }}
-	>
+		>
 		<Row gutter={16}>
 			<Col span={12}>
 				<Item
