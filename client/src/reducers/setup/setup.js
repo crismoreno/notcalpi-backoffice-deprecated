@@ -21,7 +21,7 @@ const setup = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        setup: action.payload,
+        setup: action.payload.setup[0],
       };
     case FETCH_SETUP_FAILURE:
       return {

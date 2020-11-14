@@ -18,8 +18,8 @@ app.use("/api", api);
 
 const db = require("./sequelizers");
 
-// db.sequelize.sync({ alter: true });
-db.sequelize.sync();
+db.sequelize.sync({ alter: true });
+// db.sequelize.sync();
 
 // db.sequelize.sync({ force: true }).then(() => {
 // 	console.log("Drop and re-sync db.");

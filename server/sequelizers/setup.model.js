@@ -54,7 +54,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.TEXT,
       allowNull: false,
 		},
-		heroku_Backoffice: {
+		heroku_backOffice: {
 			type: Sequelize.TEXT,
       allowNull: false,
 		},

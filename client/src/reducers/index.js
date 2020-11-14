@@ -3,6 +3,7 @@ import project from './project/project';
 import categories from './categories';
 import contactForms from './contactForms/contactForms';
 import users from './users';
+import setup from './setup/setup';
 import { combineReducers } from 'redux';
 
 const reducers = combineReducers({
@@ -10,7 +11,8 @@ const reducers = combineReducers({
   project,
   categories,
   contactForms,
-  users,
+	users,
+	setup,
 });
 
 export default reducers;
@@ -31,3 +33,5 @@ export const getProjectCodingLangs = (state) =>
 export const getProjectMadeAt = (state) => state.project.project.madeAt;
 export const getProjectRelatedBy = (state) => state.project.project.details.related_by;
 export const getProjectRelatedById = (state) => state.project.project.details.related_by_id;
+export const getSetup = (state) => state.setup.setup;
+export const isLoadingSetup = (state) => state.setup.loading;

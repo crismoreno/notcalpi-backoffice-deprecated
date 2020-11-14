@@ -7,7 +7,7 @@ const model = {
   // Get contact forms collection
   getSetup: async (response) => {
     try {
-      const setup = await Setup.findAll({where:{id: 1}, attributes:['limit_featured', 'limit_related']});
+      const setup = await Setup.findAll({where:{id: 1}, attributes:['limit_featured', 'limit_related', 'currently_doing', 'cv_share_link', 'linkedin_link', 'medium_link', 'github_link', 'instagram_link', 'calendly_uri', 'phone_num', 'email', 'heroku_frontOffice', 'heroku_backOffice', 'github_backOffice', 'github_frontOffice']});
       response(null, setup);
     } catch (err) {
       response(err, null);
