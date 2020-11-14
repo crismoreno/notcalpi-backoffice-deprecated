@@ -43,7 +43,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
 		},
 		phone_num: {
-			type: Sequelize.INTEGER,
+			type: Sequelize.TEXT,
       allowNull: false,
 		},
 		email: {
